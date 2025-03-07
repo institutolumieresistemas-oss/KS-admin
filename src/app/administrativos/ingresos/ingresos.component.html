@@ -1,0 +1,33 @@
+<div class="bg-light text-center rounded p-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h6 class="mb-0">Ingresos</h6>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-end">
+                <button class="btn btn-success" (click)="modal('nuevo')">Agregar ingreso</button>
+            </div>
+        </div><br>
+        <div class="row" *ngIf="seleccion !== undefined">
+            <div class="col-sm-4">
+                <button class="btn btn-warning" (click)="modal('modificar');">Modificar</button>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-info" (click)="modal('imagen');">Voucher</button>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-danger" (click)="imprimir();">Imprimir PDF</button>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-tabla [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event"></app-tabla>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal [ngSwitch]="vista">
+    <app-modal-ingreso *ngSwitchCase="'nuevo'" [modificar]="false" [listas]="listas" (emitidor)="nuevo($event)"></app-modal-ingreso>
+    <app-modal-ingreso *ngSwitchCase="'modificar'" [modificar]="true" [dato]="seleccion" [listas]="listas" (emitidor)="solicitud($event)"></app-modal-ingreso>
+    <img *ngSwitchCase="'imagen'" src="{{seleccion.imagen}}" alt="">
+</app-modal>

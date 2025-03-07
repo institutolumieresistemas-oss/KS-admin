@@ -1,0 +1,34 @@
+<div class="bg-light text-center rounded p-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h6 class="mb-0">Eventos</h6>
+    </div>
+    <div class="row" *ngIf="seleccion !== undefined">
+        <div class="col-sm-12 text-start">
+            <button class="btn btn-info" (click)="modal('lider');">Lider</button>&nbsp;&nbsp;
+            <button class="btn btn-primary" (click)="modal('equipo')">Equipo</button>&nbsp;&nbsp;
+            <button class="btn btn-success" (click)="estado();">Estado de cuenta</button>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-end">
+                <button class="btn btn-success" (click)="modal('nuevo')">Nuevo Evento</button>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-select [datos]="opciones" [etiqueta]="'Estatus'" [dato]="seleccion.estatus" (emitidor)="cambiarEstatus($event);"></app-select>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-tabla [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-tabla>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal [ngSwitch]="vista">
+    <app-modal-evento *ngSwitchCase="'nuevo'" [listas]="listas" (emitidor)="nuevo($event);"></app-modal-evento>
+    <app-modal-lider *ngSwitchCase="'lider'" [lider]="seleccion.lider" (emitidor)="actualizarLider($event);"></app-modal-lider>
+    <app-modal-equipo *ngSwitchCase="'equipo'" [equipo]="seleccion.equipo" (emitidor)="actualizarEquipo($event);"></app-modal-equipo>
+</app-modal>

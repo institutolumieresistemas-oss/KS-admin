@@ -1,0 +1,5 @@
+<div class="form-floating mb-3">
+    <textarea id="{{ id }}" class="form-control {{(mayusculas) ? 'mayusculas' : ''}}" placeholder="{{ place }}" [maxlength]="(cantidad > 0) ? cantidad : 15000000" [disabled]="activo" [(ngModel)]="valor" (keyup)="emitir()" (change)="emitir()" (keypress)="validar($event)"
+        (blur)="blur()"></textarea>
+    <label for={{id}}>{{etiqueta}}</label>
+</div>

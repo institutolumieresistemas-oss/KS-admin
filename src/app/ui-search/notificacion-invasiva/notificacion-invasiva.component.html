@@ -1,0 +1,20 @@
+<div class="page-loader-wrapper">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{notificacion.titulo}}</h2>
+        </div>
+    </div><br><br>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>{{notificacion.mensaje}}</h3>
+        </div>
+    </div>
+    <div class="loader" *ngIf="notificacion.botones">
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-success" (click)="resolver();">Aceptar</button>
+                <button class="btn btn-danger" (click)="rechazar();">Rechazar</button>
+            </div>
+        </div>
+    </div>
+</div>

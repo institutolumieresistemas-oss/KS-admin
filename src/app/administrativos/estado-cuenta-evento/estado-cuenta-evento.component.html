@@ -1,0 +1,69 @@
+<div class="bg-light text-center rounded p-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h6 class="mb-0">Estado de cuenta</h6>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-start">
+                <button class="btn btn-info" (click)="modal('abono');">Agregar abono</button>
+                <button class="btn btn-primary" (click)="modal('gasto');">Agregar gasto</button>
+            </div>
+        </div>
+        <div class="row text-start">
+            <div class="col-sm-6">
+                <b>Concepto</b>
+            </div>
+            <div class="col-sm-6">
+                <b>Monto</b>
+            </div>
+        </div><br><br>
+        <div class="row text-start">
+            <div class="col-sm-12">
+                <p>Cargos</p>
+            </div>
+        </div>
+        <div class="row text-start" *ngFor="let cargo of cargos">
+            <div class="col-sm-6">
+                <b>{{cargo.concepto}}</b>
+            </div>
+            <div class="col-sm-6">
+                <b>${{generales.milesNumeros(cargo.monto)}}</b>
+            </div>
+        </div><br>
+        <div class="row text-start">
+            <div class=" col-sm-12 ">
+                <p>Abonos</p>
+            </div>
+        </div>
+        <div class="row text-start" *ngFor="let abono of abonos">
+            <div class="col-sm-6">
+                <b>{{abono.concepto}}</b>
+            </div>
+            <div class="col-sm-6">
+                <b>${{generales.milesNumeros(abono.monto)}}</b>
+            </div>
+        </div><br>
+        <div class="row text-start">
+            <div class=" col-sm-12 ">
+                <p>Gastos</p>
+            </div>
+        </div>
+        <div class="row text-start" *ngFor="let gasto of gastos">
+            <div class="col-sm-6">
+                <b>{{gasto.concepto}}</b>
+            </div>
+            <div class="col-sm-6">
+                <b>${{generales.milesNumeros(gasto.monto)}}</b>
+            </div>
+        </div><br>
+        <div class="row text-end">
+            <div class="col-sm-12">
+                <b>${{generales.milesNumeros(total)}}</b>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal [ngSwitch]="vista ">
+    <app-modal-abono *ngSwitchCase="'abono'" [formas]="listas.formas" [cuentas]="listas.cuentas" (emitidor)="nuevoAbono($event);"></app-modal-abono>
+    <app-modal-gasto *ngSwitchCase="'gasto'" [formas]="listas.formas" [cuentas]="listas.cuentas" (emitidor)="nuevoGasto($event);"></app-modal-gasto>
+</app-modal>

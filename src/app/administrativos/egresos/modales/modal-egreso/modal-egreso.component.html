@@ -1,0 +1,49 @@
+<div class="modal-header bg-info">
+    <h4 class="text-white">Ingreso</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <app-input [valor]="dato.monto" [validacion]="'decimal'" [etiqueta]="'Monto'" (emitidor)="dato.monto = $event"></app-input>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Concepto'" [datos]="listas.conceptos" [dato]="dato.idConcepto" (emitidor)="dato.idConcepto = $event;"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Rubro'" [datos]="listas.rubros" [dato]="dato.idRubro" (emitidor)="dato.idRubro = $event;"></app-select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Tipo'" [datos]="listas.tipos" [dato]="dato.idTipo" (emitidor)="dato.idTipo = $event;"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Calendario'" [datos]="listas.calendarios" [dato]="dato.idCalendario" (emitidor)="dato.idCalendario = $event;"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-select [etiqueta]="'Forma de pago'" [datos]="listas.formas" [dato]="dato.idFormaPago" (emitidor)="dato.idFormaPago = $event;"></app-select>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <app-select [datos]="listas.cuentas" [dato]="dato.idCuenta" [etiqueta]="'Cuenta'" (emitidor)="dato.idCuenta = $event;"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <app-imagen [imagen]="dato.imagen" [valor]="dato.imagen" (emitidor)="dato.imagen = $event;"></app-imagen>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-textarea [etiqueta]="'Observaciones'" [valor]="dato.observaciones" (emitidor)="dato.observaciones = $event;"></app-textarea>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-sm-12 d-md-flex justify-content-md-end">
+                <button class="btn btn-success" (click)="emitir()">Guardar</button>
+                <button class="btn btn-danger" (click)="cerrar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

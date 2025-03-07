@@ -1,0 +1,4 @@
+<div class="archivo amo">
+    <input style="background-image: url({{imagen}});" class="imagen-input amo" type="file" [disabled]='activo' [(ngModel)]='valor' (change)='emitir($event.target)'>
+    <img src="{{imagen}}" alt="imn" class="imagen-input amo">
+</div>

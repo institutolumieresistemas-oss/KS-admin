@@ -1,0 +1,8 @@
+<div class="sidebar pe-4 pb-3">
+    <nav class="navbar bg-light navbar-light">
+        <app-logo></app-logo>
+        <div class="navbar-nav w-100" *ngFor="let modulo of permisos">
+            <app-modulo [modulo]="modulo"></app-modulo>
+        </div>
+    </nav>
+</div>

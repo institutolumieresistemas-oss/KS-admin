@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-sm-4">
+        <app-select [datos]="listado" [dato]="seleccion" [etiqueta]="'Personajes'" (emitidor)="seleccion = $event;"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <button class="btn btn-success" (click)="agregar();">Guardar</button>
+    </div>
+</div><br>
+<div class="row" *ngFor="let item of personajes">
+    <div class="col-sm-3">
+        {{item.nombre}}
+    </div>
+    <div class="col-sm-2"><i class="fas fa-times text-danger" (click)="eliminar(item);"></i></div>
+</div><br>
+<div class="row justify-content-end">
+    <div class="col-sm-12 d-md-flex justify-content-md-end">
+        <button class="btn btn-success" (click)="continuar()">Siguiente</button>
+        <button class="btn btn-danger" (click)="cancelar()">Anterior</button>
+    </div>
+</div>

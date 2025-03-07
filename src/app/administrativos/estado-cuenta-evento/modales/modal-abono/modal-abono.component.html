@@ -1,0 +1,28 @@
+<div class="modal-header bg-info">
+    <h4 class="text-white">Agregar abono</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <app-input [valor]="dato.concepto" [etiqueta]="'Concepto'" (emitidor)="dato.concepto = $event"></app-input>
+            </div>
+            <div class="col-sm-3">
+                <app-input [valor]="dato.monto" [validacion]="'decimal'" [etiqueta]="'Monto'" (emitidor)="dato.monto = $event"></app-input>
+            </div>
+            <div class="col-sm-3">
+                <app-select [datos]="formas" [etiqueta]="'Forma de pago'" (emitidor)="dato.idFormaPago = $event"></app-select>
+            </div>
+            <div class="col-sm-3">
+                <app-select [datos]="cuentas" [etiqueta]="'Cuenta'" (emitidor)="dato.idCuenta = $event"></app-select>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-sm-12 d-md-flex justify-content-md-end">
+                <button class="btn btn-success" (click)="emitir()">Guardar</button>
+                <button class="btn btn-danger" (click)="cerrar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

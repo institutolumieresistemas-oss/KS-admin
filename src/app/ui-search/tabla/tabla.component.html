@@ -1,0 +1,70 @@
+<div class="card ">
+    <div class="card-header pb-0 p-3">
+        <div class="d-flex justify-content-between">
+            <h6 class="mb-2">{{configuracion.titulo}}</h6>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-1">
+                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mostrar</p>
+            </div>
+            <div class="col-sm-1">
+                <app-select [dato]="numeroFilas" [datos]="numeros" [frist]="false" (emitidor)="numeroFilas = $event; configurarPaginacion();"></app-select>
+            </div>
+            <div class="col-sm-2">
+                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Elementos</p>
+            </div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <app-input [etiqueta]="'Buscar'" *ngIf="configuracion.busqueda" (emitidor)="buscar($event);"></app-input>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center ">
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" *ngFor="let item of configuracion.alias, let o = index" (click)="(configuracion.ordenFilas) ? ordenar(o) :  null">{{item}} <i class="fas fa-{{(o === indiceOrden) ? (ordenASC) ? 'sort-up' : 'sort-down' : ''}}"></i></th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let items of listado, let i = index" [class]="(items['seleccionado']) ? 'selected' : items['bg']" (click)="mostrar(items, i)" (dblclick)="dobleClick(items);">
+                        <td class="w-30" *ngFor="let item of configuracion.encabezados, let j = index">
+                            <div class="d-flex px-2 py-1 align-items-center">
+                                <div class="ms-4">
+                                    <ng-container *ngIf="items[item] !== undefined">
+                                        <ng-container *ngIf="esIcono(items[item])">
+                                            <i class="{{items[item]}}" title="{{items[item]}}"></i>
+                                        </ng-container>
+                                        <ng-container *ngIf="esColor(items[item])">
+                                            <i class="fas fa-circle {{items[item]}}" title="{{items[item]}}"></i>
+                                        </ng-container>
+                                        <ng-container *ngIf="!esIcono(items[item]) && !esColor(items[item])">
+                                            <h6 class="text-sm mb-0">{{items[item]}}</h6>
+                                        </ng-container>
+                                    </ng-container>
+                                    <ng-container *ngIf="items[item] === undefined">
+
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-sm-8" *ngIf="numeroPaginas > 0">
+                <app-paginador [paginas]="numeroPaginas" (emitidor)="paginaSeleccionada = $event; paginacion();"></app-paginador>
+            </div>
+            <div class="col-sm-8" *ngIf="numeroPaginas < 1">
+                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No existen resultados</p>
+            </div>
+            <div class="col-sm-4" *ngIf="datos !== undefined">
+                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{datos.length}} registros encontrados de {{totalDatos}}</p>
+            </div>
+            <div class="col-sm-4" *ngIf="datos === undefined">
+                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">0 registros encontrados de {{totalDatos}}</p>
+            </div>
+        </div>
+    </div>
+</div>

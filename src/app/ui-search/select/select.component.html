@@ -1,0 +1,9 @@
+<div class="form-group">
+    <label for="{{id}}">
+        <span class="text-danger" *ngIf="obligatorio">*</span>{{etiqueta}}
+    </label>
+    <select chosen id="{{id}}" [(ngModel)]="dato" (change)="emitir();" class="form-control" disabled="{{des}}">
+        <option value="0" selected *ngIf="frist">Selecciona una opción</option>
+        <option *ngFor="let item of datos " tooltip="Tooltip " placement="top " value="{{item.id}}" [title]="(validarDescripcion(item.descripcion)) ? item.descripcion : 'Sin descripcion' ">{{item.nombre }}</option> 
+    </select>
+</div>

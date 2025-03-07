@@ -1,0 +1,25 @@
+<div class="container-fluid pt-4 px-4 bg-light">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Permisos</h6>
+        </div>
+    </div>
+    <div class="container bg-light">
+        <div class="row">
+            <div class="col-sm-12 text-end">
+                <app-select [etiqueta]="'Tipos de usuario'" [datos]="datos" (emitidor)="idTipoUsuario = $event; mostrar();"></app-select>
+            </div>
+        </div><br>
+        <div class="row" *ngFor="let modulo of permisos">
+            <div class="col-sm-11">
+                <app-checktimes [texto]="modulo.nombre" [activo]="modulo.activo" (emitidor)="($event) ? activarModulo(modulo.id) : desactivarModulo(modulo.id);"></app-checktimes>
+                <div class="row" *ngFor="let opcion of modulo.opciones">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-11">
+                        <app-checktimes [texto]="opcion.nombre" [activo]="opcion.activo" (emitidor)="($event) ? activarOpcion(opcion.id) : desactivarOpcion(opcion.id);"></app-checktimes>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

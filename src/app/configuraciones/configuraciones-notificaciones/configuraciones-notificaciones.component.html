@@ -1,0 +1,42 @@
+<div class="bg-light text-center rounded p-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h6 class="mb-0">Configuracion de notificaciones</h6>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="bg-white rounded h-100 p-4">
+                    <div class="row">
+                        <div class="col-sm-12 text-end">
+                            <i class="fas fa-plus text-success" (click)="seleccion = 1; listado = ingresos; modal();"></i>
+                        </div>
+                    </div>
+                    <h6 class="mb-4">Ingresos</h6>
+                    <div class="row" *ngFor="let ingreso of ingresos">
+                        <div class="col-sm-12">
+                            {{ingreso.usuario}}<i class="fa fa-times text-danger" (click)="quitar(ingreso);"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="bg-white rounded h-100 p-4">
+                    <div class="row">
+                        <div class="col-sm-12 text-end">
+                            <i class="fas fa-plus text-success" (click)="seleccion = 2; listado = egresos; modal();"></i>
+                        </div>
+                    </div>
+                    <h6 class="mb-4">Egresos</h6>
+                    <div class="row" *ngFor="let egreso of egresos">
+                        <div class="col-sm-12">
+                            {{egreso.usuario}}<i class="fa fa-times text-danger" (click)="quitar(egreso);"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal [ngSwitch]="vista">
+    <app-modal-usuarios-notificacion *ngSwitchCase="'q'" [lista]="usuarios" [listado]="listado" (emitidor)="agregar($event);"></app-modal-usuarios-notificacion>
+</app-modal>

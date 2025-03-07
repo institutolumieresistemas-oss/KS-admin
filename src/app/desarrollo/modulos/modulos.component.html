@@ -1,0 +1,32 @@
+<div class="container-fluid pt-4 px-4 bg-light">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Modulos</h6>
+        </div>
+    </div>
+    <div class="container bg-light">
+        <div class="row">
+            <div class="col-sm-12 text-end">
+                <button class="btn btn-success" (click)="modal('modulo');">Agregar Modulo</button>
+            </div>
+        </div><br>
+        <div class="row" *ngFor="let modulo of datos">
+            <div class="col-sm-11">
+                <app-checktimes [texto]="modulo.nombre" [activo]="modulo.activo"></app-checktimes>
+                <div class="row" *ngFor="let opcion of modulo.opciones">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-11">
+                        <app-checktimes [texto]="opcion.nombre" [activo]="opcion.activo"></app-checktimes>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1">
+                <i class="fas fa-plus text-success" (click)="seleccion = modulo; modal('opcion');"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal [ngSwitch]="vista">
+    <app-modal-modulo *ngSwitchCase="'modulo'" (emitidor)="modulo($event);"></app-modal-modulo>
+    <app-modal-opcion *ngSwitchCase="'opcion'" (emitidor)="opcion($event);"></app-modal-opcion>
+</app-modal>

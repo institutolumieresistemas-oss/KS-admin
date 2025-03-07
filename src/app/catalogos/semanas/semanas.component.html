@@ -1,0 +1,25 @@
+<div class="bg-light text-center rounded p-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h6 class="mb-0">Semanas</h6>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-end">
+                <button class="btn btn-success" (click)="modal('nuevo')">Agregar semana</button>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-select [datos]="lista" (emitidor)="busqueda = $event; buscar();"></app-select>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-tabla [configuracion]="configuracion" [datos]="listado"></app-tabla>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal [ngSwitch]="vista">
+    <app-modal-semana *ngSwitchCase="'nuevo'" [lista]="lista" (emitidor)="nuevo($event);"></app-modal-semana>
+</app-modal>

@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Nombre del festejado'" (emitidor)="cliente.festejado = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Edad'" [validacion]="'numero'" (emitidor)="cliente.edad = $event"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Cantidad de niños'" [validacion]="'numero'" (emitidor)="cliente.cantidad = $event"></app-input>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Nombre del contratante'" (emitidor)="cliente.nombre = $event;"></app-input>
+    </div>
+    <div class="col-sm-4">
+        <app-input [etiqueta]="'Celular'" [validacion]="'numero'" [cantidad]="10" (emitidor)="cliente.celular = $event;"></app-input>
+    </div>
+</div>
+<div class="row justify-content-end">
+    <div class="col-sm-12 d-md-flex justify-content-md-end">
+        <button class="btn btn-success" (click)="continuar()">Siguiente</button>
+        <button class="btn btn-danger" (click)="regresar()">Cancelar</button>
+    </div>
+</div>

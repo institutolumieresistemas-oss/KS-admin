@@ -1,0 +1,11 @@
+.imagen-input {
+    height: 80px;
+    background-size: 80px 80px;
+    padding-left: 80px;
+}
+
+.archivo {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}

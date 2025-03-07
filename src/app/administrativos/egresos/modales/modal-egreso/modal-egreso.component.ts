@@ -1,0 +1,43 @@
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { GeneralesService } from '../../../../servicios/generales.service';
+
+@Component({
+  selector: 'app-modal-egreso',
+  templateUrl: './modal-egreso.component.html',
+  styleUrl: './modal-egreso.component.css'
+})
+export class ModalEgresoComponent {
+  @Output() emitidor = new EventEmitter<any>();
+    @Input() dato = {
+      monto: '',
+      idConcepto: 0,
+      idRubro: 0,
+      idTipo: 0,
+      idCalendario: 0,
+      idFormaPago: 0,
+      idCuenta: 0,
+      observaciones: '',
+      imagen: ''
+    };
+    @Input() listas = {
+      conceptos: [],
+      rubros: [],
+      tipos: [],
+      calendarios: [],
+      formas: [],
+      cuentas: []
+    }
+    @Input() modificar = false;
+    constructor(private generales: GeneralesService) { }
+    
+    ngOnInit(): void {
+    }
+    
+    emitir() {
+      this.emitidor.emit(this.dato);
+    }
+    
+    cerrar() {
+      this.generales.cerrarModal();
+    }
+}

@@ -1,0 +1,35 @@
+<ul class="pagination pagination-primary">
+    <li class="page-item" *ngIf="paginas > 5">
+        <a class="page-link" (click)="primero();"><i class="fas fa-angle-double-left"></i></a>
+    </li>
+    <li class="page-item" *ngIf="paginas > 5">
+        <a class="page-link" (click)="anterior();"><i class="fas fa-chevron-left"></i></a>
+    </li>
+    <li class="page-item {{(seleccion === inicio+1) ? 'active' : ''}}">
+        <a class="page-link" (click)="emitir(inicio+1);">{{inicio+1}}</a>
+    </li>
+    <li class="page-item {{(seleccion === inicio+2) ? 'active' : ''}}" *ngIf="paginas >= inicio+2">
+        <a class="page-link" (click)="emitir(inicio+2);">{{inicio+2}}</a>
+    </li>
+    <li class="page-item {{(seleccion === inicio+3) ? 'active' : ''}}" *ngIf="paginas >= inicio+3">
+        <a class="page-link" (click)="emitir(inicio+3);">{{inicio+3}}</a>
+    </li>
+    <li class="page-item {{(seleccion === inicio+4) ? 'active' : ''}}" *ngIf="paginas >= inicio+4">
+        <a class="page-link" (click)="emitir(inicio+4);">{{inicio+4}}</a>
+    </li>
+    <li class="page-item {{(seleccion === inicio+5) ? 'active' : ''}}" *ngIf="paginas >= inicio+5">
+        <a class="page-link" (click)="emitir(inicio+5);">{{inicio+5}}</a>
+    </li>
+    <li class="page-item {{(seleccion === inicio+5) ? 'active' : ''}}" *ngIf="inicio < paginas - 5">
+        ...
+    </li>
+    <li class="page-item" *ngIf="paginas > inicio+5">
+        <a class="page-link" (click)="ultima();">{{paginas}}</a>
+    </li>
+    <li class="page-item" *ngIf="paginas > 5">
+        <a class="page-link" (click)="siguiente();"><i class="fas fa-chevron-right"></i></a>
+    </li>
+    <li class="page-item" *ngIf="paginas > 5">
+        <a class="page-link" (click)="final()"><i class="fas fa-angle-double-right"></i></a>
+    </li>
+</ul>

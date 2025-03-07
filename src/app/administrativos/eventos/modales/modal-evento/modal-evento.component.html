@@ -1,0 +1,16 @@
+<div class="modal-header bg-info">
+    <h4 class="text-white">Nuevo Evento</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <div class="container" ng *ngIf="paso === 0">
+        <app-datos-cliente (siguiente)="validarCliente($event);" (cancelar)="cerrar();"></app-datos-cliente>
+    </div>
+    <div class="container" ng *ngIf="paso === 1">
+        <app-datos-empresa [medios]="listas.medios" [formas]="listas.formas" [cuentas]="listas.cuentas" [semanas]="listas.semanas" [calendarios]="listas.calendarios" [paquetes]="listas.paquetes" [motivos]="listas.motivos" (siguiente)="validarEvento($event);"
+            (anterior)="paso = 0"></app-datos-empresa>
+    </div>
+    <div class="container" ng *ngIf="paso === 2">
+        <app-datos-personajes [lista]="listas.personajes" (anterior)="paso = 1" (siguente)="validarPersonajes($event);"></app-datos-personajes>
+    </div>
+</div>
