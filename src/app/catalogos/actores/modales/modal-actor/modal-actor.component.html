@@ -1,0 +1,27 @@
+<div class="modal-header bg-{{(modificar) ? 'yellow' : 'success'}}">
+    <h4 class="text-white">{{(modificar) ? 'Modificar' : 'Agregar'}} Actor</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <app-input [activo]="modificar" [valor]="dato.nombre" [etiqueta]="'Nombre'" (emitidor)="dato.nombre = $event"></app-input>
+            </div>
+            <div class="col-sm-6">
+                <app-select [datos]="lista" [etiqueta]="'Personajes'" (emitidor)="agregar($event);"></app-select>
+            </div>
+        </div>
+        <div class="row" *ngFor="let item of datos">
+            <div class="col-sm-12">
+                {{item.nombre}} - <i class="fas fa-times text-danger" (click)="eliminar(item);"></i>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-sm-12 d-md-flex justify-content-md-end">
+                <button class="btn btn-success" (click)="emitir()">Guardar</button>
+                <button class="btn btn-danger" (click)="cerrar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

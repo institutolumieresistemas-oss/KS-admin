@@ -2,9 +2,10 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { GeneralesService } from '../../../../servicios/generales.service';
 
 @Component({
-  selector: 'app-modal-gasto',
-  templateUrl: './modal-gasto.component.html',
-  styleUrl: './modal-gasto.component.css'
+    selector: 'app-modal-gasto',
+    templateUrl: './modal-gasto.component.html',
+    styleUrl: './modal-gasto.component.css',
+    standalone: false
 })
 export class ModalGastoComponent {
   @Output() emitidor = new EventEmitter<any>();

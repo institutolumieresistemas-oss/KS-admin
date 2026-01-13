@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { datatableConfig } from '../../interfaces/tables.interface';
 
 @Component({
-  selector: 'app-egreso-rubros',
-  templateUrl: './egreso-rubros.component.html',
-  styleUrl: './egreso-rubros.component.css'
+    selector: 'app-egreso-rubros',
+    templateUrl: './egreso-rubros.component.html',
+    styleUrl: './egreso-rubros.component.css',
+    standalone: false
 })
 export class EgresoRubrosComponent {
   configuracion: datatableConfig = {

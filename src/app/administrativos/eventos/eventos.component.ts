@@ -5,9 +5,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-eventos',
-  templateUrl: './eventos.component.html',
-  styleUrl: './eventos.component.css'
+    selector: 'app-eventos',
+    templateUrl: './eventos.component.html',
+    styleUrl: './eventos.component.css',
+    standalone: false
 })
 export class EventosComponent {
   configuracion: datatableConfig = {

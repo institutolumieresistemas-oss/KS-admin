@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { CalendariosService } from '../../servicios/calendarios.service';
 
 @Component({
-  selector: 'app-calendarios',
-  templateUrl: './calendarios.component.html',
-  styleUrl: './calendarios.component.css'
+    selector: 'app-calendarios',
+    templateUrl: './calendarios.component.html',
+    styleUrl: './calendarios.component.css',
+    standalone: false
 })
 export class CalendariosComponent {
   configuracion: datatableConfig = {

@@ -19,6 +19,7 @@ export class InterceptorService implements HttpInterceptor{
       body.usuarioID = localStorage.getItem('identificador');
       body.sucursalID = localStorage.getItem('sucursal');
       body.calendarioID = localStorage.getItem('calendario');
+      body.semanaID = localStorage.getItem('semana');
     }
     req = req.clone({method, url, body, headers});
     return next.handle(req);

@@ -3,9 +3,10 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 import { EventosService } from '../../../../servicios/eventos.service';
 
 @Component({
-  selector: 'app-modal-evento',
-  templateUrl: './modal-evento.component.html',
-  styleUrl: './modal-evento.component.css'
+    selector: 'app-modal-evento',
+    templateUrl: './modal-evento.component.html',
+    styleUrl: './modal-evento.component.css',
+    standalone: false
 })
 export class ModalEventoComponent {
   @Output() emitidor = new EventEmitter<any>();
@@ -28,7 +29,6 @@ export class ModalEventoComponent {
       mapa: '',
       observaciones: '',
       anticipo: '',
-      idSemana: 0,
       idFormaPago: 0,
       idCuenta: 0
     },

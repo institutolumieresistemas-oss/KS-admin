@@ -1,0 +1,22 @@
+<div class="bg-light rounded h-100 p-4" *ngIf="datos.datos">
+
+    <h4 class="mb-4">
+        Top {{ datos.datos.length }} {{ datos.titulo }}
+    </h4>
+
+    <div *ngIf="datos.datos.length > 0">
+        <div class="row" *ngFor="let dato of datos.datos; let i = index">
+            <div class="col-sm-10">
+                <h6 class="mb-4">{{ i + 1 }}.- {{ dato.nombre }}</h6>
+            </div>
+            <div class="col-sm-2">
+                <h6 class="mb-4">{{ dato.cantidad }}</h6>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="datos.datos.length === 0" class="text-muted">
+        No hay datos para mostrar
+    </div>
+
+</div>

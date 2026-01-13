@@ -4,9 +4,10 @@ import { EventosService } from '../../servicios/eventos.service';
 import { datatableConfig } from '../../interfaces/tables.interface';
 
 @Component({
-  selector: 'app-metas',
-  templateUrl: './metas.component.html',
-  styleUrl: './metas.component.css'
+    selector: 'app-metas',
+    templateUrl: './metas.component.html',
+    styleUrl: './metas.component.css',
+    standalone: false
 })
 export class MetasComponent {
   configuracion: datatableConfig = {

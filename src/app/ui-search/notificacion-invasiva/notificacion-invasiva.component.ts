@@ -3,9 +3,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { NotificacionesService } from '../../servicios/notificaciones.service';
 
 @Component({
-  selector: 'app-notificacion-invasiva',
-  templateUrl: './notificacion-invasiva.component.html',
-  styleUrl: './notificacion-invasiva.component.css'
+    selector: 'app-notificacion-invasiva',
+    templateUrl: './notificacion-invasiva.component.html',
+    styleUrl: './notificacion-invasiva.component.css',
+    standalone: false
 })
 export class NotificacionInvasivaComponent {
   @Input() notificacion = {

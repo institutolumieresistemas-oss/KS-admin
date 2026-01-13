@@ -1,11 +1,14 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { datatableConfig } from '../../interfaces/tables.interface';
-import { elementAt } from 'rxjs';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+
 
 @Component({
-  selector: 'app-tabla',
-  templateUrl: './tabla.component.html',
-  styleUrl: './tabla.component.css'
+    selector: 'app-tabla',
+    templateUrl: './tabla.component.html',
+    styleUrl: './tabla.component.css',
+    standalone: false
 })
 export class TablaComponent {
   @Output() emitidor = new EventEmitter<any>();
@@ -216,4 +219,27 @@ export class TablaComponent {
       this.listado = final;
     }
   }
+
+  exportToExcel() {
+    if (!this.datos || this.datos.length === 0) return;
+  
+    // Crear una copia de los datos para no modificar el original
+    const datosParaExportar = this.datos.map((item: any) => {
+      let obj: any = {};
+      this.configuracion.encabezados.forEach((encabezado: string) => {
+        obj[encabezado] = item[encabezado] !== undefined ? item[encabezado] : '';
+      });
+      return obj;
+    });
+  
+    // Crear hoja de Excel
+    const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(datosParaExportar);
+    const workbook: XLSX.WorkBook = { Sheets: { 'Datos': worksheet }, SheetNames: ['Datos'] };
+  
+    // Generar archivo
+    const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const data: Blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+    saveAs(data, 'tabla.xlsx');
+  }
+
 }

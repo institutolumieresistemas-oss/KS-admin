@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { MotivosService } from '../../servicios/motivos.service';
 
 @Component({
-  selector: 'app-motivos',
-  templateUrl: './motivos.component.html',
-  styleUrl: './motivos.component.css'
+    selector: 'app-motivos',
+    templateUrl: './motivos.component.html',
+    styleUrl: './motivos.component.css',
+    standalone: false
 })
 export class MotivosComponent {
   configuracion: datatableConfig = {

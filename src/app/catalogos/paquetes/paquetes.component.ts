@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { PaquetesService } from '../../servicios/paquetes.service';
 
 @Component({
-  selector: 'app-paquetes',
-  templateUrl: './paquetes.component.html',
-  styleUrl: './paquetes.component.css'
+    selector: 'app-paquetes',
+    templateUrl: './paquetes.component.html',
+    styleUrl: './paquetes.component.css',
+    standalone: false
 })
 export class PaquetesComponent {
   configuracion: datatableConfig = {
@@ -54,5 +55,28 @@ export class PaquetesComponent {
     error => {
       this.generales.interpretarError(error);
     });
-  }  
+  }
+
+  modificar(dato: any){
+    this.servicio.modificar(dato).subscribe((respuesta: any) => {
+      this.generales.mensajeCorrecto('Paquete modificado correctamente');
+      this.generales.cerrarModal();
+      this.mostrar();
+    },
+    error => {
+      this.generales.interpretarError(error);
+    });
+  }
+
+  eliminar(){
+    this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {
+      this.generales.mensajeCorrecto('Paquete eliminado correctamente');
+      this.generales.cerrarModal();
+      this.mostrar();
+      this.seleccion = undefined;
+    },
+    error => {
+      this.generales.interpretarError(error);
+    });
+  }
 }

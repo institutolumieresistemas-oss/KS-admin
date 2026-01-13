@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { EgresoTiposService } from '../../servicios/egreso-tipos.service';
 
 @Component({
-  selector: 'app-egreso-tipos',
-  templateUrl: './egreso-tipos.component.html',
-  styleUrl: './egreso-tipos.component.css'
+    selector: 'app-egreso-tipos',
+    templateUrl: './egreso-tipos.component.html',
+    styleUrl: './egreso-tipos.component.css',
+    standalone: false
 })
 export class EgresoTiposComponent {
   configuracion: datatableConfig = {

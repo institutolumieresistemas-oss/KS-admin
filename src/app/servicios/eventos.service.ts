@@ -27,6 +27,11 @@ export class EventosService {
     return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  buscar(body: any) {
+    const url = this.uri + 'buscar';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   actualizarLider(body: any) {
     const url = this.uri + 'actualizarLider';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
@@ -38,7 +43,7 @@ export class EventosService {
   }
 
   actualizarestatus(body: any) {
-    const url = this.uri + 'actualizarestatus';
+    const url = this.uri + 'actualizarEstatus';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 

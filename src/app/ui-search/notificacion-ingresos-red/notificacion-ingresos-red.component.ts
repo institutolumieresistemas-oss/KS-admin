@@ -5,9 +5,10 @@ import { ConfiguracionesService } from '../../servicios/configuraciones.service'
 import { IngresosService } from '../../servicios/ingresos.service';
 
 @Component({
-  selector: 'app-notificacion-ingresos-red',
-  templateUrl: './notificacion-ingresos-red.component.html',
-  styleUrl: './notificacion-ingresos-red.component.css'
+    selector: 'app-notificacion-ingresos-red',
+    templateUrl: './notificacion-ingresos-red.component.html',
+    styleUrl: './notificacion-ingresos-red.component.css',
+    standalone: false
 })
 export class NotificacionIngresosRedComponent {
   notificacion = {

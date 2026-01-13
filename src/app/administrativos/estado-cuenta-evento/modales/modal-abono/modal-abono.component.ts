@@ -2,9 +2,10 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { GeneralesService } from '../../../../servicios/generales.service';
 
 @Component({
-  selector: 'app-modal-abono',
-  templateUrl: './modal-abono.component.html',
-  styleUrl: './modal-abono.component.css'
+    selector: 'app-modal-abono',
+    templateUrl: './modal-abono.component.html',
+    styleUrl: './modal-abono.component.css',
+    standalone: false
 })
 export class ModalAbonoComponent {
   @Output() emitidor = new EventEmitter<any>();
@@ -12,7 +13,8 @@ export class ModalAbonoComponent {
     concepto: '',
     monto: '',
     idFormaPago: 0,
-    idCuenta: 0
+    idCuenta: 0,
+    imagen: ''
   };
   @Input() formas: any;
   @Input() cuentas: any;

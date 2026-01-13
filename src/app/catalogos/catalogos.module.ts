@@ -31,6 +31,8 @@ import { PersonajesComponent } from './personajes/personajes.component';
 import { ModalPersonajeComponent } from './personajes/modales/modal-personaje/modal-personaje.component';
 import { SemanasComponent } from './semanas/semanas.component';
 import { ModalSemanaComponent } from './semanas/modales/modal-semana/modal-semana.component';
+import { ActoresComponent } from './actores/actores.component';
+import { ModalActorComponent } from './actores/modales/modal-actor/modal-actor.component';
 
 
 
@@ -65,7 +67,9 @@ import { ModalSemanaComponent } from './semanas/modales/modal-semana/modal-seman
     PersonajesComponent,
     ModalPersonajeComponent,
     SemanasComponent,
-    ModalSemanaComponent
+    ModalSemanaComponent,
+    ActoresComponent,
+    ModalActorComponent
   ],
   imports: [
     CommonModule,

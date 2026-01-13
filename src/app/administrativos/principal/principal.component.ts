@@ -1,20 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { GeneralesService } from '../../servicios/generales.service';
 import { EventosService } from '../../servicios/eventos.service';
 import Pusher from 'pusher-js';
 
 @Component({
-  selector: 'app-principal',
-  templateUrl: './principal.component.html',
-  styleUrl: './principal.component.css'
+    selector: 'app-principal',
+    templateUrl: './principal.component.html',
+    styleUrl: './principal.component.css',
+    standalone: false
 })
 export class PrincipalComponent {
   eventos: any;
-  cargos: any;
-  abonos: any;
-  gastos: any;
-  total = '0';
   notificacion = '';
+  inicio: any;
   constructor(private generales: GeneralesService, private servicio: EventosService){}
 
   ngOnInit(){
@@ -28,15 +26,13 @@ export class PrincipalComponent {
       console.log('Mensaje recibido:', data.mensaje);
       this.notificacion = data.mensaje
     });
-    this.mostrar();
+
+    this.generales.delay(2000).then(fun => {
+      this.inicio = localStorage.getItem('inicio')?.toString();
+    });
   }
 
-  mostrar(){
-    this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.eventos = respuesta.datos;
-    },
-    error => {
-      this.generales.interpretarError(error);
-    });
+  ngOnChanges(changes: OnChanges){
+    console.log(changes);
   }
 }

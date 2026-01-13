@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-paginador',
-  templateUrl: './paginador.component.html',
-  styleUrl: './paginador.component.css'
+    selector: 'app-paginador',
+    templateUrl: './paginador.component.html',
+    styleUrl: './paginador.component.css',
+    standalone: false
 })
 export class PaginadorComponent {
   @Input() paginas = 0;

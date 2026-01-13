@@ -1,0 +1,18 @@
+<div class="bg-light text-center rounded p-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h6 class="mb-0">Recepcion de vales</h6>
+    </div>
+    <div class="container">
+        <div class="row" *ngIf="seleccion !== undefined">
+            <div class="col-sm-12 text-end">
+                <button class="btn btn-success" (click)="aceptar();">Aceptar</button>
+                <button class="btn btn-danger">Rechazar</button>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-tabla [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event"></app-tabla>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,9 +4,10 @@ import { ConfiguracionesService } from '../../servicios/configuraciones.service'
 import { datatableConfig } from '../../interfaces/tables.interface';
 
 @Component({
-  selector: 'app-configuraciones-notificaciones',
-  templateUrl: './configuraciones-notificaciones.component.html',
-  styleUrl: './configuraciones-notificaciones.component.css'
+    selector: 'app-configuraciones-notificaciones',
+    templateUrl: './configuraciones-notificaciones.component.html',
+    styleUrl: './configuraciones-notificaciones.component.css',
+    standalone: false
 })
 export class ConfiguracionesNotificacionesComponent {
   usuarios: any;

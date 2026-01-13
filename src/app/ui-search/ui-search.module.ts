@@ -26,6 +26,11 @@ import { ModalProgramarSalidaComponent } from './evento-grafico/modales/modal-pr
 import { NotificacionInvasivaComponent } from './notificacion-invasiva/notificacion-invasiva.component';
 import { NotificacionIngresosRedComponent } from './notificacion-ingresos-red/notificacion-ingresos-red.component';
 import { NotificacionEgresosRedComponent } from './notificacion-egresos-red/notificacion-egresos-red.component';
+import { TopComponent } from './top/top.component';
+import { CirculoComponent } from './circulo/circulo.component';
+import { ModalEquipoEventoComponent } from './evento-grafico/modales/modal-equipo-evento/modal-equipo-evento.component';
+import { ModalLiderEventoComponent } from './evento-grafico/modales/modal-lider-evento/modal-lider-evento.component';
+import { ProgressbarComponent } from './progressbar/progressbar.component';
 
 
 
@@ -54,7 +59,12 @@ import { NotificacionEgresosRedComponent } from './notificacion-egresos-red/noti
     ModalProgramarSalidaComponent,
     NotificacionInvasivaComponent,
     NotificacionIngresosRedComponent,
-    NotificacionEgresosRedComponent
+    NotificacionEgresosRedComponent,
+    TopComponent,
+    CirculoComponent,
+    ModalEquipoEventoComponent,
+    ModalLiderEventoComponent,
+    ProgressbarComponent
   ],
   imports: [
     CommonModule,
@@ -76,7 +86,10 @@ import { NotificacionEgresosRedComponent } from './notificacion-egresos-red/noti
     EventoGraficoComponent,
     NotificacionInvasivaComponent,
     NotificacionIngresosRedComponent,
-    NotificacionEgresosRedComponent
+    NotificacionEgresosRedComponent,
+    TopComponent,
+    CirculoComponent,
+    ProgressbarComponent
   ]
 })
 export class UiSearchModule { }

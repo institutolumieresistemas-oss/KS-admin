@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { datatableConfig } from '../../interfaces/tables.interface';
 
 @Component({
-  selector: 'app-ingresorubros',
-  templateUrl: './ingresorubros.component.html',
-  styleUrl: './ingresorubros.component.css'
+    selector: 'app-ingresorubros',
+    templateUrl: './ingresorubros.component.html',
+    styleUrl: './ingresorubros.component.css',
+    standalone: false
 })
 export class IngresorubrosComponent {
   configuracion: datatableConfig = {

@@ -3,9 +3,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 declare function base64(archivo: File): void;
 
 @Component({
-  selector: 'app-imagen',
-  templateUrl: './imagen.component.html',
-  styleUrl: './imagen.component.css'
+    selector: 'app-imagen',
+    templateUrl: './imagen.component.html',
+    styleUrl: './imagen.component.css',
+    standalone: false
 })
 export class ImagenComponent {
   @Input() activo = false;

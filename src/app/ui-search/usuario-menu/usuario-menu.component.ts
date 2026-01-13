@@ -3,9 +3,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-usuario-menu',
-  templateUrl: './usuario-menu.component.html',
-  styleUrl: './usuario-menu.component.css'
+    selector: 'app-usuario-menu',
+    templateUrl: './usuario-menu.component.html',
+    styleUrl: './usuario-menu.component.css',
+    standalone: false
 })
 export class UsuarioMenuComponent {
   @Input() usuario = {

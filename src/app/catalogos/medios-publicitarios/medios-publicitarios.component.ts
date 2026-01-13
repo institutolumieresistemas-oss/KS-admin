@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { MediosPublicitariosService } from '../../servicios/medios-publicitarios.service';
 
 @Component({
-  selector: 'app-medios-publicitarios',
-  templateUrl: './medios-publicitarios.component.html',
-  styleUrl: './medios-publicitarios.component.css'
+    selector: 'app-medios-publicitarios',
+    templateUrl: './medios-publicitarios.component.html',
+    styleUrl: './medios-publicitarios.component.css',
+    standalone: false
 })
 export class MediosPublicitariosComponent {
   configuracion: datatableConfig = {

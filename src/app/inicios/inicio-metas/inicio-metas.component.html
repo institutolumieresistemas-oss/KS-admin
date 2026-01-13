@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-sm-6">
+        <app-top [datos]="paquetes"></app-top>
+    </div>
+    <div class="col-sm-6">
+        <app-top [datos]="personajes"></app-top>
+    </div>
+</div><br>
+<div class="row">
+    <div class="col-sm-6 text-center">
+        <app-circulo [dato]="eventosVendidos"></app-circulo>
+        <h4>Eventos vendidos este mes</h4>
+    </div>
+    <div class="col-sm-6 text-center">
+        <app-circulo [dato]="eventosRealizados"></app-circulo>
+        <h4>Eventos realizados este mes</h4>
+    </div>
+</div><br>
+<div class="row">
+    <div class="col-sm-12">
+        <app-top [datos]="motivos"></app-top>
+    </div>
+</div><br>
+<div class="row">
+    <div class="col-sm-12" *ngIf="metasEventos.existe">
+        <app-progressbar [titulo]="'Eventos'" [meta]="metasEventos.datos"></app-progressbar>
+    </div>
+    <div class="col-sm-12" *ngIf="metasIngresos.existe">
+        <app-progressbar [titulo]="'Ingresos'" [meta]="metasIngresos.datos"></app-progressbar>
+    </div>
+</div>

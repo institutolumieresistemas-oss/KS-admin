@@ -33,20 +33,17 @@
 </div>
 <div class="row">
     <div class="col-sm-4">
-        <app-select [etiqueta]="'Semana'" [datos]="semanas" [dato]="empresa.idSemana" (emitidor)="empresa.idSemana = $event;"></app-select>
-    </div>
-    <div class="col-sm-4">
         <app-input [etiqueta]="'Anticipo'" [validacion]="'decimal'" [valor]="empresa.anticipo" (emitidor)="empresa.anticipo = $event;"></app-input>
     </div>
     <div class="col-sm-4">
         <app-select [etiqueta]="'Forma de pago'" [datos]="formas" [dato]="empresa.idFormaPago" (emitidor)="empresa.idFormaPago = $event;"></app-select>
     </div>
-</div>
-<div class="row">
     <div class="col-sm-4">
         <app-select [etiqueta]="'Cuenta'" [datos]="cuentas" [dato]="empresa.idCuenta" (emitidor)="empresa.idCuenta = $event;"></app-select>
     </div>
-    <div class="col-sm-8">
+</div>
+<div class="row">
+    <div class="col-sm-12">
         <app-textarea [etiqueta]="'Observaciones'" (emitidor)="empresa.observaciones = $event;"></app-textarea>
     </div>
 </div>

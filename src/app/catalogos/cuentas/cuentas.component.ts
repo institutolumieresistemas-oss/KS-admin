@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { CuentasService } from '../../servicios/cuentas.service';
 
 @Component({
-  selector: 'app-cuentas',
-  templateUrl: './cuentas.component.html',
-  styleUrl: './cuentas.component.css'
+    selector: 'app-cuentas',
+    templateUrl: './cuentas.component.html',
+    styleUrl: './cuentas.component.css',
+    standalone: false
 })
 export class CuentasComponent {
   configuracion: datatableConfig = {

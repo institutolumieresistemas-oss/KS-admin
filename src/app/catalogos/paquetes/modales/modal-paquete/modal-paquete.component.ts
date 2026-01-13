@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GeneralesService } from '../../../../servicios/generales.service';
 
 @Component({
-  selector: 'app-modal-paquete',
-  templateUrl: './modal-paquete.component.html',
-  styleUrl: './modal-paquete.component.css'
+    selector: 'app-modal-paquete',
+    templateUrl: './modal-paquete.component.html',
+    styleUrl: './modal-paquete.component.css',
+    standalone: false
 })
 export class ModalPaqueteComponent {
   @Output() emitidor = new EventEmitter<any>();

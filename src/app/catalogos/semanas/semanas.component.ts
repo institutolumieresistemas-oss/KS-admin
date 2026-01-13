@@ -4,9 +4,10 @@ import { SemanasService } from '../../servicios/semanas.service';
 import { datatableConfig } from '../../interfaces/tables.interface';
 
 @Component({
-  selector: 'app-semanas',
-  templateUrl: './semanas.component.html',
-  styleUrl: './semanas.component.css'
+    selector: 'app-semanas',
+    templateUrl: './semanas.component.html',
+    styleUrl: './semanas.component.css',
+    standalone: false
 })
 export class SemanasComponent {
   configuracion: datatableConfig = {

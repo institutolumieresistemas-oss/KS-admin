@@ -18,6 +18,11 @@
                 <app-select [datos]="cuentas" [etiqueta]="'Cuenta'" (emitidor)="dato.idCuenta = $event"></app-select>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12 text-end">
+                <app-imagen [valor]="dato.imagen" [imagen]="dato.imagen" (emitidor)="dato.imagen = $event;"></app-imagen>
+            </div>
+        </div>
         <div class="row justify-content-end">
             <div class="col-sm-12 d-md-flex justify-content-md-end">
                 <button class="btn btn-success" (click)="emitir()">Guardar</button>

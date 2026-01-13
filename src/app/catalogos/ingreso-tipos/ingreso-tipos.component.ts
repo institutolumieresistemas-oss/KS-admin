@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { datatableConfig } from '../../interfaces/tables.interface';
 
 @Component({
-  selector: 'app-ingreso-tipos',
-  templateUrl: './ingreso-tipos.component.html',
-  styleUrl: './ingreso-tipos.component.css'
+    selector: 'app-ingreso-tipos',
+    templateUrl: './ingreso-tipos.component.html',
+    styleUrl: './ingreso-tipos.component.css',
+    standalone: false
 })
 export class IngresoTiposComponent {
   configuracion: datatableConfig = {

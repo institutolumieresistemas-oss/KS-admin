@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-datos-empresa',
-  templateUrl: './datos-empresa.component.html',
-  styleUrl: './datos-empresa.component.css'
+    selector: 'app-datos-empresa',
+    templateUrl: './datos-empresa.component.html',
+    styleUrl: './datos-empresa.component.css',
+    standalone: false
 })
 export class DatosEmpresaComponent {
   empresa = {
@@ -17,7 +18,6 @@ export class DatosEmpresaComponent {
     mapa: '',
     observaciones: '',
     idCalendario: 0,
-    idSemana: 0,
     anticipo: '',
     idFormaPago: 0,
     idCuenta: 0

@@ -2,9 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GeneralesService } from '../../servicios/generales.service';
 
 @Component({
-  selector: 'app-select',
-  templateUrl: './select.component.html',
-  styleUrl: './select.component.css'
+    selector: 'app-select',
+    templateUrl: './select.component.html',
+    styleUrl: './select.component.css',
+    standalone: false
 })
 export class SelectComponent {
   @Input() id = '';

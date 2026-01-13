@@ -15,8 +15,15 @@ import { ModalEquipoComponent } from './eventos/modales/modal-equipo/modal-equip
 import { PrincipalComponent } from './principal/principal.component';
 import { EstadoCuentaEventoComponent } from './estado-cuenta-evento/estado-cuenta-evento.component';
 import { ModalAbonoComponent } from './estado-cuenta-evento/modales/modal-abono/modal-abono.component';
-import { CorteCajaComponent } from './corte-caja/corte-caja.component';
 import { ModalGastoComponent } from './estado-cuenta-evento/modales/modal-gasto/modal-gasto.component';
+import { IniciosModule } from '../inicios/inicios.module';
+import { CajaComponent } from './caja/caja.component';
+import { ValesComponent } from './vales/vales.component';
+import { ModalValeComponent } from './vales/modales/modal-vale/modal-vale.component';
+import { RecepcionValesComponent } from './recepcion-vales/recepcion-vales.component';
+import { TransferenciasComponent } from './transferencias/transferencias.component';
+import { ModalTransferenciaComponent } from './transferencias/modales/modal-transferencia/modal-transferencia.component';
+import { RecepcionTransferenciasComponent } from './recepcion-transferencias/recepcion-transferencias.component';
 
 
 
@@ -36,12 +43,23 @@ import { ModalGastoComponent } from './estado-cuenta-evento/modales/modal-gasto/
     PrincipalComponent,
     EstadoCuentaEventoComponent,
     ModalAbonoComponent,
-    CorteCajaComponent,
-    ModalGastoComponent
+    ModalGastoComponent,
+    CajaComponent,
+    ValesComponent,
+    ModalValeComponent,
+    RecepcionValesComponent,
+    TransferenciasComponent,
+    ModalTransferenciaComponent,
+    RecepcionTransferenciasComponent
   ],
   imports: [
     CommonModule,
-    UiSearchModule
+    UiSearchModule,
+    IniciosModule
+  ],
+  exports: [
+    ModalEquipoComponent,
+    ModalLiderComponent
   ]
 })
 export class AdministrativosModule { }

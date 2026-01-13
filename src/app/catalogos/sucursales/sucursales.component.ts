@@ -4,9 +4,10 @@ import { SucursalesService } from '../../servicios/sucursales.service';
 import { datatableConfig } from '../../interfaces/tables.interface';
 
 @Component({
-  selector: 'app-sucursales',
-  templateUrl: './sucursales.component.html',
-  styleUrl: './sucursales.component.css'
+    selector: 'app-sucursales',
+    templateUrl: './sucursales.component.html',
+    styleUrl: './sucursales.component.css',
+    standalone: false
 })
 export class SucursalesComponent {
   configuracion: datatableConfig = {

@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { datatableConfig } from '../../interfaces/tables.interface';
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrl: './usuarios.component.css'
+    selector: 'app-usuarios',
+    templateUrl: './usuarios.component.html',
+    styleUrl: './usuarios.component.css',
+    standalone: false
 })
 export class UsuariosComponent {
   configuracion: datatableConfig = {

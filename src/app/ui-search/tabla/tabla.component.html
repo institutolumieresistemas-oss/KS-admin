@@ -20,6 +20,12 @@
                 <app-input [etiqueta]="'Buscar'" *ngIf="configuracion.busqueda" (emitidor)="buscar($event);"></app-input>
             </div>
         </div>
+        <div class="row mb-2">
+            <div class="col-sm-12 text-end">
+                <button class="btn btn-success btn-sm" (click)="exportToExcel()">Descargar Excel</button>
+            </div>
+        </div>
+
         <div class="table-responsive">
             <table class="table align-items-center ">
                 <thead>

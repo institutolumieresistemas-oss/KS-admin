@@ -5,9 +5,10 @@ import { IngresosService } from '../../servicios/ingresos.service';
 import { PdfService } from '../../servicios/pdf.service';
 
 @Component({
-  selector: 'app-ingresos',
-  templateUrl: './ingresos.component.html',
-  styleUrl: './ingresos.component.css'
+    selector: 'app-ingresos',
+    templateUrl: './ingresos.component.html',
+    styleUrl: './ingresos.component.css',
+    standalone: false
 })
 export class IngresosComponent {
   configuracion: datatableConfig = {

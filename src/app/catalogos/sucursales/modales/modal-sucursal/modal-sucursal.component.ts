@@ -2,9 +2,10 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { GeneralesService } from '../../../../servicios/generales.service';
 
 @Component({
-  selector: 'app-modal-sucursal',
-  templateUrl: './modal-sucursal.component.html',
-  styleUrl: './modal-sucursal.component.css'
+    selector: 'app-modal-sucursal',
+    templateUrl: './modal-sucursal.component.html',
+    styleUrl: './modal-sucursal.component.css',
+    standalone: false
 })
 export class ModalSucursalComponent {
   @Output() emitidor = new EventEmitter<any>();

@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { EgresosService } from '../../servicios/egresos.service';
 
 @Component({
-  selector: 'app-egresos',
-  templateUrl: './egresos.component.html',
-  styleUrl: './egresos.component.css'
+    selector: 'app-egresos',
+    templateUrl: './egresos.component.html',
+    styleUrl: './egresos.component.css',
+    standalone: false
 })
 export class EgresosComponent {
   configuracion: datatableConfig = {

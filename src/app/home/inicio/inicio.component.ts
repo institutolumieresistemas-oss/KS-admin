@@ -3,9 +3,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
 
 @Component({
-  selector: 'app-inicio',
-  templateUrl: './inicio.component.html',
-  styleUrl: './inicio.component.css'
+    selector: 'app-inicio',
+    templateUrl: './inicio.component.html',
+    styleUrl: './inicio.component.css',
+    standalone: false
 })
 export class InicioComponent {
   menus: any;
@@ -28,6 +29,8 @@ export class InicioComponent {
       localStorage.setItem('nombre', respuesta.usuario.nombre);
       localStorage.setItem('calendario', respuesta.calendario);
       localStorage.setItem('sucursal', respuesta.usuario.idSucursal);
+      localStorage.setItem('semana', respuesta.semana);
+      localStorage.setItem('inicio', respuesta.inicio);
       
       this.menus = respuesta.permisos;
       this.sucursales = respuesta.sucursales;

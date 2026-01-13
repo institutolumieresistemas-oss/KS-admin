@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header pb-0 bg-lumiere">
+        <div class="d-flex align-items-center">
+            <h5 class="mb-1 text-white">Actores</h5>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <button class="btn btn-success" (click)="modal('nuevo')">Agregar Actore</button>
+                </div>
+                <div class="col-sm-6" *ngIf="seleccion !== undefined">
+                    <button class="btn tn-warnig" (click)="modal('modificar')">Modificar Actor</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <app-tabla [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-tabla>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-cargando *ngIf="cargando"></app-cargando>
+<app-modal [ngSwitch]="vista">
+    <app-modal-actor *ngSwitchCase="'nuevo'" [lista]="lista" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-actor>
+    <app-modal-actor *ngSwitchCase="'modificar'" [lista]="lista" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-actor>
+</app-modal>

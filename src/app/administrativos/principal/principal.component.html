@@ -1,5 +1,4 @@
-<div class="row" *ngFor="let evento of eventos">
-    <div class="col-sm-12">
-        <app-evento-grafico [evento]="evento"></app-evento-grafico>
-    </div>
+<div class="container">
+    <app-inicio-metas *ngIf="inicio === '2' || inicio === '3'"></app-inicio-metas>
+    <app-inicio-eventos *ngIf="inicio === '1' || inicio === '3'"></app-inicio-eventos>
 </div>

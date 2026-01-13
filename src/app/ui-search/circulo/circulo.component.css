@@ -1,0 +1,20 @@
+.circulo {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0px auto;
+    padding: 3%;
+    border: solid blue 6px;
+}
+
+.circulo>h2 {
+    font-family: sans-serif;
+    color: black;
+    font-size: 1.4rem;
+    font-weight: bold;
+}

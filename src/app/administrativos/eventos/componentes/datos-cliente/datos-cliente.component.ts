@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-datos-cliente',
-  templateUrl: './datos-cliente.component.html',
-  styleUrl: './datos-cliente.component.css'
+    selector: 'app-datos-cliente',
+    templateUrl: './datos-cliente.component.html',
+    styleUrl: './datos-cliente.component.css',
+    standalone: false
 })
 export class DatosClienteComponent {
   cliente = {

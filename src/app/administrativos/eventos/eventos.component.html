@@ -15,7 +15,7 @@
                 <button class="btn btn-success" (click)="modal('nuevo')">Nuevo Evento</button>
             </div>
         </div><br>
-        <div class="row">
+        <div class="row" *ngIf="seleccion !== undefined">
             <div class="col-sm-12">
                 <app-select [datos]="opciones" [etiqueta]="'Estatus'" [dato]="seleccion.estatus" (emitidor)="cambiarEstatus($event);"></app-select>
             </div>

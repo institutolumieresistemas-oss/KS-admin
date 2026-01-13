@@ -1,7 +1,67 @@
-.negritas {
+.recibo {
+    background: #fff;
+    border: 1px dashed #999;
+    border-radius: 6px;
+    padding: 20px;
+    max-width: 100%;
+}
+
+.recibo-header {
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+.recibo-header h3 {
+    margin: 0;
     font-weight: bold;
 }
 
-.amo {
+.recibo-body p,
+.recibo-extra p {
+    margin-bottom: 6px;
+}
+
+.recibo-extra {
+    border-top: 1px dashed #ccc;
+    margin-top: 15px;
+    padding-top: 10px;
+}
+
+.recibo-footer {
+    border-top: 1px dashed #ccc;
+    margin-top: 15px;
+    padding-top: 10px;
+}
+
+.clickable {
     cursor: pointer;
+}
+
+.clickable:hover {
+    background-color: #f8f9fa;
+}
+
+.popover-item {
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.popover-item:hover {
+    background-color: #f1f1f1;
+}
+
+.captu {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 50;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }

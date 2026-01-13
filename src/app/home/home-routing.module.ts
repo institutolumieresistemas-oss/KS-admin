@@ -26,6 +26,21 @@ import { EstadoCuentaEventoComponent } from '../administrativos/estado-cuenta-ev
 import { MetasComponent } from '../ventas/metas/metas.component';
 import { ConfiguracionesNotificacionesComponent } from '../configuraciones/configuraciones-notificaciones/configuraciones-notificaciones.component';
 import { SemanasComponent } from '../catalogos/semanas/semanas.component';
+import { MetasEventosComponent } from '../metas/metas-eventos/metas-eventos.component';
+import { MetasIngresosComponent } from '../metas/metas-ingresos/metas-ingresos.component';
+import { BalanceGeneralComponent } from '../directivos/balance-general/balance-general.component';
+import { CajaComponent } from '../administrativos/caja/caja.component';
+import { ConfiguracionInicioComponent } from '../configuraciones/configuracion-inicio/configuracion-inicio.component';
+import { ValesComponent } from '../administrativos/vales/vales.component';
+import { RecepcionValesComponent } from '../administrativos/recepcion-vales/recepcion-vales.component';
+import { ReporteEventosComponent } from '../reportes/reporte-eventos/reporte-eventos.component';
+import { AuditoriasIngresosComponent } from '../auditorias/auditorias-ingresos/auditorias-ingresos.component';
+import { AuditoriasEgresosComponent } from '../auditorias/auditorias-egresos/auditorias-egresos.component';
+import { TransferenciasComponent } from '../administrativos/transferencias/transferencias.component';
+import { RecepcionTransferenciasComponent } from '../administrativos/recepcion-transferencias/recepcion-transferencias.component';
+import { ActoresComponent } from '../catalogos/actores/actores.component';
+import { ReporteIngresosComponent } from '../reportes/reporte-ingresos/reporte-ingresos.component';
+import { ReporteEgresosComponent } from '../reportes/reporte-egresos/reporte-egresos.component';
 
 const routes: Routes = [
   {path: '', canActivate: [auntenticacionGuard], component: InicioComponent, children: [
@@ -52,6 +67,22 @@ const routes: Routes = [
     { path: 'metas', canActivate: [auntenticacionGuard], component: MetasComponent },
     { path: 'configuracionNotificaciones', canActivate: [auntenticacionGuard], component: ConfiguracionesNotificacionesComponent },
     { path: 'semanas', canActivate: [auntenticacionGuard], component: SemanasComponent },
+    { path: 'metaseventos', canActivate: [auntenticacionGuard], component: MetasEventosComponent },
+    { path: 'metasingresos', canActivate: [auntenticacionGuard], component: MetasIngresosComponent },
+    { path: 'balancegeneral', canActivate: [auntenticacionGuard], component: BalanceGeneralComponent },
+    { path: 'caja', canActivate: [auntenticacionGuard], component: CajaComponent },
+    { path: 'configuracionInicio', canActivate: [auntenticacionGuard], component: ConfiguracionInicioComponent },
+    { path: 'vales', canActivate: [auntenticacionGuard], component: ValesComponent },
+    { path: 'recepcionvales', canActivate: [auntenticacionGuard], component: RecepcionValesComponent },
+    { path: 'reporteeventos', canActivate: [auntenticacionGuard], component: ReporteEventosComponent },
+    { path: 'auditoriasingresos', canActivate: [auntenticacionGuard], component: AuditoriasIngresosComponent },
+    { path: 'auditoriasegresos', canActivate: [auntenticacionGuard], component: AuditoriasEgresosComponent },
+    { path: 'transferencias', canActivate: [auntenticacionGuard], component: TransferenciasComponent },
+    { path: 'recepcionTransferencias', canActivate: [auntenticacionGuard], component: RecepcionTransferenciasComponent },
+    { path: 'actores', canActivate: [auntenticacionGuard], component: ActoresComponent },
+    { path: 'reporteIngresos', canActivate: [auntenticacionGuard], component: ReporteIngresosComponent },
+    { path: 'reporteEgresos', canActivate: [auntenticacionGuard], component: ReporteEgresosComponent },
+    { path: 'reporteEventos', canActivate: [auntenticacionGuard], component: ReporteEventosComponent },
     { path: 'estadocuenta/:evento', canActivate: [auntenticacionGuard], component: EstadoCuentaEventoComponent },
   ]}
 ];

@@ -1,0 +1,14 @@
+<div class="row text-black">
+    <div class="col-sm-12 text-center">
+        {{meta.mes}} {{meta.cantidad}} de {{meta.meta}} de {{meta.mes}} {{titulo}}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="progress" style="height: 25px;">
+            <div class="progress-bar progress-bar-striped {{bg}} progress-bar-animated" role="progressbar" [style]="'width:' + porcentaje + '%'">
+                {{porcentaje}}%
+            </div>
+        </div>
+    </div>
+</div>

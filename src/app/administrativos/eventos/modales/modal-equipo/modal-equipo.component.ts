@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GeneralesService } from '../../../../servicios/generales.service';
 
 @Component({
-  selector: 'app-modal-equipo',
-  templateUrl: './modal-equipo.component.html',
-  styleUrl: './modal-equipo.component.css'
+    selector: 'app-modal-equipo',
+    templateUrl: './modal-equipo.component.html',
+    styleUrl: './modal-equipo.component.css',
+    standalone: false
 })
 export class ModalEquipoComponent {
   @Input() equipo = '';

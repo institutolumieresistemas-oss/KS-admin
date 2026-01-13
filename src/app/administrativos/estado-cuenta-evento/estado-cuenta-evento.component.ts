@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { EventosService } from '../../servicios/eventos.service';
 
 @Component({
-  selector: 'app-estado-cuenta-evento',
-  templateUrl: './estado-cuenta-evento.component.html',
-  styleUrl: './estado-cuenta-evento.component.css'
+    selector: 'app-estado-cuenta-evento',
+    templateUrl: './estado-cuenta-evento.component.html',
+    styleUrl: './estado-cuenta-evento.component.css',
+    standalone: false
 })
 export class EstadoCuentaEventoComponent {
   cargos: any;

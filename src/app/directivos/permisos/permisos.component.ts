@@ -4,9 +4,10 @@ import { PermisosService } from '../../servicios/permisos.service';
 import { TipoUsuariosService } from '../../servicios/tipo-usuarios.service';
 
 @Component({
-  selector: 'app-permisos',
-  templateUrl: './permisos.component.html',
-  styleUrl: './permisos.component.css'
+    selector: 'app-permisos',
+    templateUrl: './permisos.component.html',
+    styleUrl: './permisos.component.css',
+    standalone: false
 })
 export class PermisosComponent {
   cargando = false;

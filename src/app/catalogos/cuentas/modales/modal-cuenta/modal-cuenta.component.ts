@@ -3,9 +3,10 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 
 
 @Component({
-  selector: 'app-modal-cuenta',
-  templateUrl: './modal-cuenta.component.html',
-  styleUrl: './modal-cuenta.component.css'
+    selector: 'app-modal-cuenta',
+    templateUrl: './modal-cuenta.component.html',
+    styleUrl: './modal-cuenta.component.css',
+    standalone: false
 })
 export class ModalCuentaComponent {
   @Output() emitidor = new EventEmitter<any>();

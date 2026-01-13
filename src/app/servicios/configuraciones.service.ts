@@ -35,4 +35,19 @@ export class ConfiguracionesService {
       const url = this.uri + 'usuariosNotificaciones';
       return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
     }
+
+    inicio() {
+      const url = this.uri + 'inicio';
+      return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+    }
+
+    guardar(body: any) {
+      const url = this.uri + 'guardar';
+      return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+    }
+
+    eliminar(body: any) {
+      const url = this.uri + 'eliminar';
+      return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+    }
 }

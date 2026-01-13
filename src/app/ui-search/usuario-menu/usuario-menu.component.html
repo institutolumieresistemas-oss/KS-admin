@@ -1,5 +1,5 @@
 <div class="nav-item dropdown">
-    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" *ngIf="usuario as u">
         <img class="rounded-circle me-lg-2" src="{{usuario.foto}}" alt="" style="width: 40px; height: 40px;">
         <span class="d-none d-lg-inline-flex">{{usuario.nombre}}</span>
     </a>

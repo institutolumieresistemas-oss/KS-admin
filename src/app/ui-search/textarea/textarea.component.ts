@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-textarea',
-  templateUrl: './textarea.component.html',
-  styleUrl: './textarea.component.css'
+    selector: 'app-textarea',
+    templateUrl: './textarea.component.html',
+    styleUrl: './textarea.component.css',
+    standalone: false
 })
 export class TextareaComponent {
   @Input() etiqueta = '';

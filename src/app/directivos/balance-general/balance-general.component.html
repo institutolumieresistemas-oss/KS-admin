@@ -1,0 +1,15 @@
+<div class="container-fluid pt-4 px-4 bg-light">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Balance General</h6>
+        </div>
+    </div>
+    <div class="container bg-light">
+        <div class="row">
+            <div class="col-sm-4 text-center" *ngFor="let item of balances">
+                <app-circulo [dato]="'$' + generales.milesNumeros(item.total)"></app-circulo>
+                <h4>{{item.nombre}}</h4>
+            </div>
+        </div>
+    </div>
+</div>

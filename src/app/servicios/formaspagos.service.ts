@@ -19,6 +19,16 @@ export class FormaspagosService {
       const url = this.uri + 'nuevo';
       return this.http.post(url, usuario, {headers: this.headers}).pipe( map(respuesta => respuesta) );
     }
+
+    modificar(usuario: any) {
+      const url = this.uri + 'modificar';
+      return this.http.post(url, usuario, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+    }
+
+    eliminar(usuario: any) {
+      const url = this.uri + 'eliminar';
+      return this.http.post(url, usuario, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+    }
   
     mostrar() {
       const url = this.uri + 'mostrar';

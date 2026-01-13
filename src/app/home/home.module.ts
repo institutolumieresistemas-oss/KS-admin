@@ -12,6 +12,10 @@ import { DirectivosModule } from '../directivos/directivos.module';
 import { AdministrativosModule } from '../administrativos/administrativos.module';
 import { VentasModule } from '../ventas/ventas.module';
 import { ConfiguracionesModule } from '../configuraciones/configuraciones.module';
+import { MetasModule } from '../metas/metas.module';
+import { IniciosModule } from '../inicios/inicios.module';
+import { ReportesModule } from '../reportes/reportes.module';
+import { AuditoriasModule } from '../auditorias/auditorias.module';
 
 
 @NgModule({
@@ -29,7 +33,11 @@ import { ConfiguracionesModule } from '../configuraciones/configuraciones.module
     DirectivosModule,
     AdministrativosModule,
     VentasModule,
-    ConfiguracionesModule
+    ConfiguracionesModule,
+    MetasModule,
+    IniciosModule,
+    ReportesModule,
+    AuditoriasModule
   ]
 })
 export class HomeModule { }

@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.css'
+    selector: 'app-input',
+    templateUrl: './input.component.html',
+    styleUrl: './input.component.css',
+    standalone: false
 })
 export class InputComponent {
   @Input() etiqueta = '';

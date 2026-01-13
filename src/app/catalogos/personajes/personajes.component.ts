@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { PersonajesService } from '../../servicios/personajes.service';
 
 @Component({
-  selector: 'app-personajes',
-  templateUrl: './personajes.component.html',
-  styleUrl: './personajes.component.css'
+    selector: 'app-personajes',
+    templateUrl: './personajes.component.html',
+    styleUrl: './personajes.component.css',
+    standalone: false
 })
 export class PersonajesComponent {
   configuracion: datatableConfig = {

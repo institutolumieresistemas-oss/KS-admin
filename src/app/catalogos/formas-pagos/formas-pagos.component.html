@@ -5,16 +5,19 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-end">
+                <button class="btn btn-warning" (click)="modal('modificar')" *ngIf="seleccion !== undefined">Modificar</button>
+                <button class="btn btn-danger" (click)="eliminar();" *ngIf="seleccion !== undefined">Eliminar</button>
                 <button class="btn btn-success" (click)="modal('nuevo')">Agregar forma de pago</button>
             </div>
         </div><br>
         <div class="row">
             <div class="col-sm-12">
-                <app-tabla [configuracion]="configuracion" [datos]="datos"></app-tabla>
+                <app-tabla [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;"></app-tabla>
             </div>
         </div>
     </div>
 </div>
 <app-modal [ngSwitch]="vista">
     <app-modal-forma-pago *ngSwitchCase="'nuevo'" (emitidor)="nuevo($event);"></app-modal-forma-pago>
+    <app-modal-forma-pago *ngSwitchCase="'modificar'" [modificar]="true" [dato]="seleccion" (emitidor)="modificar($event);"></app-modal-forma-pago>
 </app-modal>

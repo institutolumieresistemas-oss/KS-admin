@@ -1,0 +1,28 @@
+<div class="bg-light text-center rounded p-4">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <h6 class="mb-0">Auditoria de ingresos</h6>
+    </div>
+    <div class="container">
+        <div class="row" *ngIf="seleccion !== undefined">
+            <div class="col-sm-4">
+                <button class="btn btn-success" (click)="auditar();">Auditar</button>
+            </div>
+            <div class="col-sm-4">
+                <button class="btn btn-warning" (click)="pendiente();">Pendiente</button>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-6">
+                <app-select [etiqueta]="'Calendario'" [datos]="lista" (emitidor)="busqueda = $event;"></app-select>
+            </div>
+            <div class="col-sm-6">
+                <button class="btn btn-info" (click)="buscar();">Buscar</button>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <app-tabla [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event"></app-tabla>
+            </div>
+        </div>
+    </div>
+</div>

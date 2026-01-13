@@ -4,9 +4,10 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { TipoUsuariosService } from '../../servicios/tipo-usuarios.service';
 
 @Component({
-  selector: 'app-tipos-usuario',
-  templateUrl: './tipos-usuario.component.html',
-  styleUrl: './tipos-usuario.component.css'
+    selector: 'app-tipos-usuario',
+    templateUrl: './tipos-usuario.component.html',
+    styleUrl: './tipos-usuario.component.css',
+    standalone: false
 })
 export class TiposUsuarioComponent {
   configuracion: datatableConfig = {

@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GeneralesService } from '../../../../servicios/generales.service';
 
 @Component({
-  selector: 'app-modal-usuarios-notificacion',
-  templateUrl: './modal-usuarios-notificacion.component.html',
-  styleUrl: './modal-usuarios-notificacion.component.css'
+    selector: 'app-modal-usuarios-notificacion',
+    templateUrl: './modal-usuarios-notificacion.component.html',
+    styleUrl: './modal-usuarios-notificacion.component.css',
+    standalone: false
 })
 export class ModalUsuariosNotificacionComponent {
   @Output() emitidor = new EventEmitter<any>();

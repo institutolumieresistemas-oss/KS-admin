@@ -5,9 +5,10 @@ import { ConfiguracionesService } from '../../servicios/configuraciones.service'
 import { EgresosService } from '../../servicios/egresos.service';
 
 @Component({
-  selector: 'app-notificacion-egresos-red',
-  templateUrl: './notificacion-egresos-red.component.html',
-  styleUrl: './notificacion-egresos-red.component.css'
+    selector: 'app-notificacion-egresos-red',
+    templateUrl: './notificacion-egresos-red.component.html',
+    styleUrl: './notificacion-egresos-red.component.css',
+    standalone: false
 })
 export class NotificacionEgresosRedComponent {
   notificacion = {

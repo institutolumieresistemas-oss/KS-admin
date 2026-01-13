@@ -4,9 +4,10 @@ import { ModulosService } from '../../servicios/modulos.service';
 import { OpcionesService } from '../../servicios/opciones.service';
 
 @Component({
-  selector: 'app-modulos',
-  templateUrl: './modulos.component.html',
-  styleUrl: './modulos.component.css'
+    selector: 'app-modulos',
+    templateUrl: './modulos.component.html',
+    styleUrl: './modulos.component.css',
+    standalone: false
 })
 export class ModulosComponent {
   datos: any;
