@@ -16,7 +16,6 @@ export class IngresoTiposComponent {
     busqueda: true
   };
   datos: any;
-  cargando = false;
   seleccion: any;
   vista: any;
   lista: any;
@@ -36,14 +35,11 @@ export class IngresoTiposComponent {
   }
   
   mostrar(){
-    this.cargando = true;
     this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.cargando = false;
       this.datos = respuesta.datos;
       this.lista = respuesta.lista;
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }

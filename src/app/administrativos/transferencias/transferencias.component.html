@@ -22,7 +22,6 @@
         </div>
     </div>
 </div>
-<app-cargando *ngIf="cargando"></app-cargando>
 <app-modal [ngSwitch]="vista">
     <app-modal-transferencia *ngSwitchCase="'nuevo'" [lista]="lista" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-transferencia>
 </app-modal>

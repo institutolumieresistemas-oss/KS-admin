@@ -395,4 +395,20 @@ export class GeneralesService {
     });
     return final;
   }
+
+  obtenerRestantes(principal: any[], secundaria: any[]): any[] {
+
+    if (!Array.isArray(principal)) {
+      return [];
+    }
+  
+    if (!Array.isArray(secundaria) || secundaria.length === 0) {
+      return principal;
+    }
+  
+    return principal.filter(p =>
+      !secundaria.some(s => s.id === p.id)
+    );
+  }
+
 }

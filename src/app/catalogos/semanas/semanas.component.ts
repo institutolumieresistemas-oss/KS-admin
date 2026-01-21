@@ -16,7 +16,6 @@ export class SemanasComponent {
     busqueda: true
   };
   datos: any;
-  cargando = false;
   seleccion: any;
   vista: any;
   lista: any;
@@ -42,30 +41,24 @@ export class SemanasComponent {
   }
   
   mostrar(){
-    this.cargando = true;
     this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.cargando = false;
       this.datos = respuesta.datos;
       this.lista = respuesta.lista;
       this.buscar();
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
   
   nuevo(dato: any){
     if(this.servicio.validar(dato)){
-      this.cargando = true;
       this.servicio.nuevo(dato).subscribe((respuesta: any) => {
-        this.cargando = false;
         this.generales.mensajeCorrecto('Semana agregada correctamente');
         this.datos = this.generales.agregarDatoArray(this.datos, respuesta);
         this.generales.cerrarModal();
       },
       error => {
-        this.cargando = false;
         this.generales.interpretarError(error);
       });
     }

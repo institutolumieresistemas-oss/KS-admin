@@ -17,7 +17,6 @@ export class EventosComponent {
     busqueda: true
   };
   datos: any;
-  cargando = false;
   seleccion: any;
   vista: any;
   listas: any
@@ -41,28 +40,22 @@ export class EventosComponent {
   }
   
   mostrar(){
-    this.cargando = true;
     this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.cargando = false;
       this.datos = respuesta.datos;
       this.listas = respuesta.listas;
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
   
   nuevo(dato: any){
-    this.cargando = true;
     this.servicio.nuevo(dato).subscribe((respuesta: any) => {
-      this.cargando = false;
       this.generales.mensajeCorrecto('Evento agregado correctamente');
       this.datos = this.generales.agregarDatoArray(this.datos, respuesta);
       this.generales.cerrarModal();
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
@@ -73,12 +66,10 @@ export class EventosComponent {
       estatus: estatus
     }
     this.servicio.actualizarestatus(body).subscribe((respuesta: any) => {
-      this.cargando = false;
       this.generales.mensajeCorrecto('Estatus actualizado correctamente');
       this.mostrar();
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
@@ -86,12 +77,10 @@ export class EventosComponent {
   actualizarLider(dato: any){
     this.seleccion.lider = dato;
     this.servicio.actualizarLider(this.seleccion).subscribe((respuesta: any) => {
-      this.cargando = false;
       this.mostrar();
       this.generales.cerrarModal();
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
@@ -99,12 +88,10 @@ export class EventosComponent {
   actualizarEquipo(dato: any){
     this.seleccion.equipo = dato;
     this.servicio.actualizarEquipo(this.seleccion).subscribe((respuesta: any) => {
-      this.cargando = false;
       this.mostrar();
       this.generales.cerrarModal();
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }

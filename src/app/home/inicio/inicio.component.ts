@@ -14,6 +14,8 @@ export class InicioComponent {
   sucursales: any;
   sucursal: any;
   user: any;
+  asignada: any;
+  asignadas: any;
   constructor(private generales: GeneralesService,
               private usuarios: UsuariosService){}
 
@@ -23,12 +25,13 @@ export class InicioComponent {
 
   traerInformacion(){
     this.usuarios.informacion(localStorage.getItem('usuario')).subscribe((respuesta: any) => {
+      const asigno = localStorage.getItem('asigno');
       localStorage.setItem('permisos', respuesta.usuario.idTipoUsuario);
       localStorage.setItem('foto', respuesta.usuario.foto);
       localStorage.setItem('identificador', respuesta.usuario.id);
       localStorage.setItem('nombre', respuesta.usuario.nombre);
       localStorage.setItem('calendario', respuesta.calendario);
-      localStorage.setItem('sucursal', respuesta.usuario.idSucursal);
+      localStorage.setItem('sucursal', (asigno?.toString() === '1') ? localStorage.getItem('sucursal') : respuesta.usuario.idSucursal);
       localStorage.setItem('semana', respuesta.semana);
       localStorage.setItem('inicio', respuesta.inicio);
       
@@ -36,9 +39,20 @@ export class InicioComponent {
       this.sucursales = respuesta.sucursales;
       this.sucursal = respuesta.usuario.idSucursal;
       this.user = respuesta.usuario;
+      this.asignadas = respuesta.usuario.asignadas;
+      this.verificarSucursalAsignada();
     },
     error => {
       this.generales.interpretarError(error);
     });
+  }
+
+  verificarSucursalAsignada(){
+    const asigno = localStorage.getItem('asigno');
+    if(asigno?.toString() === '1'){
+      this.asignada = this.generales.dato(this.asignadas, localStorage.getItem('asignada'));
+    }else{
+      this.asignada = this.generales.dato(this.asignadas, this.sucursal);
+    }
   }
 }

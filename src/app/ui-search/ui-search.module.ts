@@ -4,7 +4,6 @@ import { CargandoComponent } from './cargando/cargando.component';
 import { MenuComponent } from './menu/menu.component';
 import { LogoComponent } from './logo/logo.component';
 import { ModuloComponent } from './modulo/modulo.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { LogoResponsiveComponent } from './logo-responsive/logo-responsive.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { MensajesComponent } from './mensajes/mensajes.component';
@@ -31,6 +30,7 @@ import { CirculoComponent } from './circulo/circulo.component';
 import { ModalEquipoEventoComponent } from './evento-grafico/modales/modal-equipo-evento/modal-equipo-evento.component';
 import { ModalLiderEventoComponent } from './evento-grafico/modales/modal-lider-evento/modal-lider-evento.component';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
+import { UsuarioSucursalesComponent } from './usuario-sucursales/usuario-sucursales.component';
 
 
 
@@ -40,7 +40,6 @@ import { ProgressbarComponent } from './progressbar/progressbar.component';
     MenuComponent,
     LogoComponent,
     ModuloComponent,
-    NavbarComponent,
     LogoResponsiveComponent,
     BusquedaComponent,
     MensajesComponent,
@@ -64,7 +63,8 @@ import { ProgressbarComponent } from './progressbar/progressbar.component';
     CirculoComponent,
     ModalEquipoEventoComponent,
     ModalLiderEventoComponent,
-    ProgressbarComponent
+    ProgressbarComponent,
+    UsuarioSucursalesComponent
   ],
   imports: [
     CommonModule,
@@ -75,7 +75,6 @@ import { ProgressbarComponent } from './progressbar/progressbar.component';
     CargandoComponent,
     MenuComponent,
     LogoComponent,
-    NavbarComponent,
     InputComponent,
     ChecktimesComponent,
     ModalComponent,
@@ -89,7 +88,9 @@ import { ProgressbarComponent } from './progressbar/progressbar.component';
     NotificacionEgresosRedComponent,
     TopComponent,
     CirculoComponent,
-    ProgressbarComponent
+    ProgressbarComponent,
+    UsuarioSucursalesComponent,
+    UsuarioMenuComponent
   ]
 })
 export class UiSearchModule { }

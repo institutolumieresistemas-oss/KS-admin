@@ -6,15 +6,19 @@
         <div class="row">
             <div class="col-sm-12 text-end">
                 <button class="btn btn-success" (click)="modal('nuevo')">Agregar usuario</button>
+                <button class="btn btn-info" (click)="modal('sucursales')" *ngIf="seleccion !== undefined">Sucursales</button>
             </div>
         </div><br>
         <div class="row">
             <div class="col-sm-12">
-                <app-tabla [configuracion]="configuracion" [datos]="datos"></app-tabla>
+                <app-tabla [configuracion]="configuracion" [datos]="datos" (emitidor)="seleccion = $event;">
+
+                </app-tabla>
             </div>
         </div>
     </div>
 </div>
 <app-modal [ngSwitch]="vista">
     <app-modal-usuario *ngSwitchCase="'nuevo'" [listas]="listas" (emitidor)="nuevo($event);"></app-modal-usuario>
+    <app-modal-usuario-sucursales *ngSwitchCase="'sucursales'" [sucursales]="listas.sucursales" [datos]="seleccion"></app-modal-usuario-sucursales>
 </app-modal>

@@ -16,7 +16,6 @@ export class MetasIngresosComponent {
       busqueda: true
     };
     datos: any;
-    cargando = false;
     seleccion: any;
     vista: any;
     listas = {
@@ -38,28 +37,22 @@ export class MetasIngresosComponent {
     }
     
     mostrar(){
-      this.cargando = true;
       this.servicio.mostrar().subscribe((respuesta: any) => {
-        this.cargando = false;
         this.datos = respuesta.datos;
         this.listas = respuesta.listas;
       },
       error => {
-        this.cargando = false;
         this.generales.interpretarError(error);
       });
     }
     
     nuevo(dato: any){
-      this.cargando = true;
       this.servicio.nuevo(dato).subscribe((respuesta: any) => {
-        this.cargando = false;
         this.generales.mensajeCorrecto('Meta agregada correctamente');
         this.mostrar();
         this.generales.cerrarModal();
       },
       error => {
-        this.cargando = false;
         this.generales.interpretarError(error);
       });
     }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { GeneralesService } from '../../servicios/generales.service';
 
 @Component({
@@ -8,31 +8,46 @@ import { GeneralesService } from '../../servicios/generales.service';
   styleUrl: './progressbar.component.css'
 })
 export class ProgressbarComponent {
-  @Input() meta = {
-    meta: 0,
-    mes: '',
-    cantidad: 0,
-  }
-  seleccion: any;
+  @Input() meta: any;
+  @Input() titulo: any;
+
+  seleccion: any = null;
   porcentaje = 0;
   bg = 'bg-info';
   activo = false;
-  @Input() titulo: any;
-  constructor(public generales: GeneralesService) { }
 
-  ngOnInit(): void {
-    this.seleccion = this.meta;
-    this.calcularPorcentajes();
+  constructor(public generales: GeneralesService) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+
+    if (changes['meta'] && this.meta) {
+      this.seleccion = this.meta;
+      this.calcularPorcentajes();
+    }
   }
 
-  calcularPorcentajes(){
-    this.porcentaje = (this.seleccion.cantidad * 100) / this.seleccion.meta;
-    this.porcentaje = parseInt(this.porcentaje.toString());
-    if(this.porcentaje < 50){
-      this.bg = 'bg-danger'
-    }if(this.porcentaje >= 50 && this.porcentaje < 100){
-      this.bg = 'bg-yellow';
-    }else if(this.porcentaje >= 100){
+  calcularPorcentajes(): void {
+
+    // Validaciones defensivas
+    if (!this.seleccion) {
+      return;
+    }
+
+    if (!this.seleccion.meta || this.seleccion.meta <= 0) {
+      this.porcentaje = 0;
+      this.bg = 'bg-danger';
+      return;
+    }
+
+    this.porcentaje = Math.floor(
+      (this.seleccion.cantidad * 100) / this.seleccion.meta
+    );
+
+    if (this.porcentaje < 50) {
+      this.bg = 'bg-danger';
+    } else if (this.porcentaje < 100) {
+      this.bg = 'bg-warning';
+    } else {
       this.bg = 'bg-success';
     }
   }

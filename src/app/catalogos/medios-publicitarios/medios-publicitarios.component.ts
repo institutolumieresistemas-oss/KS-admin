@@ -16,7 +16,6 @@ export class MediosPublicitariosComponent {
     busqueda: true
   };
   datos: any;
-  cargando = false;
   seleccion: any;
   vista: any;
   
@@ -35,13 +34,10 @@ export class MediosPublicitariosComponent {
   }
   
   mostrar(){
-    this.cargando = true;
     this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.cargando = false;
       this.datos = respuesta;
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }

@@ -1,27 +1,45 @@
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import {
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GeneralesService } from './generales.service';
+import { finalize } from 'rxjs/operators';
+import { LoadingService } from './loadin.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class InterceptorService implements HttpInterceptor{
+@Injectable()
+export class InterceptorService implements HttpInterceptor {
 
-  constructor(private generales: GeneralesService) { }
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const method = req.method;
-    const url = req.url;
-    const body = req.body;
-    const headers = req.headers;
-    if(method.toString() === 'POST'){
-      body.log = localStorage.getItem('usuario');
-      body.usuarioID = localStorage.getItem('identificador');
-      body.sucursalID = localStorage.getItem('sucursal');
-      body.calendarioID = localStorage.getItem('calendario');
-      body.semanaID = localStorage.getItem('semana');
+  constructor(private loading: LoadingService) {}
+
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+
+    this.loading.show();
+
+    let clonedReq = req;
+
+    if (req.method === 'POST' && req.body) {
+      const newBody = {
+        ...req.body,
+        log: localStorage.getItem('usuario'),
+        usuarioID: localStorage.getItem('identificador'),
+        sucursalID: localStorage.getItem('sucursal'),
+        calendarioID: localStorage.getItem('calendario'),
+        semanaID: localStorage.getItem('semana')
+      };
+
+      clonedReq = req.clone({ body: newBody });
     }
-    req = req.clone({method, url, body, headers});
-    return next.handle(req);
+
+    return next.handle(clonedReq).pipe(
+      finalize(() => {
+        this.loading.hide();
+      })
+    );
   }
 }

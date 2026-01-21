@@ -1,10 +1,23 @@
 <div class="bg-light text-center rounded p-4">
     <div class="d-flex align-items-center justify-content-between mb-4">
-        <h6 class="mb-0">Eventos</h6>
+        <h6 class="mb-0">Metas</h6>
     </div>
     <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h6>Eventos</h6>
+            </div>
+            <div class="col-sm-12">
+                <app-progressbar [meta]="eventos"></app-progressbar>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-sm-12">
+                <h6>Ingresos</h6>
+            </div>
+            <div class="col-sm-12">
+                <app-progressbar [meta]="ingresos"></app-progressbar>
+            </div>
+        </div>
     </div>
 </div>
-<app-modal [ngSwitch]="vista">
-    <app-modal-meta *ngSwitchCase="'nuevo'"></app-modal-meta>
-</app-modal>

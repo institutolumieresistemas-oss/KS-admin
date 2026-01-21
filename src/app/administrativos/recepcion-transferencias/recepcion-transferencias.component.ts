@@ -16,7 +16,6 @@ export class RecepcionTransferenciasComponent {
     busqueda: true
   };
   datos: any;
-  cargando = false;
   seleccion: any;
   vista: any;
   
@@ -35,41 +34,32 @@ export class RecepcionTransferenciasComponent {
   }
   
   mostrar(){
-    this.cargando = true;
     this.servicio.traer().subscribe((respuesta: any) => {
-      this.cargando = false;
       this.datos = respuesta;
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
   
   aceptar(){
-    this.cargando = true;
     this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {
-      this.cargando = false;
       this.generales.mensajeCorrecto('Transferencia acepatada correctamente');
       this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
       this.seleccion = respuesta;
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
   
   rechazar(){
-    this.cargando = true;
     this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {
-      this.cargando = false;
       this.generales.mensajeCorrecto('Transferencia rechazada correctamente');
       this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
       this.seleccion = respuesta;
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }

@@ -33,6 +33,9 @@ import { SemanasComponent } from './semanas/semanas.component';
 import { ModalSemanaComponent } from './semanas/modales/modal-semana/modal-semana.component';
 import { ActoresComponent } from './actores/actores.component';
 import { ModalActorComponent } from './actores/modales/modal-actor/modal-actor.component';
+import { ModalUsuarioSucursalesComponent } from './usuarios/modales/modal-usuario-sucursales/modal-usuario-sucursales.component';
+import { TalleresComponent } from './talleres/talleres.component';
+import { ModalTallerComponent } from './talleres/modales/modal-taller/modal-taller.component';
 
 
 
@@ -69,7 +72,10 @@ import { ModalActorComponent } from './actores/modales/modal-actor/modal-actor.c
     SemanasComponent,
     ModalSemanaComponent,
     ActoresComponent,
-    ModalActorComponent
+    ModalActorComponent,
+    ModalUsuarioSucursalesComponent,
+    TalleresComponent,
+    ModalTallerComponent
   ],
   imports: [
     CommonModule,

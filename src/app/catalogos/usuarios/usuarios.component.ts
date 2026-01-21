@@ -16,7 +16,6 @@ export class UsuariosComponent {
     busqueda: true
   };
   datos: any;
-  cargando = false;
   seleccion: any;
   vista: any;
   listas = {
@@ -39,14 +38,12 @@ export class UsuariosComponent {
   }
   
   mostrar(){
-    this.cargando = true;
     this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.cargando = false;
       this.datos = respuesta.datos;
-      this.listas = respuesta.listas
+      this.listas = respuesta.listas;
+      
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }

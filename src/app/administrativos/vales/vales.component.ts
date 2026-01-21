@@ -11,12 +11,11 @@ import { datatableConfig } from '../../interfaces/tables.interface';
 })
 export class ValesComponent {
   configuracion: datatableConfig = {
-    alias: ['Vale', 'Monto', 'Sucursal'],
-    encabezados: ['folio', 'monto', 'sucursal'],
+    alias: ['Vale', 'Monto', 'Sucursal', 'Creo', 'Acepto'],
+    encabezados: ['folio', 'monto', 'sucursal', 'creo', 'acepto'],
     busqueda: true
   };
   datos: any;
-  cargando = false;
   seleccion: any;
   vista: any;
   lista: any
@@ -36,14 +35,11 @@ export class ValesComponent {
   }
   
   mostrar(){
-    this.cargando = true;
     this.servicio.mostrar().subscribe((respuesta: any) => {
-      this.cargando = false;
       this.datos = respuesta.datos;
       this.lista = respuesta.lista;
     },
     error => {
-      this.cargando = false;
       this.generales.interpretarError(error);
     });
   }
