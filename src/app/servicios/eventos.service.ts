@@ -67,6 +67,41 @@ export class EventosService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  paquete(body: any){
+    const url = this.uri + 'paquete';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  fecha(body: any){
+    const url = this.uri + 'fecha';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  hora(body: any){
+    const url = this.uri + 'hora';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  precio(body: any){
+    const url = this.uri + 'precio';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  agregarPersonaje(body: any){
+    const url = this.uri + 'agregarPersonaje';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  eliminarPersonaje(body: any){
+    const url = this.uri + 'eliminarPersonaje';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  talleres(body: any){
+    const url = this.uri + 'talleres';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   validarCliente(datos: any){
     if(this.generales.validarString(datos.festejado)){
       this.generales.mensajeError('No se ha ingresado el nombre del festejado');

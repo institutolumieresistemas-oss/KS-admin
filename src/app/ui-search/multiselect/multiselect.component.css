@@ -1,0 +1,14 @@
+.form-select {
+    cursor: pointer;
+    padding: 6px;
+}
+
+.form-select span.badge {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.dropdown-item:hover {
+    background: #e9ecef;
+}

@@ -7,7 +7,7 @@
         <app-datos-cliente (siguiente)="validarCliente($event);" (cancelar)="cerrar();"></app-datos-cliente>
     </div>
     <div class="container" ng *ngIf="paso === 1">
-        <app-datos-empresa [medios]="listas.medios" [formas]="listas.formas" [cuentas]="listas.cuentas" [semanas]="listas.semanas" [calendarios]="listas.calendarios" [paquetes]="listas.paquetes" [motivos]="listas.motivos" (siguiente)="validarEvento($event);"
+        <app-datos-empresa [medios]="listas.medios" [formas]="listas.formas" [cuentas]="listas.cuentas" [semanas]="listas.semanas" [calendarios]="listas.calendarios" [paquetes]="listas.paquetes" [motivos]="listas.motivos" [talleres]="listas.talleres" (siguiente)="validarEvento($event);"
             (anterior)="paso = 0"></app-datos-empresa>
     </div>
     <div class="container" ng *ngIf="paso === 2">

@@ -43,7 +43,8 @@ export class ModalEventoComponent {
     calendarios: [],
     semanas: [],
     formas: [],
-    cuentas: []
+    cuentas: [],
+    talleres: []
   }
   constructor(private generales: GeneralesService, private servicio: EventosService) { }
   

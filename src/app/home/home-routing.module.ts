@@ -41,6 +41,7 @@ import { RecepcionTransferenciasComponent } from '../administrativos/recepcion-t
 import { ActoresComponent } from '../catalogos/actores/actores.component';
 import { ReporteIngresosComponent } from '../reportes/reporte-ingresos/reporte-ingresos.component';
 import { ReporteEgresosComponent } from '../reportes/reporte-egresos/reporte-egresos.component';
+import { TalleresComponent } from '../catalogos/talleres/talleres.component';
 
 const routes: Routes = [
   {path: '', canActivate: [auntenticacionGuard], component: InicioComponent, children: [
@@ -83,6 +84,7 @@ const routes: Routes = [
     { path: 'reporteIngresos', canActivate: [auntenticacionGuard], component: ReporteIngresosComponent },
     { path: 'reporteEgresos', canActivate: [auntenticacionGuard], component: ReporteEgresosComponent },
     { path: 'reporteEventos', canActivate: [auntenticacionGuard], component: ReporteEventosComponent },
+    { path: 'talleres', canActivate: [auntenticacionGuard], component: TalleresComponent },
     { path: 'estadocuenta/:evento', canActivate: [auntenticacionGuard], component: EstadoCuentaEventoComponent },
   ]}
 ];

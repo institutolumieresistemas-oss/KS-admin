@@ -1,0 +1,42 @@
+<div class="mb-3">
+    <label class="form-label">{{ etiqueta }}</label>
+
+    <div class="d-flex gap-2 align-items-start">
+
+        <div class="position-relative flex-grow-1">
+
+            <!-- Select visual -->
+            <div class="form-select d-flex flex-wrap gap-2 align-items-center" style="height:auto; min-height: 38px;" tabindex="0" (click)="toggleMenu()">
+
+                <!-- Tags seleccionados -->
+                <span *ngFor="let item of selectedItems" class="badge bg-primary d-flex align-items-center">
+          {{ item.nombre }}
+          <span class="ms-2" role="button" (click)="remove(item)">
+            ✕
+          </span>
+                </span>
+
+                <span class="text-muted" *ngIf="selectedItems.length === 0">
+          Seleccionar…
+        </span>
+            </div>
+
+            <!-- Dropdown -->
+            <div *ngIf="menuOpen" class="border rounded mt-1 position-absolute bg-white w-100 shadow-sm" style="z-index: 10; max-height: 200px; overflow-y: auto;">
+                <div *ngFor="let item of items" class="p-2 dropdown-item" role="button" (click)="select(item)">
+                    {{ item.nombre }}
+                </div>
+
+                <div *ngIf="items.length === 0" class="text-center text-muted py-2">
+                    No hay más opciones
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔥 BOTÓN ENTER -->
+        <button type="button" class="btn btn-outline-primary" (click)="emitEnter()" *ngIf="mostrar">
+      ✔
+    </button>
+
+    </div>
+</div>

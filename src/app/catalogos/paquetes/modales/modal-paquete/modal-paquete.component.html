@@ -5,8 +5,11 @@
 <div class="modal-body">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-6">
                 <app-input [valor]="dato.nombre" [etiqueta]="'Nombre'" (emitidor)="dato.nombre = $event"></app-input>
+            </div>
+            <div class="col-sm-6">
+                <app-color (emitidor)="dato.color = $event;" [value]="dato.color"></app-color>
             </div>
         </div>
         <div class="row justify-content-end">

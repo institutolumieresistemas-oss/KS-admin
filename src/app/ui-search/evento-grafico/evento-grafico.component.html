@@ -1,11 +1,11 @@
 <div id="captura-evento-{{evento.folio}}" class="container-fluid p-3">
 
-    <div class="recibo shadow-sm">
+    <div class="recibo shadow-sm" [style.background-color]="evento.color" [style.color]="getTextColor(evento.color)">
         <i class="fas fa-camera text-red" (click)="capturarPantalla();"></i>
 
         <!-- ENCABEZADO -->
         <div class="recibo-header text-center">
-            <h3 class="mb-1">{{ evento.festejado }}</h3>
+            <h3>{{ evento.festejado }}</h3>
             <small>Folio: {{ evento.folio }} | {{ evento.fecha }}</small>
         </div>
 
@@ -15,13 +15,29 @@
             <div class="col-md-6">
                 <p><b>Edad:</b> {{ evento.edad }} años</p>
                 <p><b>Cantidad de niños:</b> {{ evento.cantidad }}</p>
-                <p><b>Fecha del evento:</b> {{ evento.fecha }}</p>
-                <p><b>Hora de inicio:</b> {{ evento.fecha | date:'HH:mm' }}</p>
-                <p><b>Paquete:</b> {{ evento.paquete }}</p>
+                <p class="clickable" (click)="modificarFecha = true;">
+                    <b>Fecha del evento:</b>
+                    <span *ngIf="!modificarFecha">{{ evento.fecha }}</span>
+                    <app-input *ngIf="modificarFecha" [tipo]="'date'" [valor]="evento.fecha" (emitidor)="evento.fecha = $event;" (enter)="fecha();"></app-input>
+                </p>
+                <p class="clickable" (click)="modificarHora = true;">
+                    <b>Hora de inicio :</b>
+                    <span *ngIf="!modificarHora">{{ evento.hora }}</span>
+                    <app-input *ngIf="modificarHora" [tipo]="'time'" [valor]="evento.hora" (emitidor)="evento.hora = $event;" (enter)="hora();"></app-input>
+                </p>
+                <p class="clickable" (click)="modificarPaquete = true;">
+                    <b>Paquete:</b>
+                    <span *ngIf="!modificarPaquete">{{ evento.paquete }}</span>
+                    <app-select *ngIf="modificarPaquete" [etiqueta]="'Paquetes'" [datos]="paquetes" [dato]="evento.idPaquete" (emitidor)="evento.idPaquete = $event; paquete();"></app-select>
+                </p>
                 <p><b>Dirección del evento:</b><br>{{ evento.domicilio }}</p>
                 <p><b>Celular:</b> {{ evento.celular }}</p>
                 <p><b>Contratante:</b> {{ evento.nombre }}</p>
-                <p><b>Precio del paquete:</b> ${{ generales.milesNumeros(evento.monto) }}</p>
+                <p class="clickable" (click)="modificarPrecio = true;">
+                    <b>Precio del paquete : </b>
+                    <span *ngIf="!modificarPrecio">${{ generales.milesNumeros(evento.monto) }}</span>
+                    <app-input *ngIf="modificarPrecio" [validacion]="'decimal'" [valor]="evento.monto" (emitidor)="evento.monto = $event;" (enter)="precio();"></app-input>
+                </p>
                 <p><b>Total de abonos:</b> ${{ generales.milesNumeros(evento.total_abonos) }}</p>
                 <p><b>Total para liquidar:</b> ${{ generales.milesNumeros(evento.total_liquidar) }}</p>
             </div>
@@ -36,47 +52,50 @@
                 </p>
 
                 <!-- EQUIPO -->
-                <div class="equipo">
+                <div class="equipo clickable" (click)="modificarEquipo = true;">
                     <b>Equipo:</b>
+                    <div *ngIf="!modificarEquipo">
+                        <div *ngFor="let item of evento.personajes_asignados" class="mb-3 position-relative">
+                            <i class="fas fa-user-cog" (click)="togglePopover(item)" *ngIf="!item.loading"></i>
+                            <strong>{{ item.personaje?.nombre }}</strong>
 
-                    <div *ngFor="let item of evento.personajes_asignados" class="mb-3 position-relative">
-                        <i class="fas fa-user-cog" (click)="togglePopover(item)" *ngIf="!item.loading"></i>
-                        <strong>{{ item.personaje?.nombre }}</strong>
-
-                        <span *ngIf="item.actor">
+                            <span *ngIf="item.actor">
                             — {{ item.actor.nombre }}
                         </span>
 
-                        <span *ngIf="!item.actor" class="text-muted">
+                            <span *ngIf="!item.actor" class="text-muted">
                             — Sin asignar
                         </span>
+                            <span class="text-danger">
+                            <i class="fas fa-times" (click)="eliminarPersonaje(item);"></i>
+                        </span>
 
-                        <!-- POPOVER -->
-                        <div *ngIf="item.popover" class="popover bs-popover-bottom show mt-2" style="position: absolute; z-index: 1000;">
-                            <div class="popover-body p-2">
+                            <!-- POPOVER -->
+                            <div *ngIf="item.popover" class="popover bs-popover-bottom show mt-2" style="position: absolute; z-index: 1000;">
+                                <div class="popover-body p-2">
 
-                                <div *ngIf="item.loading" class="text-center py-2">
-                                    <small>Actualizando...</small>
+                                    <div *ngIf="item.loading" class="text-center py-2">
+                                        <small>Actualizando...</small>
+                                    </div>
+
+                                    <ng-container *ngIf="!item.loading">
+                                        <div *ngFor="let actor of item.actores_disponibles" class="popover-item" (click)="asignarActor(item, actor)">
+                                            {{ actor.nombre }}
+                                        </div>
+
+                                        <hr class="my-1">
+
+                                        <div class="popover-item text-danger" (click)="asignarActor(item, {id: 0})">
+                                            Quitar asignación
+                                        </div>
+                                    </ng-container>
+
                                 </div>
-
-                                <ng-container *ngIf="!item.loading">
-                                    <div *ngFor="let actor of item.actores_disponibles" class="popover-item" (click)="asignarActor(item, actor)">
-                                        {{ actor.nombre }}
-                                    </div>
-
-                                    <hr class="my-1">
-
-                                    <div class="popover-item text-danger" (click)="asignarActor(item, {id: 0})">
-                                        Quitar asignación
-                                    </div>
-                                </ng-container>
-
                             </div>
+
                         </div>
-
                     </div>
-
-
+                    <app-select *ngIf="modificarEquipo" [etiqueta]="'Selecciona el personaje que deseas agregar'" [datos]="generales.obtenerRestantes(personajes, evento.personajes_asignados)" (emitidor)="agregarPersonaje($event);"></app-select>
                 </div>
 
             </div>
@@ -92,6 +111,19 @@
         <div class="recibo-extra">
             <p><b>Observaciones</b> {{ evento.observaciones }}</p>
         </div>
+
+        <div class="recibo-extra">
+            <p class="clickable" (click)="modificarTalleres = true;">
+                <b>Talleres:</b>
+                <span *ngIf="!modificarTalleres">
+                    <span *ngFor="let taller of evento.talleres_lista; let i = index">
+                        {{ taller.nombre }}<span *ngIf="i < evento.talleres_lista.length - 1">, </span>
+                </span>
+                </span>
+                <app-multiselect *ngIf="modificarTalleres" [mostrar]="true" [lista]="talleres" (emitidor)="evento.talleres = toJson($event);" (enter)="actulaizarTalleres();"></app-multiselect>
+            </p>
+        </div>
+
 
         <!-- FOOTER -->
         <div class="recibo-footer">
@@ -111,6 +143,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>

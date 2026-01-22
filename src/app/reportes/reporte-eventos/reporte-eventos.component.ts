@@ -93,7 +93,8 @@ export class ReporteEventosComponent {
       'gasto 4': item.gasto4,
       'gasto 5': item.gasto5,
       'calificacion': item.calificacion,
-      'saldo': item.total_liquidar
+      'saldo': item.total_liquidar,
+      'Liquidez': item.liquidez
     }));
   
     // Crear hoja de Excel

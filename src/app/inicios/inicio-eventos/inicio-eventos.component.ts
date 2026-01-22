@@ -10,8 +10,12 @@ import Pusher from 'pusher-js';
   styleUrl: './inicio-eventos.component.css'
 })
 export class InicioEventosComponent {
+  listado: any;
   eventos: any;
   semanas: any;
+  paquetes: any;
+  personajes: any;
+  talleres: any;
   constructor(private generales: GeneralesService, private servicio: EventosService){}
 
   ngOnInit(){
@@ -20,20 +24,28 @@ export class InicioEventosComponent {
 
   mostrar(){
     this.servicio.mostrar().subscribe((respuesta: any) => {
+      this.listado = respuesta.datos;
       this.eventos = respuesta.datos;
       this.semanas = respuesta.listas.semanas;
+      this.paquetes = respuesta.listas.paquetes;
+      this.personajes = respuesta.listas.personajes;
+      this.talleres = respuesta.listas.talleres;
     },
     error => {
       this.generales.interpretarError(error);
     });
   }
 
-  buscar(dato: any){
-    this.servicio.buscar({semana: dato}).subscribe((respuesta: any) => {
-      this.eventos = respuesta;
-    },
-    error => {
-      this.generales.interpretarError(error);
-    });
+  buscar(semana: any) {
+
+    if (this.generales.validarEntero(semana)) {
+      // Si no hay semana, mostrar todo
+      this.eventos = this.listado;
+      return;
+    }
+
+    this.eventos = this.listado.filter((evento: any) =>
+      Number(evento.semana) === Number(semana)
+    );
   }
 }

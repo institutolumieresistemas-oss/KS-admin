@@ -9,27 +9,12 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 })
 export class DatosPersonajesComponent {
   @Input() lista: any;
-  listado: any;
-  personajes = new Array();
-  seleccion = 0;
+  @Input() personajes = new Array();
   @Output() siguente = new EventEmitter();
   @Output() anterior = new EventEmitter();
   constructor(public generales:GeneralesService){}
 
-  ngOnInit(){
-    this.listado = this.generales.faltantes(this.personajes, this.lista, 'id');
-  }
-
-  agregar(){
-    this.personajes = this.generales.agregarDatoArray(this.personajes, this.generales.dato(this.lista, this.seleccion));
-    this.listado = this.generales.faltantes(this.personajes, this.lista, 'id');
-    this.seleccion = 0;
-  }
-
-  eliminar(dato: any){
-    this.personajes = this.generales.eliminarDatoArray(this.personajes, dato);
-    this.listado = this.generales.faltantes(this.personajes, this.lista, 'id');
-  }
+  ngOnInit(){}
 
   continuar(){
     this.siguente.emit(this.personajes);

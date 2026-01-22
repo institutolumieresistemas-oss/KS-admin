@@ -1,13 +1,16 @@
 .recibo {
     background: #fff;
-    border: 1px dashed #999;
+    border: 1px dashed rgba(0, 0, 0, 0.45);
     border-radius: 6px;
     padding: 20px;
     max-width: 100%;
 }
 
+
+/* HEADER */
+
 .recibo-header {
-    border-bottom: 1px dashed #ccc;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.45);
     margin-bottom: 15px;
     padding-bottom: 10px;
 }
@@ -17,30 +20,46 @@
     font-weight: bold;
 }
 
+
+/* CUERPO */
+
 .recibo-body p,
 .recibo-extra p {
     margin-bottom: 6px;
 }
 
+
+/* EXTRAS */
+
 .recibo-extra {
-    border-top: 1px dashed #ccc;
+    border-top: 1px dashed rgba(0, 0, 0, 0.45);
     margin-top: 15px;
     padding-top: 10px;
 }
 
+
+/* FOOTER */
+
 .recibo-footer {
-    border-top: 1px dashed #ccc;
+    border-top: 1px dashed rgba(0, 0, 0, 0.45);
     margin-top: 15px;
     padding-top: 10px;
 }
+
+
+/* INTERACCIONES */
 
 .clickable {
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .clickable:hover {
-    background-color: #f8f9fa;
+    background-color: rgba(0, 0, 0, 0.04);
 }
+
+
+/* POPOVER */
 
 .popover-item {
     padding: 6px 10px;
@@ -49,8 +68,11 @@
 }
 
 .popover-item:hover {
-    background-color: #f1f1f1;
+    background-color: rgba(0, 0, 0, 0.08);
 }
+
+
+/* BOTÓN CÁMARA */
 
 .captu {
     position: absolute;

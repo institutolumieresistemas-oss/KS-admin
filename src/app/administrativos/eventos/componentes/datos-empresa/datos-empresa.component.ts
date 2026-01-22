@@ -20,7 +20,9 @@ export class DatosEmpresaComponent {
     idCalendario: 0,
     anticipo: '',
     idFormaPago: 0,
-    idCuenta: 0
+    idCuenta: 0,
+    talleres: '',
+    voucher: ''
   }
   @Input() medios: any;
   @Input() motivos: any;
@@ -29,6 +31,7 @@ export class DatosEmpresaComponent {
   @Input() semanas: any;
   @Input() formas: any;
   @Input() cuentas: any;
+  @Input() talleres: any;
   @Output() siguiente = new EventEmitter();
   @Output() anterior = new EventEmitter();
   
@@ -39,10 +42,16 @@ export class DatosEmpresaComponent {
   }
 
   continuar(){
+    console.log(this.empresa);
     this.siguiente.emit(this.empresa);
   }
 
   cancelar(){
     this.anterior.emit(this.empresa);
   }
+
+  toJson(conversion: any) {
+    return JSON.stringify(conversion.map((e: any) => ({ id: e.id })));
+  }
+
 }

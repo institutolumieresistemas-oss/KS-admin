@@ -43,7 +43,13 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-2">
+        <app-imagen [valor]="empresa.voucher" [imagen]="empresa.voucher" (emitidor)="empresa.voucher = $event;"></app-imagen>
+    </div>
+    <div class="col-sm-4">
+        <app-multiselect [etiqueta]="'Talleres'" [lista]="talleres" (emitidor)="empresa.talleres = toJson($event);">Talleres</app-multiselect>
+    </div>
+    <div class="col-sm-6">
         <app-textarea [etiqueta]="'Observaciones'" (emitidor)="empresa.observaciones = $event;"></app-textarea>
     </div>
 </div>

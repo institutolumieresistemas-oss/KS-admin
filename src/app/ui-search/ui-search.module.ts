@@ -31,6 +31,8 @@ import { ModalEquipoEventoComponent } from './evento-grafico/modales/modal-equip
 import { ModalLiderEventoComponent } from './evento-grafico/modales/modal-lider-evento/modal-lider-evento.component';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
 import { UsuarioSucursalesComponent } from './usuario-sucursales/usuario-sucursales.component';
+import { MultiselectComponent } from './multiselect/multiselect.component';
+import { ColorComponent } from './color/color.component';
 
 
 
@@ -64,7 +66,9 @@ import { UsuarioSucursalesComponent } from './usuario-sucursales/usuario-sucursa
     ModalEquipoEventoComponent,
     ModalLiderEventoComponent,
     ProgressbarComponent,
-    UsuarioSucursalesComponent
+    UsuarioSucursalesComponent,
+    MultiselectComponent,
+    ColorComponent
   ],
   imports: [
     CommonModule,
@@ -90,7 +94,9 @@ import { UsuarioSucursalesComponent } from './usuario-sucursales/usuario-sucursa
     CirculoComponent,
     ProgressbarComponent,
     UsuarioSucursalesComponent,
-    UsuarioMenuComponent
+    UsuarioMenuComponent,
+    MultiselectComponent,
+    ColorComponent
   ]
 })
 export class UiSearchModule { }

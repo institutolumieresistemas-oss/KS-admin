@@ -5,6 +5,6 @@
 </div><br><br>
 <div class="row" *ngFor="let evento of eventos, let i = index">
     <div class="col-sm-12">
-        <app-evento-grafico [evento]="evento" [bg]="i"></app-evento-grafico>
+        <app-evento-grafico [evento]="evento" [bg]="i" [paquetes]="paquetes" [personajes]="personajes" [talleres]="talleres"></app-evento-grafico>
     </div>
 </div>

@@ -11,6 +11,7 @@ export class ModalPaqueteComponent {
   @Output() emitidor = new EventEmitter<any>();
   @Input() dato = {
     nombre: '',
+    color: ''
   };
   @Input() modificar = false;
   constructor(private generales: GeneralesService) { }
@@ -19,6 +20,7 @@ export class ModalPaqueteComponent {
   }
   
   emitir() {
+    
     this.emitidor.emit(this.dato);
   }
   

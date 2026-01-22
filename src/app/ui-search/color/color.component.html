@@ -1,0 +1,17 @@
+<div class="color-component">
+
+    <label class="form-label">Color</label>
+
+    <div class="d-flex align-items-center gap-3">
+
+        <!-- Selector -->
+        <input type="color" class="form-control form-control-color" [value]="hex" (input)="onColorChange($event)" />
+
+        <!-- Preview -->
+        <div class="color-preview" [style.background]="rgb"></div>
+
+        <!-- Valor -->
+        <span class="text-muted">{{ rgb }}</span>
+
+    </div>
+</div>
