@@ -47,7 +47,7 @@ export class IngresosComponent {
   }
   
   mostrar(){
-    this.servicio.mostrar().subscribe((respuesta: any) => {
+    this.servicio.administrativos().subscribe((respuesta: any) => {
       this.datos = respuesta.datos;
       this.listas = respuesta.listas;
     },

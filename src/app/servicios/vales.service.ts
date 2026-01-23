@@ -23,12 +23,12 @@ export class ValesService {
 
   mostrar() {
     const url = this.uri + 'mostrar';
-    return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+    return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
   traer() {
     const url = this.uri + 'traer';
-    return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+    return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
   aceptar(body: any) {

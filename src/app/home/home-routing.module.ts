@@ -42,6 +42,8 @@ import { ActoresComponent } from '../catalogos/actores/actores.component';
 import { ReporteIngresosComponent } from '../reportes/reporte-ingresos/reporte-ingresos.component';
 import { ReporteEgresosComponent } from '../reportes/reporte-egresos/reporte-egresos.component';
 import { TalleresComponent } from '../catalogos/talleres/talleres.component';
+import { IngresosDirectivoComponent } from '../directivos/ingresos-directivo/ingresos-directivo.component';
+import { EgresosDirectivoComponent } from '../directivos/egresos-directivo/egresos-directivo.component';
 
 const routes: Routes = [
   {path: '', canActivate: [auntenticacionGuard], component: InicioComponent, children: [
@@ -85,6 +87,8 @@ const routes: Routes = [
     { path: 'reporteEgresos', canActivate: [auntenticacionGuard], component: ReporteEgresosComponent },
     { path: 'reporteEventos', canActivate: [auntenticacionGuard], component: ReporteEventosComponent },
     { path: 'talleres', canActivate: [auntenticacionGuard], component: TalleresComponent },
+    { path: 'ingresosDirectivos', canActivate: [auntenticacionGuard], component: IngresosDirectivoComponent },
+    { path: 'egresosDirectivos', canActivate: [auntenticacionGuard], component: EgresosDirectivoComponent },
     { path: 'estadocuenta/:evento', canActivate: [auntenticacionGuard], component: EstadoCuentaEventoComponent },
   ]}
 ];

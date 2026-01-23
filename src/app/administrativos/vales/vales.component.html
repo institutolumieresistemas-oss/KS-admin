@@ -16,5 +16,5 @@
     </div>
 </div>
 <app-modal [ngSwitch]="vista">
-    <app-modal-vale *ngSwitchCase="'nuevo'" [lista]="lista" (emitidor)="nuevo($event);"></app-modal-vale>
+    <app-modal-vale *ngSwitchCase="'nuevo'" (emitidor)="nuevo($event);"></app-modal-vale>
 </app-modal>

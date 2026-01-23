@@ -11,14 +11,14 @@ import { datatableConfig } from '../../interfaces/tables.interface';
 })
 export class ValesComponent {
   configuracion: datatableConfig = {
-    alias: ['Vale', 'Monto', 'Sucursal', 'Creo', 'Acepto'],
-    encabezados: ['folio', 'monto', 'sucursal', 'creo', 'acepto'],
+    alias: ['Vale', 'Monto', 'Sucursal', 'Creo', 'Acepto', 'Estatus', 'Folio Egreso', 'Folio Ingreso'],
+    encabezados: ['folio', 'monto', 'sucursal_salida', 'creo', 'acepto', 'status', 'folio_egreso', 'folio_ingreso'],
     busqueda: true
   };
   datos: any;
   seleccion: any;
   vista: any;
-  lista: any
+  saldo = 0;
   
   constructor(private generales: GeneralesService, private servicio: ValesService){}
   
@@ -37,7 +37,7 @@ export class ValesComponent {
   mostrar(){
     this.servicio.mostrar().subscribe((respuesta: any) => {
       this.datos = respuesta.datos;
-      this.lista = respuesta.lista;
+      this.saldo = respuesta.saldo;
     },
     error => {
       this.generales.interpretarError(error);
@@ -45,6 +45,9 @@ export class ValesComponent {
   }
   
   nuevo(dato: any){
+    if(this.saldo < dato.monto){
+      return this.generales.mensajeError('No tienes suficiente saldo en tu sucursal para hacer este vale');
+    }
     if(this.servicio.validar(dato)){
       this.servicio.nuevo(dato).subscribe((respuesta: any) => {
         this.generales.mensajeCorrecto('Vale agregado correctamente');

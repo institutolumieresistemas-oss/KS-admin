@@ -23,6 +23,22 @@ export class InterceptorService implements HttpInterceptor {
 
     let clonedReq = req;
 
+    // =========================
+    // Agregar headers siempre
+    // =========================
+    clonedReq = req.clone({
+      setHeaders: {
+        'X-Usuario': localStorage.getItem('usuario') || '',
+        'X-UsuarioID': localStorage.getItem('identificador') || '',
+        'X-SucursalID': localStorage.getItem('sucursal') || '',
+        'X-CalendarioID': localStorage.getItem('calendario') || '',
+        'X-SemanaID': localStorage.getItem('semana') || ''
+      }
+    });
+
+    // =========================
+    // Mantener tu lógica POST
+    // =========================
     if (req.method === 'POST' && req.body) {
       const newBody = {
         ...req.body,
@@ -33,7 +49,7 @@ export class InterceptorService implements HttpInterceptor {
         semanaID: localStorage.getItem('semana')
       };
 
-      clonedReq = req.clone({ body: newBody });
+      clonedReq = clonedReq.clone({ body: newBody });
     }
 
     return next.handle(clonedReq).pipe(

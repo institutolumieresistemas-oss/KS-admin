@@ -3,17 +3,23 @@ import { CommonModule } from '@angular/common';
 import { UiSearchModule } from '../ui-search/ui-search.module';
 import { PermisosComponent } from './permisos/permisos.component';
 import { BalanceGeneralComponent } from './balance-general/balance-general.component';
+import { IngresosDirectivoComponent } from './ingresos-directivo/ingresos-directivo.component';
+import { AdministrativosModule } from '../administrativos/administrativos.module';
+import { EgresosDirectivoComponent } from './egresos-directivo/egresos-directivo.component';
 
 
 
 @NgModule({
   declarations: [
     PermisosComponent,
-    BalanceGeneralComponent
+    BalanceGeneralComponent,
+    IngresosDirectivoComponent,
+    EgresosDirectivoComponent
   ],
   imports: [
     CommonModule,
-    UiSearchModule
+    UiSearchModule,
+    AdministrativosModule
   ]
 })
 export class DirectivosModule { }

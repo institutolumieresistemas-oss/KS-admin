@@ -17,12 +17,12 @@ uri = environment.url+'transferencias/';
 
 mostrar() {
   const url = this.uri + 'mostrar';
-  return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
 }
 
 traer() {
   const url = this.uri + 'traer';
-  return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
 }
 
 nuevo(body: any) {
@@ -37,21 +37,6 @@ aceptar(body: any) {
 
 rechazar(body: any) {
   const url = this.uri + 'rechazar';
-  return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
-}
-
-eliminar(body: any){
-  const url = this.uri + 'eliminar';
-  return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
-}
-
-activar(body: any){
-  const url = this.uri + 'activar';
-  return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
-}
-
-desactivar(body: any){
-  const url = this.uri + 'desactivar';
   return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
 }
 

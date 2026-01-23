@@ -10,9 +10,10 @@ import { GeneralesService } from '../../../../servicios/generales.service';
 export class ModalValeComponent {
   @Output() emitidor = new EventEmitter<any>();
   @Input() dato = {
-    monto: ''
+    monto: '',
+    idSucursalSalida: localStorage.getItem('sucursal'),
+    idUsuarioCreo: localStorage.getItem('identificador')
   };
-  @Input() lista: any;
   constructor(private generales: GeneralesService) { }
   
   ngOnInit(): void {

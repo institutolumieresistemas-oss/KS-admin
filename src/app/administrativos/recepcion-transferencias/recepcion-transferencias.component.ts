@@ -11,8 +11,8 @@ import { TransferenciasService } from '../../servicios/transferencias.service';
 })
 export class RecepcionTransferenciasComponent {
   configuracion: datatableConfig = {
-    alias: ['Monto', 'Sucursal'],
-    encabezados: ['monto', 'sucursalSalida'],
+    alias: ['Folio','Monto'],
+    encabezados: ['folio' ,'monto'],
     busqueda: true
   };
   datos: any;
@@ -43,10 +43,11 @@ export class RecepcionTransferenciasComponent {
   }
   
   aceptar(){
-    this.servicio.activar(this.seleccion).subscribe((respuesta: any) => {
+    this.servicio.aceptar(this.seleccion).subscribe((respuesta: any) => {
       this.generales.mensajeCorrecto('Transferencia acepatada correctamente');
       this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
       this.seleccion = respuesta;
+      this.mostrar();
     },
     error => {
       this.generales.interpretarError(error);
@@ -54,7 +55,7 @@ export class RecepcionTransferenciasComponent {
   }
   
   rechazar(){
-    this.servicio.desactivar(this.seleccion).subscribe((respuesta: any) => {
+    this.servicio.rechazar(this.seleccion).subscribe((respuesta: any) => {
       this.generales.mensajeCorrecto('Transferencia rechazada correctamente');
       this.datos = this.generales.actualizarDatoArray(this.datos, respuesta);
       this.seleccion = respuesta;

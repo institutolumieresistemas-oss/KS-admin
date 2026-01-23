@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { datatableConfig } from '../../interfaces/tables.interface';
 import { GeneralesService } from '../../servicios/generales.service';
-import { EgresosService } from '../../servicios/egresos.service';
+import { IngresosService } from '../../servicios/ingresos.service';
+import { PdfService } from '../../servicios/pdf.service';
 
 @Component({
-    selector: 'app-egresos',
-    templateUrl: './egresos.component.html',
-    styleUrl: './egresos.component.css',
-    standalone: false
+  selector: 'app-ingresos-directivo',
+  standalone: false,
+  templateUrl: './ingresos-directivo.component.html',
+  styleUrl: './ingresos-directivo.component.css'
 })
-export class EgresosComponent {
+export class IngresosDirectivoComponent {
   configuracion: datatableConfig = {
     alias: ['Folio', 'Calendario', 'Monto', 'Forma de pago', 'Rubro', 'Tipo'],
     encabezados: ['folio', 'calendario', 'monto', 'forma', 'rubro', 'tipo'],
@@ -27,10 +28,14 @@ export class EgresosComponent {
     cuentas: []
   }
   
-  constructor(private generales: GeneralesService, private servicio: EgresosService){}
+  constructor(private generales: GeneralesService, private servicio: IngresosService, private pdf:PdfService){}
   
   ngOnInit(): void {
     this.mostrar();
+  }
+
+  imprimir(){
+    this.pdf.pdfIngreso(this.seleccion);
   }
   
   modal(vista: any){
@@ -42,7 +47,7 @@ export class EgresosComponent {
   }
   
   mostrar(){
-    this.servicio.administrativos().subscribe((respuesta: any) => {
+    this.servicio.mostrar().subscribe((respuesta: any) => {
       this.datos = respuesta.datos;
       this.listas = respuesta.listas;
     },
@@ -54,7 +59,7 @@ export class EgresosComponent {
   nuevo(dato: any){
     if(this.servicio.validar(dato)){
       this.servicio.nuevo(dato).subscribe((respuesta: any) => {
-        this.generales.mensajeCorrecto('Egreso agregado correctamente');
+        this.generales.mensajeCorrecto('Ingreso agregado correctamente');
         this.generales.cerrarModal();
         this.mostrar();
       },

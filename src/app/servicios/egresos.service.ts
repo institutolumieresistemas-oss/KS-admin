@@ -26,6 +26,11 @@ export class EgresosService {
     return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  administrativos() {
+    const url = this.uri + 'administrativos';
+    return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   solicitud(usuario: any) {
     const url = this.uri + 'solicitud';
     return this.http.post(url, usuario, {headers: this.headers}).pipe( map(respuesta => respuesta) );

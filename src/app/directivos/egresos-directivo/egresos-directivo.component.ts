@@ -4,12 +4,12 @@ import { GeneralesService } from '../../servicios/generales.service';
 import { EgresosService } from '../../servicios/egresos.service';
 
 @Component({
-    selector: 'app-egresos',
-    templateUrl: './egresos.component.html',
-    styleUrl: './egresos.component.css',
-    standalone: false
+  selector: 'app-egresos-directivo',
+  standalone: false,
+  templateUrl: './egresos-directivo.component.html',
+  styleUrl: './egresos-directivo.component.css'
 })
-export class EgresosComponent {
+export class EgresosDirectivoComponent {
   configuracion: datatableConfig = {
     alias: ['Folio', 'Calendario', 'Monto', 'Forma de pago', 'Rubro', 'Tipo'],
     encabezados: ['folio', 'calendario', 'monto', 'forma', 'rubro', 'tipo'],
@@ -42,7 +42,7 @@ export class EgresosComponent {
   }
   
   mostrar(){
-    this.servicio.administrativos().subscribe((respuesta: any) => {
+    this.servicio.mostrar().subscribe((respuesta: any) => {
       this.datos = respuesta.datos;
       this.listas = respuesta.listas;
     },

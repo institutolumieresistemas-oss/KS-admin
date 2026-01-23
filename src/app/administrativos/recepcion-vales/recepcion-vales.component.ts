@@ -12,7 +12,7 @@ import { ValesService } from '../../servicios/vales.service';
 export class RecepcionValesComponent {
   configuracion: datatableConfig = {
     alias: ['Vale', 'Monto', 'Sucursal', 'Creo'],
-    encabezados: ['folio', 'monto', 'sucursal', 'creo'],
+    encabezados: ['folio', 'monto', 'sucursal_salida', 'creo'],
     busqueda: true
   };
   datos: any;
@@ -37,6 +37,16 @@ export class RecepcionValesComponent {
   aceptar(){
     this.servicio.aceptar(this.seleccion).subscribe((respuesta: any) => {
       this.generales.mensajeCorrecto('Vale aceptado correctamete');
+      this.mostrar();
+    },
+    error => {
+      this.generales.interpretarError(error);
+    });
+  }
+
+  rechazar(){
+    this.servicio.rechazar(this.seleccion).subscribe((respuesta: any) => {
+      this.generales.mensajeCorrecto('Vale rechazado correctamete');
       this.mostrar();
     },
     error => {

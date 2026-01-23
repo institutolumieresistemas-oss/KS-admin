@@ -59,7 +59,9 @@ import { RecepcionTransferenciasComponent } from './recepcion-transferencias/rec
   ],
   exports: [
     ModalEquipoComponent,
-    ModalLiderComponent
+    ModalLiderComponent,
+    ModalIngresoComponent,
+    ModalEgresoComponent
   ]
 })
 export class AdministrativosModule { }

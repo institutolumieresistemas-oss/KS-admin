@@ -10,9 +10,6 @@
                 <div class="col-sm-6">
                     <button class="btn btn-success" (click)="modal('nuevo')">Agregar Transferencia</button>
                 </div>
-                <div class="col-sm-6">
-                    <button class="btn btn-danger" (click)="eliminar();">Eliminar</button>
-                </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -23,5 +20,5 @@
     </div>
 </div>
 <app-modal [ngSwitch]="vista">
-    <app-modal-transferencia *ngSwitchCase="'nuevo'" [lista]="lista" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-transferencia>
+    <app-modal-transferencia *ngSwitchCase="'nuevo'" [listas]="listas" [modificar]="false" (emitidor)="nuevo($event);"></app-modal-transferencia>
 </app-modal>

@@ -12,8 +12,12 @@ export class ModalTransferenciaComponent {
 @Input() dato = {
   monto: '',
   idSucursalEntrada: 0,
+  idSucursalSalida: 1,
+  idUsuarioCreo: localStorage.getItem('identificador')
 };
-@Input() lista: any;
+@Input() listas = {
+  sucursales: []
+};
 @Input() modificar = false;
 constructor(private generales: GeneralesService) { }
 

@@ -26,6 +26,11 @@ export class IngresosService {
     return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  administrativos() {
+    const url = this.uri + 'administrativos';
+    return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   solicitud(body: any) {
     const url = this.uri + 'solicitud';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );

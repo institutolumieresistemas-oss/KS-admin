@@ -11,14 +11,17 @@ import { TransferenciasService } from '../../servicios/transferencias.service';
 })
 export class TransferenciasComponent {
   configuracion: datatableConfig = {
-    alias: ['Monto', 'Sucursal'],
-    encabezados: ['monto', 'sucursalSalida'],
+    alias: ['Folio', 'Monto', 'Sucursal', 'Folio Ingreso', 'Folio Egreso', 'Estatus'],
+    encabezados: ['folio', 'monto', 'sucursal_salida', 'folio_ingreso', 'folio_egreso', 'status'],
     busqueda: true
   };
   datos: any;
   seleccion: any;
   vista: any;
-  lista: any;
+  listas = {
+    sucursales: []
+  };
+  saldo = 0;
   
   constructor(private generales: GeneralesService, private servicio: TransferenciasService){}
   
@@ -37,7 +40,8 @@ export class TransferenciasComponent {
   mostrar(){
     this.servicio.mostrar().subscribe((respuesta: any) => {
       this.datos = respuesta.datos;
-      this.lista = respuesta.lista;
+      this.listas = respuesta.listas;
+      this.saldo = respuesta.saldo
     },
     error => {
       this.generales.interpretarError(error);
@@ -45,6 +49,9 @@ export class TransferenciasComponent {
   }
   
   nuevo(dato: any){
+    if(this.saldo < dato.monto){
+      return this.generales.mensajeError('Saldo insuficiente en sucursal');
+    }
     if(this.servicio.validar(dato)){
       this.servicio.nuevo(dato).subscribe((respuesta: any) => {
         this.generales.mensajeCorrecto('Transferencia agregado correctamente');
@@ -55,17 +62,6 @@ export class TransferenciasComponent {
         this.generales.interpretarError(error);
       });
     }
-  }
-  
-  eliminar(){
-    this.servicio.eliminar(this.seleccion).subscribe((respuesta: any) => {
-      this.generales.mensajeCorrecto('Transferencia eliminado correctamente');
-      this.datos = this.generales.eliminarDatoArray(this.datos, respuesta);
-      this.seleccion = undefined;
-    },
-    error => {
-      this.generales.interpretarError(error);
-    });
   }
   
 }
