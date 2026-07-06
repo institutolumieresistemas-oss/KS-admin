@@ -25,6 +25,6 @@
 </div>
 <app-modal [ngSwitch]="vista">
     <app-modal-ingreso *ngSwitchCase="'nuevo'" [modificar]="false" [listas]="listas" (emitidor)="nuevo($event)"></app-modal-ingreso>
-    <app-modal-ingreso *ngSwitchCase="'modificae'" [modificar]="true" [listas]="listas" (emitidor)="solicitud($event)"></app-modal-ingreso>
+    <app-modal-ingreso *ngSwitchCase="'modificar'" [dato]="seleccion" [modificar]="true" [listas]="listas" (emitidor)="solicitud($event)"></app-modal-ingreso>
     <img *ngSwitchCase="'imagen'" src="{{seleccion.imagen}}" alt="">
 </app-modal>

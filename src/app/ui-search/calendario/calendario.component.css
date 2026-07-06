@@ -1,0 +1,54 @@
+.calendar {
+    width: 100%;
+}
+
+.weekdays,
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.weekdays div {
+    text-align: center;
+    font-weight: bold;
+    padding: 8px;
+}
+
+.day {
+    min-height: 130px;
+    border: 1px solid #ddd;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.number {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.event {
+    text-align: center;
+    padding: 6px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+
+/* Colores por rango */
+
+.verde {
+    background-color: #198754;
+    color: white;
+}
+
+.amarillo {
+    background-color: #ffc107;
+    color: black;
+}
+
+.rojo {
+    background-color: #dc3545;
+    color: white;
+}

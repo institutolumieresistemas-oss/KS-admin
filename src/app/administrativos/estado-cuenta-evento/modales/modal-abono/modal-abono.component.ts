@@ -19,6 +19,7 @@ export class ModalAbonoComponent {
   @Input() formas: any;
   @Input() cuentas: any;
   @Input() modificar = false;
+  listaTipos: any;
   constructor(private generales: GeneralesService) { }
   
   ngOnInit(): void {

@@ -14,6 +14,8 @@ export class InicioMetasComponent {
   motivos: any;
   eventosVendidos: any;
   eventosRealizados: any;
+  eventosVendidosSemana: any;
+  eventosRealizadosSemana: any;
   metasEventos = {
     existe: false,
     datos: {
@@ -45,6 +47,8 @@ export class InicioMetasComponent {
       this.eventosRealizados = respuesta.eventosRealizados;
       this.metasEventos = respuesta.metasEventos;
       this.metasIngresos = respuesta.metasIngresos;
+      this.eventosRealizadosSemana = respuesta.eventosRealizadosSemana;
+      this.eventosVendidosSemana = respuesta.eventosVendidosSemana;
     },
     error => {
       this.generales.interpretarError(error);

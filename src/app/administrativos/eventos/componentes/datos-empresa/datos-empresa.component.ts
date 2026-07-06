@@ -22,7 +22,9 @@ export class DatosEmpresaComponent {
     idFormaPago: 0,
     idCuenta: 0,
     talleres: '',
-    voucher: ''
+    voucher: '',
+    hayPago: false,
+    kilometros: ''
   }
   @Input() medios: any;
   @Input() motivos: any;
@@ -52,6 +54,12 @@ export class DatosEmpresaComponent {
 
   toJson(conversion: any) {
     return JSON.stringify(conversion.map((e: any) => ({ id: e.id })));
+  }
+
+  formatearDomicilio(datos: any){
+    this.empresa.kilometros = datos.distancia;
+    this.empresa.mapa = datos.url;
+    this.empresa.domicilio = datos.direccion;
   }
 
 }

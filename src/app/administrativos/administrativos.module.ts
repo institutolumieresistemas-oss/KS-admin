@@ -24,6 +24,8 @@ import { RecepcionValesComponent } from './recepcion-vales/recepcion-vales.compo
 import { TransferenciasComponent } from './transferencias/transferencias.component';
 import { ModalTransferenciaComponent } from './transferencias/modales/modal-transferencia/modal-transferencia.component';
 import { RecepcionTransferenciasComponent } from './recepcion-transferencias/recepcion-transferencias.component';
+import { FinalizadosComponent } from './finalizados/finalizados.component';
+import { CalendarioEventosComponent } from './calendario-eventos/calendario-eventos.component';
 
 
 
@@ -50,7 +52,9 @@ import { RecepcionTransferenciasComponent } from './recepcion-transferencias/rec
     RecepcionValesComponent,
     TransferenciasComponent,
     ModalTransferenciaComponent,
-    RecepcionTransferenciasComponent
+    RecepcionTransferenciasComponent,
+    FinalizadosComponent,
+    CalendarioEventosComponent
   ],
   imports: [
     CommonModule,

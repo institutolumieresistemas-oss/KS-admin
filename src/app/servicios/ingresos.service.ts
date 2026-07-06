@@ -31,18 +31,13 @@ export class IngresosService {
     return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
-  solicitud(body: any) {
-    const url = this.uri + 'solicitud';
+  modificar(body: any) {
+    const url = this.uri + 'modificar';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
-  aceptar(body: any) {
-    const url = this.uri + 'aceptar';
-    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
-  }
-
-  rechazar(body: any) {
-    const url = this.uri + 'rechazar';
+  auditar(body: any) {
+    const url = this.uri + 'auditar';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 

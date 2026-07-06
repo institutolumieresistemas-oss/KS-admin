@@ -66,17 +66,15 @@ export class ReporteEgresosComponent {
       // Transformar los datos para que coincidan con los headers
       const exportData = this.datos.map((item: any) => ({
         'Folio': item.folio,
-        'Fecha': item.created_at,
-        'Año': item.ano || item.ano,
-        'Semana': item.semana,
-        'Mes': item.mes,
+        'Año': item.calendario,
+        'Fecha': item.fecha,
         'Rubro': item.rubro,
         'Tipo': item.tipo,
         'Concepto': item.concepto,
         'Forma de Pago': item.forma,
         'Cuenta': item.cuenta,
         'Monto': item.monto,
-        'Observaciones': item.observaciones
+        'Evento': item.evento
       }));
     
       // Crear hoja de Excel

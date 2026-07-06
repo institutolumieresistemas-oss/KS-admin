@@ -6,6 +6,8 @@ import { BalanceGeneralComponent } from './balance-general/balance-general.compo
 import { IngresosDirectivoComponent } from './ingresos-directivo/ingresos-directivo.component';
 import { AdministrativosModule } from '../administrativos/administrativos.module';
 import { EgresosDirectivoComponent } from './egresos-directivo/egresos-directivo.component';
+import { IngresosAuditoriasComponent } from './ingresos-auditorias/ingresos-auditorias.component';
+import { EgresosAuditoriasComponent } from './egresos-auditorias/egresos-auditorias.component';
 
 
 
@@ -14,7 +16,9 @@ import { EgresosDirectivoComponent } from './egresos-directivo/egresos-directivo
     PermisosComponent,
     BalanceGeneralComponent,
     IngresosDirectivoComponent,
-    EgresosDirectivoComponent
+    EgresosDirectivoComponent,
+    IngresosAuditoriasComponent,
+    EgresosAuditoriasComponent
   ],
   imports: [
     CommonModule,

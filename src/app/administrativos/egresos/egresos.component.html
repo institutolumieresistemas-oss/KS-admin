@@ -10,9 +10,6 @@
         </div><br>
         <div class="row" *ngIf="seleccion !== undefined">
             <div class="col-sm-4">
-                <button class="btn btn-warning" (click)="modal('modificar');">Modificar</button>
-            </div>
-            <div class="col-sm-4">
                 <button class="btn btn-info" (click)="modal('imagen')">Voucher</button>
             </div>
         </div><br>
@@ -24,7 +21,7 @@
     </div>
 </div>
 <app-modal [ngSwitch]="vista">
-    <app-modal-ingreso *ngSwitchCase="'nuevo'" [modificar]="false" [listas]="listas" (emitidor)="nuevo($event)"></app-modal-ingreso>
-    <app-modal-ingreso *ngSwitchCase="'modificae'" [modificar]="true" [listas]="listas" (emitidor)="solicitud($event)"></app-modal-ingreso>
+    <app-modal-egreso *ngSwitchCase="'nuevo'" [modificar]="false" [listas]="listas" (emitidor)="nuevo($event)"></app-modal-egreso>
+    <app-modal-egreso *ngSwitchCase="'modificar'" [modificar]="true" [listas]="listas" (emitidor)="solicitud($event)"></app-modal-egreso>
     <img *ngSwitchCase="'imagen'" src="{{seleccion.imagen}}" alt="">
 </app-modal>

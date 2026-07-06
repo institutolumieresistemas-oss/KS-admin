@@ -11,7 +11,7 @@ export class ModalEgresoComponent {
   @Output() emitidor = new EventEmitter<any>();
     @Input() dato = {
       monto: '',
-      idConcepto: 0,
+      concepto:'',
       idRubro: 0,
       idTipo: 0,
       idCalendario: 0,

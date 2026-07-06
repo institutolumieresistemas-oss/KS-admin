@@ -1,89 +1,28 @@
 .recibo {
     background: #fff;
-    border: 1px dashed rgba(0, 0, 0, 0.45);
+    border: 1px dashed rgba(0, 0, 0, .4);
     border-radius: 6px;
     padding: 20px;
-    max-width: 100%;
 }
-
-
-/* HEADER */
 
 .recibo-header {
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.45);
-    margin-bottom: 15px;
-    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(0, 0, 0, .4);
+    margin-bottom: 10px;
 }
-
-.recibo-header h3 {
-    margin: 0;
-    font-weight: bold;
-}
-
-
-/* CUERPO */
-
-.recibo-body p,
-.recibo-extra p {
-    margin-bottom: 6px;
-}
-
-
-/* EXTRAS */
-
-.recibo-extra {
-    border-top: 1px dashed rgba(0, 0, 0, 0.45);
-    margin-top: 15px;
-    padding-top: 10px;
-}
-
-
-/* FOOTER */
-
-.recibo-footer {
-    border-top: 1px dashed rgba(0, 0, 0, 0.45);
-    margin-top: 15px;
-    padding-top: 10px;
-}
-
-
-/* INTERACCIONES */
 
 .clickable {
     cursor: pointer;
+    padding: 4px;
     border-radius: 4px;
 }
 
 .clickable:hover {
-    background-color: rgba(0, 0, 0, 0.04);
+    background: rgba(0, 0, 0, .05);
 }
-
-
-/* POPOVER */
-
-.popover-item {
-    padding: 6px 10px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.popover-item:hover {
-    background-color: rgba(0, 0, 0, 0.08);
-}
-
-
-/* BOTÓN CÁMARA */
 
 .captu {
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 50;
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }

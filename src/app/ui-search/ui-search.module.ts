@@ -33,6 +33,9 @@ import { ProgressbarComponent } from './progressbar/progressbar.component';
 import { UsuarioSucursalesComponent } from './usuario-sucursales/usuario-sucursales.component';
 import { MultiselectComponent } from './multiselect/multiselect.component';
 import { ColorComponent } from './color/color.component';
+import { CalendarioComponent } from './calendario/calendario.component';
+import { MapasComponent } from './mapas/mapas.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -68,12 +71,15 @@ import { ColorComponent } from './color/color.component';
     ProgressbarComponent,
     UsuarioSucursalesComponent,
     MultiselectComponent,
-    ColorComponent
+    ColorComponent,
+    CalendarioComponent,
+    MapasComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    GoogleMapsModule
   ],
   exports:[
     CargandoComponent,
@@ -96,7 +102,9 @@ import { ColorComponent } from './color/color.component';
     UsuarioSucursalesComponent,
     UsuarioMenuComponent,
     MultiselectComponent,
-    ColorComponent
+    ColorComponent,
+    CalendarioComponent,
+    MapasComponent
   ]
 })
 export class UiSearchModule { }

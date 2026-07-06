@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+/* Forzar que las sugerencias de Google se vean sobre el modal de Bootstrap */
+
+.pac-container {
+    z-index: 2147483647 !important;
+    /* El valor máximo posible */
+    margin-top: 2px;
+    border-radius: 0 0 8px 8px;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.pac-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.pac-item:hover {
+    background-color: #f8f9fa;
+}
+
+.pac-item-query {
+    font-size: 15px;
+    color: #333;
+}

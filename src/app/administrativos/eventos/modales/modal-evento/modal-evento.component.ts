@@ -60,17 +60,13 @@ export class ModalEventoComponent {
   }
 
   validarCliente(datos: any){
-    if(this.servicio.validarCliente(datos)){
-      this.dato.cliente = datos;
-      this.paso = 1;
-    }
+    this.dato.cliente = datos;
+    this.paso = 1;
   }
 
   validarEvento(datos: any){
-    if(this.servicio.validarEvento(datos)){
-      this.dato.empresa = datos;
-      this.paso = 2;
-    }
+    this.dato.empresa = datos;
+    this.paso = 2;
   }
 
   validarPersonajes(dato: any){

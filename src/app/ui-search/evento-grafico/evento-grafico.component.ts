@@ -17,6 +17,7 @@ export class EventoGraficoComponent {
   @Input() paquetes: any;
   @Input() personajes: any;
   @Input() talleres: any;
+  @Input() modificar = true;
   personajeSeleccionado: any = null;
 
   vista = '';
@@ -29,6 +30,13 @@ export class EventoGraficoComponent {
   modificarPrecio = false;
   modificarEquipo = false;
   modificarTalleres = false;
+  modificarEdad = false;
+  modificarCantidad = false;
+  modificarDireccion = false;
+  modificarCelular = false;
+  modificarNombre = false;
+  modificarObservaciones = false;
+  modificarFestejado = false;
   constructor(public generales: GeneralesService, private servicio: EventosService, private router: Router){}
 
   modal(vista: any){
@@ -86,12 +94,26 @@ export class EventoGraficoComponent {
       this.generales.cerrarModal();
       item.loading = false;
       item.actor = actor;
+      item.confirmado = 0; // Al reasignar, vuelve a no confirmado
     },
     error => {
       item.loading = false;
       this.generales.interpretarError(error);
     });
     item.popover = false;
+  }
+
+  confirmarActor(item: any) {
+    item.loading = true;
+    this.servicio.confirmarActor(item).subscribe((respuesta: any) => {
+      this.generales.mensajeCorrecto('Asistencia confirmada');
+      item.confirmado = 1;
+      item.loading = false;
+    },
+    error => {
+      item.loading = false;
+      this.generales.interpretarError(error);
+    });
   }
 
   capturarPantalla() {
@@ -162,6 +184,103 @@ export class EventoGraficoComponent {
     });
   }
 
+  edad(){
+    this.servicio.edad(this.evento).subscribe((respuesta: any) => {
+      this.generales.cerrarModal();
+      this.generales.mensajeCorrecto('Edad actualizada correctamente');
+      this.modificarEdad = false;
+      this.evento = respuesta;
+    },
+    error => {
+      this.modificarEdad = false;
+      this.generales.interpretarError(error);
+    });
+  }
+
+  cantidad(){
+    this.servicio.cantidad(this.evento).subscribe((respuesta: any) => {
+      this.generales.cerrarModal();
+      this.generales.mensajeCorrecto('Cantidad de niños actualizada correctamente');
+      this.modificarCantidad = false;
+      this.evento = respuesta;
+    },
+    error => {
+      this.modificarCantidad = false;
+      this.generales.interpretarError(error);
+    });
+  }
+
+  direccion(datos: any){
+    const direccion = {
+      domicilio: datos.direccion,
+      kilometros: datos.distancia,
+      mapa: datos.url,
+      id: this.evento.id
+    }
+    this.servicio.direccion(direccion).subscribe((respuesta: any) => {
+      this.generales.cerrarModal();
+      this.generales.mensajeCorrecto('Direccion actualizada correctamente');
+      this.modificarDireccion = false;
+      this.evento = respuesta;
+    },
+    error => {
+      this.modificarDireccion = false;
+      this.generales.interpretarError(error);
+    });
+  }
+
+  celular(){
+    this.servicio.celular(this.evento).subscribe((respuesta: any) => {
+      this.generales.cerrarModal();
+      this.generales.mensajeCorrecto('Celular actualizada correctamente');
+      this.modificarCelular = false;
+      this.evento = respuesta;
+    },
+    error => {
+      this.modificarCelular = false;
+      this.generales.interpretarError(error);
+    });
+  }
+
+  nombre(){
+    this.servicio.nombre(this.evento).subscribe((respuesta: any) => {
+      this.generales.cerrarModal();
+      this.generales.mensajeCorrecto('Nombre del contratante actualizada correctamente');
+      this.modificarNombre = false;
+      this.evento = respuesta;
+    },
+    error => {
+      this.modificarNombre = false;
+      this.generales.interpretarError(error);
+    });
+  }
+
+  festejado(){
+    this.servicio.festejado(this.evento).subscribe((respuesta: any) => {
+      this.generales.cerrarModal();
+      this.generales.mensajeCorrecto('Nombre del festejado actualizada correctamente');
+      this.modificarFestejado = false;
+      this.evento = respuesta;
+    },
+    error => {
+      this.modificarFestejado = false;
+      this.generales.interpretarError(error);
+    });
+  }
+
+  observaciones(){
+    this.servicio.observaciones(this.evento).subscribe((respuesta: any) => {
+      this.generales.cerrarModal();
+      this.generales.mensajeCorrecto('Observaciones actualizadas correctamente');
+      this.modificarObservaciones = false;
+      this.evento = respuesta;
+    },
+    error => {
+      this.modificarObservaciones = false;
+      this.generales.interpretarError(error);
+    });
+  }
+
   agregarPersonaje(personaje: any){
     const body = {
       idPersonaje: personaje,
@@ -219,6 +338,16 @@ export class EventoGraficoComponent {
     const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
   
     return luminance > 150 ? '#000' : '#fff';
+  }
+
+  calificar(calificacion: any){
+    this.evento.calificacion = calificacion;
+    this.servicio.calificar(this.evento).subscribe((respuesta: any) => {
+      this.evento = respuesta;
+    },
+    error => {
+      this.generales.interpretarError(error);
+    });
   }
   
   private extractRGB(color: string): number[] | null {

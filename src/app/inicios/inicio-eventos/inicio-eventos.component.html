@@ -1,6 +1,9 @@
 <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-8">
         <app-select [datos]="semanas" [etiqueta]="'Semana'" (emitidor)="buscar($event);"></app-select>
+    </div>
+    <div class="col-sm-4">
+        <br> {{total}} eventos
     </div>
 </div><br><br>
 <div class="row" *ngFor="let evento of eventos, let i = index">

@@ -31,8 +31,8 @@ export class EgresosService {
     return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
-  solicitud(usuario: any) {
-    const url = this.uri + 'solicitud';
+  modificar(usuario: any) {
+    const url = this.uri + 'modificar';
     return this.http.post(url, usuario, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
@@ -43,6 +43,11 @@ export class EgresosService {
 
   rechazar(usuario: any) {
     const url = this.uri + 'rechazar';
+    return this.http.post(url, usuario, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  auditar(usuario: any) {
+    const url = this.uri + 'auditar';
     return this.http.post(url, usuario, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 

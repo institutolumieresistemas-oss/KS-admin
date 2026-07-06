@@ -1,8 +1,54 @@
-<div class="sidebar pe-4 pb-3">
+<!-- ================= DESKTOP SIDEBAR ================= -->
+<div class="sidebar pe-4 pb-3 d-none d-lg-block">
     <nav class="navbar bg-light navbar-light">
         <app-logo></app-logo>
+
         <div class="navbar-nav w-100" *ngFor="let modulo of permisos">
             <app-modulo [modulo]="modulo"></app-modulo>
         </div>
     </nav>
+</div>
+
+<!-- ================= MOBILE ================= -->
+<div class="d-lg-none">
+
+    <!-- BOTÓN FLOTANTE -->
+    <button class="fab-btn" (click)="toggleMenu()">
+        <i class="bi" [ngClass]="menuAbierto ? 'bi-x-lg' : 'bi-list'"></i>
+    </button>
+
+    <!-- MENÚ -->
+    <div class="mobile-menu" *ngIf="menuAbierto">
+
+        <!-- INICIO -->
+        <div class="mobile-item" [routerLink]="'admin'" (click)="cerrarMenu()">
+            <i class="bi bi-house"></i>
+            <span>Inicio</span>
+        </div>
+
+        <!-- MODULOS -->
+        <div *ngFor="let modulo of permisos">
+
+            <div class="mobile-item modulo" (click)="toggleModulo(modulo)">
+                <div class="title">
+                    <i class="{{ modulo.icono }}"></i>
+                    <span>{{ modulo.nombre }}</span>
+                </div>
+
+                <i class="bi" [ngClass]="moduloAbierto === modulo ? 'bi-chevron-up' : 'bi-chevron-down'">
+                </i>
+            </div>
+
+            <!-- SUBMENU -->
+            <div class="mobile-submenu" *ngIf="moduloAbierto === modulo">
+
+                <a *ngFor="let opcion of modulo.opciones" [routerLink]="opcion.ruta" (click)="cerrarMenu()">
+                    {{ opcion.nombre }}
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
 </div>

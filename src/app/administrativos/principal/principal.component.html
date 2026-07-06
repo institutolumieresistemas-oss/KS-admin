@@ -1,4 +1,5 @@
 <div class="container">
-    <app-inicio-metas *ngIf="inicio === '2' || inicio === '3'"></app-inicio-metas>
-    <app-inicio-eventos *ngIf="inicio === '1' || inicio === '3'"></app-inicio-eventos>
+    <app-inicio-metas *ngIf="inicio.toString() === '2' || inicio.toString() === '3'"></app-inicio-metas>
+    <app-inicio-general *ngIf="tipo.toString() === '1'"></app-inicio-general>
+    <app-inicio-eventos *ngIf="inicio.toString() === '1' || inicio.toString() === '3'"></app-inicio-eventos>
 </div>

@@ -19,4 +19,9 @@ export class InicioService {
       const url = this.uri + 'metas';
       return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
     }
+
+    estadisticas(body: any) {
+      const url = this.uri + 'estadisticas';
+      return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+    }
 }

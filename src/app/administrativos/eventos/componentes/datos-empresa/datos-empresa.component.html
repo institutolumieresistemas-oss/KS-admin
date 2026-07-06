@@ -10,11 +10,15 @@
     </div>
 </div><br>
 <div class="row">
-    <div class="col-sm-4">
-        <app-input [etiqueta]="'Domicilio'" (emitidor)="empresa.domicilio = $event;"></app-input>
+    <div class="col-sm-6">
+        <app-mapas (alCambiarDireccion)="formatearDomicilio($event);"></app-mapas>
     </div>
-    <div class="col-sm-4">
-        <app-input [etiqueta]="'Ubicacion'" (emitidor)="empresa.mapa = $event;"></app-input>
+    <div class="col-sm-2">
+        <div *ngIf="empresa.kilometros" class="mt-2 animate__animated animate__fadeIn">
+            <div class="d-flex align-items-center text-success small fw-bold">
+                <i class="bi bi-check-circle-fill me-1"></i> Distancia calculada: {{ empresa.kilometros }}
+            </div>
+        </div>
     </div>
     <div class="col-sm-4">
         <app-input [etiqueta]="'Precio'" [validacion]="'decimal'" (emitidor)="empresa.monto = $event;"></app-input>
@@ -32,6 +36,11 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-sm-12">
+        <app-checktimes [activo]="empresa.hayPago" [texto]="'Recibi pago'" (emitidor)="empresa.hayPago = $event;"></app-checktimes>
+    </div>
+</div><br><br>
+<div class="row" *ngIf="empresa.hayPago">
     <div class="col-sm-4">
         <app-input [etiqueta]="'Anticipo'" [validacion]="'decimal'" [valor]="empresa.anticipo" (emitidor)="empresa.anticipo = $event;"></app-input>
     </div>
@@ -42,7 +51,7 @@
         <app-select [etiqueta]="'Cuenta'" [datos]="cuentas" [dato]="empresa.idCuenta" (emitidor)="empresa.idCuenta = $event;"></app-select>
     </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="empresa.hayPago">
     <div class="col-sm-2">
         <app-imagen [valor]="empresa.voucher" [imagen]="empresa.voucher" (emitidor)="empresa.voucher = $event;"></app-imagen>
     </div>

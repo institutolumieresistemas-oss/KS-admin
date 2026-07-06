@@ -1,0 +1,38 @@
+.visor-frame {
+    width: 100%;
+    height: 75vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: grab;
+    background: radial-gradient(circle, #444 0%, #111 100%);
+    /* Fondo más profesional */
+}
+
+.wrapper-imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.1s ease-out;
+    will-change: transform;
+}
+
+.grabbing {
+    cursor: grabbing !important;
+}
+
+.wrapper-imagen img {
+    max-height: 70vh;
+    max-width: 95%;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+
+/* Estilo para los badges en la tabla de egresos */
+
+:host ::ng-deep .badge {
+    padding: 0.5em 0.8em;
+}

@@ -7,6 +7,26 @@ import { Component, Input } from '@angular/core';
     standalone: false
 })
 export class MenuComponent {
+
   @Input() permisos: any;
-  constructor(){}
+
+  menuAbierto = false;
+  moduloAbierto: any = null;
+
+  toggleMenu() {
+    this.menuAbierto = !this.menuAbierto;
+    if (!this.menuAbierto) {
+      this.moduloAbierto = null;
+    }
+  }
+
+  cerrarMenu() {
+    this.menuAbierto = false;
+    this.moduloAbierto = null;
+  }
+
+  toggleModulo(modulo: any) {
+    this.moduloAbierto =
+      this.moduloAbierto === modulo ? null : modulo;
+  }
 }

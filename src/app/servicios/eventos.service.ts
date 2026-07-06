@@ -27,6 +27,16 @@ export class EventosService {
     return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  finalizados() {
+    const url = this.uri + 'finalizados';
+    return this.http.get(url, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  calificar(body: any){
+    const url = this.uri + 'calificar';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   buscar(body: any) {
     const url = this.uri + 'buscar';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
@@ -97,8 +107,53 @@ export class EventosService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  confirmarActor(body: any){
+    const url = this.uri + 'confirmarActor';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   talleres(body: any){
     const url = this.uri + 'talleres';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  edad(body: any){
+    const url = this.uri + 'edad';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  cantidad(body: any){
+    const url = this.uri + 'cantidad';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  direccion(body: any){
+    const url = this.uri + 'direccion';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  celular(body: any){
+    const url = this.uri + 'celular';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  nombre(body: any){
+    const url = this.uri + 'nombre';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  festejado(body: any){
+    const url = this.uri + 'festejado';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  observaciones(body: any){
+    const url = this.uri + 'observaciones';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
+  eventos(body: any){
+    const url = this.uri + 'eventos';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 

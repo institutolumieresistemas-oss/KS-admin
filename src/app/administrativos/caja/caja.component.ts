@@ -12,6 +12,8 @@ declare function exportCSVFile(headers: any, items: any, filename: string): void
 })
 export class CajaComponent {
   total: any;
+  ingreso: any;
+  egreso: any;
   datos: any;
   headers = [
     'Tipo',
@@ -32,6 +34,8 @@ export class CajaComponent {
   mostrar(){
     this.servicio.caja().subscribe((respuesta: any) => {
       this.total = respuesta.total;
+      this.ingreso = respuesta.ingreso;
+      this.egreso = respuesta.egreso;
     },
     error => {
       this.generales.interpretarError(error);

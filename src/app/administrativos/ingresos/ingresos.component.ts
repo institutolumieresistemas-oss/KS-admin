@@ -12,8 +12,8 @@ import { PdfService } from '../../servicios/pdf.service';
 })
 export class IngresosComponent {
   configuracion: datatableConfig = {
-    alias: ['Folio', 'Calendario', 'Monto', 'Forma de pago', 'Rubro', 'Tipo'],
-    encabezados: ['folio', 'calendario', 'monto', 'forma', 'rubro', 'tipo'],
+    alias: ['Folio', 'Año', 'Fecha', 'Rubro', 'Tipo', 'Concepto', 'Forma de pago', 'Cuenta', 'Monto', 'Evento'],
+    encabezados: ['folio', 'calendario', 'created_at', 'rubro', 'tipo', 'concepto', 'forma', 'cuenta', 'monto', 'evento'],
     busqueda: true
   };
   datos: any;
@@ -71,7 +71,7 @@ export class IngresosComponent {
 
   solicitud(dato: any){
     if(this.servicio.validar(dato)){
-      this.servicio.solicitud(dato).subscribe((respuesta: any) => {
+      this.servicio.modificar(dato).subscribe((respuesta: any) => {
         this.generales.mensajeCorrecto('solicitud enviada correctamente');
         this.generales.cerrarModal();
       },

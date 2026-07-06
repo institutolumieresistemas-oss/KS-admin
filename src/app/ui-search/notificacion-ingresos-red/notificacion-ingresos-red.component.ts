@@ -51,7 +51,7 @@ export class NotificacionIngresosRedComponent {
   }
 
   resolver(){
-    this.ingresos.aceptar(this.notificacion).subscribe((respuesta: any) => {
+    this.ingresos.modificar(this.notificacion).subscribe((respuesta: any) => {
       this.generales.mensajeCorrecto('Ingreso modificado correctamente');
       this.hay = false;
     },
@@ -61,7 +61,7 @@ export class NotificacionIngresosRedComponent {
   }
 
   rechazar(){
-    this.ingresos.rechazar(this.notificacion).subscribe((respuesta: any) => {
+    this.ingresos.modificar(this.notificacion).subscribe((respuesta: any) => {
       this.generales.mensajeCorrecto('Notificacion rechazada correctamente');
       this.hay = false;
     },

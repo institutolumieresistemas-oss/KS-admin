@@ -16,7 +16,11 @@ export class EstadoCuentaEventoComponent {
   vista = '';
   listas = {
     formas: [],
-    cuentas: []
+    cuentas: [],
+    ringresos: [],
+    tingresos: [],
+    regresos: [],
+    tgresos: [],
   }
   total = '0';
   constructor(public generales: GeneralesService, public rutaActiva: ActivatedRoute, private servicio: EventosService) { }
