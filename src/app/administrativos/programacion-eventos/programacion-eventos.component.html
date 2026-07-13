@@ -3,6 +3,14 @@
         <h6 class="mb-0">Programación de Eventos</h6>
     </div>
     <div class="container">
+        <div class="row text-start mb-3">
+            <div class="col-sm-8">
+                <app-select [datos]="semanas" [etiqueta]="'Semana'" (emitidor)="buscar($event);"></app-select>
+            </div>
+            <div class="col-sm-4">
+                <br> {{datos.length}} eventos
+            </div>
+        </div><br>
         <div class="row">
             <div class="col-sm-12">
                 <app-tabla [configuracion]="configuracion" [datos]="datos"></app-tabla>

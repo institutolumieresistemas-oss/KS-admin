@@ -27,21 +27,23 @@ export class ProgramacionEventosComponent implements OnInit {
     encabezados: [
       'duracion',
       'paquete',
-      'taller',
+      'talleres_desgloce',
       'numeroEvento',
-      'evento',
+      'evento_desgloce',
       'equipo',
       'caracteristicas',
-      'lider',
+      'logistica',
       'liquidacion',
       'pendientes',
-      'distancia'
+      'kilometros'
     ],
     busqueda: true,
     titulo: 'Programación de Eventos'
   };
 
+  listado: any[] = [];
   datos: any[] = [];
+  semanas: any;
 
   constructor(
     private generales: GeneralesService,
@@ -56,7 +58,7 @@ export class ProgramacionEventosComponent implements OnInit {
     this.servicio.mostrar().subscribe(
       (respuesta: any) => {
         if (respuesta && respuesta.datos) {
-          this.datos = respuesta.datos.map((evento: any) => {
+          const mapped = respuesta.datos.map((evento: any) => {
             // Formatear talleres en una lista separada por comas
             const taller = evento.talleres_lista
               ? evento.talleres_lista.map((t: any) => t.nombre).join(', ')
@@ -90,11 +92,29 @@ export class ProgramacionEventosComponent implements OnInit {
               color: evento.color || ''
             };
           });
+
+          this.listado = mapped;
+          this.datos = mapped;
+          if (respuesta.listas) {
+            this.semanas = respuesta.listas.semanas;
+          }
         }
       },
       (error) => {
         this.generales.interpretarError(error);
       }
+    );
+  }
+
+  buscar(semana: any): void {
+    if (this.generales.validarEntero(semana)) {
+      // Si no hay semana válida seleccionada, mostrar todos los datos
+      this.datos = this.listado;
+      return;
+    }
+
+    this.datos = this.listado.filter((evento: any) =>
+      Number(evento.semana) === Number(semana)
     );
   }
 }

@@ -6,7 +6,10 @@
         "start": "ng serve",
         "build": "ng build --configuration production",
         "watch": "ng build --watch --configuration development",
-        "test": "ng test"
+        "test": "ng test",
+        "clean:compile": "del-cli \"compiler/**\" \"!compiler/.git\" \"!compiler/.gitignore\"",
+        "copy:compile": "cpy \"dist/kidsoadmin/browser/**/*\" compiler --parents",
+        "build:compiler": "npm run build && npm run clean:compile && npm run copy:compile"
     },
     "private": true,
     "dependencies": {
@@ -30,18 +33,20 @@
         "rxjs": "~7.8.0",
         "sweetalert2": "^11.6.13",
         "tslib": "^2.3.0",
-        "xlsx": "^0.18.5",
+        "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
         "zone.js": "~0.15.0"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^19.2.1",
-        "@angular/cli": "^19.2.1",
+        "@angular/cli": "^21.2.19",
         "@angular/compiler-cli": "^19.2.1",
         "@types/file-saver": "^2.0.7",
         "@types/google.maps": "^3.58.1",
         "@types/jasmine": "~5.1.0",
         "@types/pdfmake": "^0.2.11",
         "angular-cli-ghpages": "^3.0.2",
+        "cpy-cli": "^7.0.0",
+        "del-cli": "^7.0.0",
         "jasmine-core": "~5.2.0",
         "karma": "~6.4.0",
         "karma-chrome-launcher": "~3.2.0",
