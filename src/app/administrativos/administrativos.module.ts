@@ -26,6 +26,7 @@ import { ModalTransferenciaComponent } from './transferencias/modales/modal-tran
 import { RecepcionTransferenciasComponent } from './recepcion-transferencias/recepcion-transferencias.component';
 import { FinalizadosComponent } from './finalizados/finalizados.component';
 import { CalendarioEventosComponent } from './calendario-eventos/calendario-eventos.component';
+import { ProgramacionEventosComponent } from './programacion-eventos/programacion-eventos.component';
 
 
 
@@ -54,7 +55,8 @@ import { CalendarioEventosComponent } from './calendario-eventos/calendario-even
     ModalTransferenciaComponent,
     RecepcionTransferenciasComponent,
     FinalizadosComponent,
-    CalendarioEventosComponent
+    CalendarioEventosComponent,
+    ProgramacionEventosComponent
   ],
   imports: [
     CommonModule,

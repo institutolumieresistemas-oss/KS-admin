@@ -242,4 +242,32 @@ export class TablaComponent {
     saveAs(data, 'tabla.xlsx');
   }
 
+  getTextColor(bgColor: string): string {
+    if (!bgColor) return '#000';
+  
+    const rgb = this.extractRGB(bgColor);
+    if (!rgb) return '#000';
+  
+    const [r, g, b] = rgb;
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
+  
+    return luminance > 150 ? '#000' : '#fff';
+  }
+
+  private extractRGB(color: string): number[] | null {
+    if (color.startsWith('rgb')) {
+      return color.match(/\d+/g)?.map(Number) ?? null;
+    }
+  
+    if (color.startsWith('#')) {
+      const hex = color.replace('#', '');
+      const r = parseInt(hex.substring(0, 2), 16);
+      const g = parseInt(hex.substring(2, 4), 16);
+      const b = parseInt(hex.substring(4, 6), 16);
+      return [r, g, b];
+    }
+  
+    return null;
+  }
+
 }

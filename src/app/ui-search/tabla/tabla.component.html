@@ -33,7 +33,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" *ngFor="let item of configuracion.alias, let o = index" (click)="(configuracion.ordenFilas) ? ordenar(o) :  null">{{item}} <i class="fas fa-{{(o === indiceOrden) ? (ordenASC) ? 'sort-up' : 'sort-down' : ''}}"></i></th>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let items of listado, let i = index" [class]="(items['seleccionado']) ? 'selected' : items['bg']" (click)="mostrar(items, i)" (dblclick)="dobleClick(items);">
+                    <tr *ngFor="let items of listado, let i = index" [class]="(items['seleccionado']) ? 'selected' : items['bg']" [style.background-color]="items['color']" [style.color]="items['color'] ? getTextColor(items['color']) : null" (click)="mostrar(items, i)" (dblclick)="dobleClick(items);">
                         <td class="w-30" *ngFor="let item of configuracion.encabezados, let j = index">
                             <div class="d-flex px-2 py-1 align-items-center">
                                 <div class="ms-4">
@@ -45,7 +45,7 @@
                                             <i class="fas fa-circle {{items[item]}}" title="{{items[item]}}"></i>
                                         </ng-container>
                                         <ng-container *ngIf="!esIcono(items[item]) && !esColor(items[item])">
-                                            <h6 class="text-sm mb-0">{{items[item]}}</h6>
+                                            <h6 class="text-sm mb-0" [style.color]="items['color'] ? getTextColor(items['color']) : null">{{items[item]}}</h6>
                                         </ng-container>
                                     </ng-container>
                                     <ng-container *ngIf="items[item] === undefined">

@@ -46,6 +46,7 @@ import { IngresosDirectivoComponent } from '../directivos/ingresos-directivo/ing
 import { EgresosDirectivoComponent } from '../directivos/egresos-directivo/egresos-directivo.component';
 import { FinalizadosComponent } from '../administrativos/finalizados/finalizados.component';
 import { CalendarioEventosComponent } from '../administrativos/calendario-eventos/calendario-eventos.component';
+import { ProgramacionEventosComponent } from '../administrativos/programacion-eventos/programacion-eventos.component';
 import { IngresosAuditoriasComponent } from '../directivos/ingresos-auditorias/ingresos-auditorias.component';
 import { EgresosAuditoriasComponent } from '../directivos/egresos-auditorias/egresos-auditorias.component';
 
@@ -95,6 +96,7 @@ const routes: Routes = [
     { path: 'egresosDirectivos', canActivate: [auntenticacionGuard], component: EgresosDirectivoComponent },
     { path: 'finalizados', canActivate: [auntenticacionGuard], component: FinalizadosComponent },
     { path: 'calendario', canActivate: [auntenticacionGuard], component: CalendarioEventosComponent },
+    { path: 'programacionEventos', canActivate: [auntenticacionGuard], component: ProgramacionEventosComponent },
     { path: 'auditoriasIngresos', canActivate: [auntenticacionGuard], component: IngresosAuditoriasComponent },
     { path: 'auditoriasEgresos', canActivate: [auntenticacionGuard], component: EgresosAuditoriasComponent },
     { path: 'estadocuenta/:evento', canActivate: [auntenticacionGuard], component: EstadoCuentaEventoComponent },
