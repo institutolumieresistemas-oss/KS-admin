@@ -1,0 +1,51 @@
+<div class="modal-header bg-info">
+    <h4 class="text-white">Nóminas del Evento</h4>
+    <button type="button" class="close" (click)="cerrar()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <app-select [datos]="formas" [etiqueta]="'Forma de pago'" (emitidor)="idFormaPago = $event"></app-select>
+            </div>
+            <div class="col-sm-6">
+                <app-select [datos]="cuentas" [etiqueta]="'Cuenta'" (emitidor)="idCuenta = $event"></app-select>
+            </div>
+        </div>
+        <hr>
+        <div class="row text-start mb-2">
+            <div class="col-sm-8"><b>Actor/Participante</b></div>
+            <div class="col-sm-4 text-end"><b>Monto</b></div>
+        </div>
+        
+        @for (actor of actores; track actor.id) {
+            <div class="row align-items-center mb-2">
+                <div class="col-sm-8 text-start">
+                    <span>{{ actor.nombre }}</span>
+                </div>
+                <div class="col-sm-4">
+                    <app-input [valor]="actor.monto.toString()" [validacion]="'decimal'" [etiqueta]="'Monto'" (emitidor)="actualizarMonto(actor, $event)"></app-input>
+                </div>
+            </div>
+        } @empty {
+            <div class="row text-center my-3">
+                <div class="col-sm-12 text-muted">
+                    No hay actores asignados a este evento.
+                </div>
+            </div>
+        }
+        
+        <hr>
+        <div class="row justify-content-between align-items-center mb-3">
+            <div class="col-sm-6 text-start">
+                <h5>Total: <span class="text-success">${{ generales.milesNumeros(total) }}</span></h5>
+            </div>
+            <div class="col-sm-6 d-md-flex justify-content-md-end">
+                <button class="btn btn-success me-2" (click)="emitir()">Guardar</button>
+                <button class="btn btn-danger" (click)="cerrar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

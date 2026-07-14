@@ -11,8 +11,8 @@ import { EgresosService } from '../../servicios/egresos.service';
 })
 export class EgresosComponent {
   configuracion: datatableConfig = {
-    alias: ['Folio', 'Calendario', 'Monto', 'Forma de pago', 'Rubro', 'Tipo'],
-    encabezados: ['folio', 'calendario', 'monto', 'forma', 'rubro', 'tipo'],
+    alias: ['Folio', 'Calendario', 'Monto', 'Forma de pago', 'Rubro', 'Tipo', 'Concepto'],
+    encabezados: ['folio', 'calendario', 'monto', 'forma', 'rubro', 'tipo', 'concepto'],
     busqueda: true
   };
   datos: any;

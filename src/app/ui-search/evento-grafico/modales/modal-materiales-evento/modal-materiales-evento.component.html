@@ -1,0 +1,42 @@
+<div class="modal-header bg-info">
+    <h4 class="text-white">Agregar Materiales</h4>
+    <button type="button" class="close" (click)="cerrar()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-sm-12">
+                <app-select [datos]="tipos" [dato]="filtroTipo" [etiqueta]="'Filtrar por Tipo de Material'" (emitidor)="filtrar($event)"></app-select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" style="max-height: 400px; overflow-y: auto;">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Folio</th>
+                            <th>Tipo</th>
+                            <th class="text-end">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of materialesFiltrados">
+                            <td>{{ item.folio }}</td>
+                            <td>{{ item.tipo }}</td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-success" (click)="agregar(item)">
+                                    <i class="fas fa-plus"></i> Agregar
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="materialesFiltrados.length === 0">
+                            <td colspan="3" class="text-center text-muted">No hay materiales disponibles para este filtro.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

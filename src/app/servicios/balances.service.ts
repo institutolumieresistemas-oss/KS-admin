@@ -24,4 +24,9 @@ export class BalancesService {
     const url = this.uri + 'caja';
     return this.http.post(url, {}, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
+
+  traspaso(body: any) {
+    const url = this.uri + 'traspaso';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
 }

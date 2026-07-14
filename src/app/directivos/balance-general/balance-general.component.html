@@ -8,7 +8,12 @@
                 </app-circulo>
 
                 <h4 class="mt-2">{{ item.nombre }}</h4>
+                <button class="btn btn-sm btn-info mt-2" (click)="abrirTraspaso(item); $event.stopPropagation();">Traspaso</button>
             </div>
         </div>
     </div>
 </div>
+
+<app-modal [ngSwitch]="vista" *ngIf="vista === 'traspaso'">
+    <app-modal-traspaso *ngSwitchCase="'traspaso'" [origenAccount]="origenAccount" [listas]="listas" (emitidor)="realizarTraspaso($event)"></app-modal-traspaso>
+</app-modal>

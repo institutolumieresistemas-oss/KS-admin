@@ -128,11 +128,11 @@ export class GeneralesService {
     return false;
   }
   
-  milesNumeros(numero: string) {
-    numero = (parseFloat(numero) >= 0) ? parseFloat(numero).toFixed(2) : (parseFloat(numero) * -1).toFixed(2);
-    return numero.toString().replace(/(\.\d+)|\B(?=(\d{3})+(?!\d))/g, function(m,g1){
-        return g1 || ","
-    });
+  milesNumeros(numero: string | number) {
+    const parsed = typeof numero === 'number' ? numero : parseFloat(numero);
+    const absVal = isNaN(parsed) ? 0 : Math.abs(parsed);
+    const formatted = absVal.toFixed(2);
+    return formatted.replace(/(\.\d+)|\B(?=(\d{3})+(?!\d))/g, (m, g1) => g1 || ",");
   }
 
   esNumero(numero: string) {

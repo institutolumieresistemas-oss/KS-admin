@@ -4,6 +4,7 @@ import { EventosService } from '../../servicios/eventos.service';
 import { Router } from '@angular/router';
 import html2canvas from 'html2canvas';
 
+declare var $: any;
 
 @Component({
     selector: 'app-evento-grafico',
@@ -37,6 +38,7 @@ export class EventoGraficoComponent {
   modificarNombre = false;
   modificarObservaciones = false;
   modificarFestejado = false;
+  materialesDisponibles: any = null;
   constructor(public generales: GeneralesService, private servicio: EventosService, private router: Router){}
 
   modal(vista: any){
@@ -320,6 +322,73 @@ export class EventoGraficoComponent {
     },
     error => {
       this.modificarTalleres = false;
+      this.generales.interpretarError(error);
+    });
+  }
+
+  abrirModalMateriales() {
+    this.servicio.materialesDisponibles({ id: this.evento.id }).subscribe((res: any) => {
+      this.materialesDisponibles = res;
+      this.vista = 'materiales';
+      this.generales.abrirModal();
+
+      setTimeout(() => {
+        $('#modal').one('hidden.bs.modal', () => {
+          this.vista = '';
+        });
+      }, 100);
+    }, error => {
+      this.generales.interpretarError(error);
+    });
+  }
+
+  agregarMaterial(material: any) {
+    const payload = {
+      idEvento: this.evento.id,
+      idMaterial: material.id,
+      estado: 1
+    };
+    this.servicio.agregarMaterial(payload).subscribe((respuesta: any) => {
+      this.generales.mensajeCorrecto('Material agregado correctamente');
+      if (respuesta) {
+        if (respuesta.id) {
+          this.evento = respuesta;
+        } else if (respuesta.materiales) {
+          this.evento.materiales = respuesta.materiales;
+        } else if (Array.isArray(respuesta)) {
+          this.evento.materiales = respuesta;
+        }
+      }
+      if (this.materialesDisponibles) {
+        const rawMateriales = this.materialesDisponibles.materiales || this.materialesDisponibles.datos || [];
+        const index = rawMateriales.findIndex((m: any) => m.id.toString() === material.id.toString());
+        if (index > -1) {
+          rawMateriales.splice(index, 1);
+          this.materialesDisponibles = { ...this.materialesDisponibles };
+        }
+      }
+    }, error => {
+      this.generales.interpretarError(error);
+    });
+  }
+
+  eliminarMaterial(material: any) {
+    const payload = {
+      id: material.id,
+      idEvento: this.evento.id
+    };
+    this.servicio.eliminarMaterial(payload).subscribe((respuesta: any) => {
+      this.generales.mensajeCorrecto('Material eliminado correctamente');
+      if (respuesta) {
+        if (respuesta.id) {
+          this.evento = respuesta;
+        } else if (respuesta.materiales) {
+          this.evento.materiales = respuesta.materiales;
+        } else if (Array.isArray(respuesta)) {
+          this.evento.materiales = respuesta;
+        }
+      }
+    }, error => {
       this.generales.interpretarError(error);
     });
   }

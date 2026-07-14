@@ -162,6 +162,21 @@ export class EventosService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  agregarMaterial(body: { idEvento: number; idMaterial: number; estado: any }) {
+    const url = this.uri + 'agregarMaterial';
+    return this.http.post(url, body, { headers: this.headers }).pipe(map(respuesta => respuesta));
+  }
+
+  eliminarMaterial(body: { id: number; idEvento: number }) {
+    const url = this.uri + 'eliminarMaterial';
+    return this.http.post(url, body, { headers: this.headers }).pipe(map(respuesta => respuesta));
+  }
+
+  materialesDisponibles(body: { id: number }) {
+    const url = this.uri + 'materialesDisponibles';
+    return this.http.post(url, body, { headers: this.headers }).pipe(map(respuesta => respuesta));
+  }
+
   validarCliente(datos: any){
     if(this.generales.validarString(datos.festejado)){
       this.generales.mensajeError('No se ha ingresado el nombre del festejado');

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { datatableConfig } from '../../interfaces/tables.interface';
 import { GeneralesService } from '../../servicios/generales.service';
 import { EventosService } from '../../servicios/eventos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-programacion-eventos',
@@ -12,30 +13,34 @@ import { EventosService } from '../../servicios/eventos.service';
 export class ProgramacionEventosComponent implements OnInit {
   configuracion: datatableConfig = {
     alias: [
-      'Duración',
       'Paquete',
       'Taller',
       'Número Evento',
       'Evento',
       'Equipo',
       'Características',
+      'Observaciones',
       'Líder',
-      'Liquidación',
+      'Precio',
+      'Apartado',
       'Pendientes',
-      'Distancia'
+      'Distancia',
+      'Materiales'
     ],
     encabezados: [
-      'duracion',
       'paquete',
       'talleres_desgloce',
       'numeroEvento',
       'evento_desgloce',
       'equipo',
       'caracteristicas',
-      'logistica',
+      'observaciones',
+      'lider',
+      'precio',
       'liquidacion',
       'pendientes',
-      'kilometros'
+      'kilometros',
+      'materiales_desgloce'
     ],
     busqueda: true,
     titulo: 'Programación de Eventos'
@@ -47,7 +52,8 @@ export class ProgramacionEventosComponent implements OnInit {
 
   constructor(
     private generales: GeneralesService,
-    private servicio: EventosService
+    private servicio: EventosService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -83,8 +89,10 @@ export class ProgramacionEventosComponent implements OnInit {
               numeroEvento: evento.folio || '',
               evento: evento.festejado || '',
               equipo: equipo,
-              caracteristicas: evento.observaciones || evento.caracteristicas || '',
+              caracteristicas: evento.caracteristicas || '',
+              observaciones: evento.observaciones || '',
               lider: evento.lider || '',
+              precio: evento.monto || 0,
               liquidacion: evento.total_abonos || 0,
               pendientes: evento.total_liquidar || 0,
               distancia: evento.kilometros || '',
@@ -116,5 +124,9 @@ export class ProgramacionEventosComponent implements OnInit {
     this.datos = this.listado.filter((evento: any) =>
       Number(evento.semana) === Number(semana)
     );
+  }
+
+  editar(evento: any): void {
+    this.router.navigate(['admin/informacionEvento', evento.id]);
   }
 }

@@ -29,6 +29,7 @@ import { TopComponent } from './top/top.component';
 import { CirculoComponent } from './circulo/circulo.component';
 import { ModalEquipoEventoComponent } from './evento-grafico/modales/modal-equipo-evento/modal-equipo-evento.component';
 import { ModalLiderEventoComponent } from './evento-grafico/modales/modal-lider-evento/modal-lider-evento.component';
+import { ModalMaterialesEventoComponent } from './evento-grafico/modales/modal-materiales-evento/modal-materiales-evento.component';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
 import { UsuarioSucursalesComponent } from './usuario-sucursales/usuario-sucursales.component';
 import { MultiselectComponent } from './multiselect/multiselect.component';
@@ -73,7 +74,8 @@ import { BuscadorEventosComponent } from './buscador-eventos/buscador-eventos.co
     MultiselectComponent,
     ColorComponent,
     CalendarioComponent,
-    MapasComponent
+    MapasComponent,
+    ModalMaterialesEventoComponent
   ],
   imports: [
     CommonModule,
@@ -106,7 +108,8 @@ import { BuscadorEventosComponent } from './buscador-eventos/buscador-eventos.co
     ColorComponent,
     CalendarioComponent,
     MapasComponent,
-    BuscadorEventosComponent
+    BuscadorEventosComponent,
+    ModalMaterialesEventoComponent
   ]
 })
 export class UiSearchModule { }

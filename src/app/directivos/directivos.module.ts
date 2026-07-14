@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { UiSearchModule } from '../ui-search/ui-search.module';
 import { PermisosComponent } from './permisos/permisos.component';
 import { BalanceGeneralComponent } from './balance-general/balance-general.component';
+import { ModalTraspasoComponent } from './balance-general/modales/modal-traspaso/modal-traspaso.component';
 import { IngresosDirectivoComponent } from './ingresos-directivo/ingresos-directivo.component';
 import { AdministrativosModule } from '../administrativos/administrativos.module';
 import { EgresosDirectivoComponent } from './egresos-directivo/egresos-directivo.component';
@@ -15,6 +16,7 @@ import { EgresosAuditoriasComponent } from './egresos-auditorias/egresos-auditor
   declarations: [
     PermisosComponent,
     BalanceGeneralComponent,
+    ModalTraspasoComponent,
     IngresosDirectivoComponent,
     EgresosDirectivoComponent,
     IngresosAuditoriasComponent,

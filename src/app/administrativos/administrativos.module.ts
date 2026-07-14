@@ -16,6 +16,7 @@ import { PrincipalComponent } from './principal/principal.component';
 import { EstadoCuentaEventoComponent } from './estado-cuenta-evento/estado-cuenta-evento.component';
 import { ModalAbonoComponent } from './estado-cuenta-evento/modales/modal-abono/modal-abono.component';
 import { ModalGastoComponent } from './estado-cuenta-evento/modales/modal-gasto/modal-gasto.component';
+import { ModalNominasEventosComponent } from './estado-cuenta-evento/modales/modal-nominas-eventos/modal-nominas-eventos.component';
 import { IniciosModule } from '../inicios/inicios.module';
 import { CajaComponent } from './caja/caja.component';
 import { ValesComponent } from './vales/vales.component';
@@ -47,6 +48,7 @@ import { ProgramacionEventosComponent } from './programacion-eventos/programacio
     EstadoCuentaEventoComponent,
     ModalAbonoComponent,
     ModalGastoComponent,
+    ModalNominasEventosComponent,
     CajaComponent,
     ValesComponent,
     ModalValeComponent,

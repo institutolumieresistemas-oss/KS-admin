@@ -1,0 +1,32 @@
+<div class="modal-header bg-info">
+    <h4 class="text-white">Traspaso desde {{ origenAccount?.nombre }}</h4>
+    <button type="button" class="close" (click)="cerrar()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <app-select [datos]="cuentasFiltradas" [dato]="dato.idCuentaEntrante" [etiqueta]="'Cuenta Entrante'" (emitidor)="dato.idCuentaEntrante = $event"></app-select>
+            </div>
+            <div class="col-sm-6">
+                <app-input [tipo]="'number'" [valor]="dato.monto" [etiqueta]="'Monto'" (emitidor)="dato.monto = $event"></app-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <app-select [datos]="listas.formas" [dato]="dato.idFormaPago" [etiqueta]="'Forma de Pago'" (emitidor)="dato.idFormaPago = $event"></app-select>
+            </div>
+            <div class="col-sm-6">
+                <app-select [datos]="listas.calendarios" [dato]="dato.idCalendario" [etiqueta]="'Calendario'" (emitidor)="dato.idCalendario = $event"></app-select>
+            </div>
+        </div>
+        <div class="row justify-content-end mt-3">
+            <div class="col-sm-12 d-md-flex justify-content-md-end">
+                <button class="btn btn-success" (click)="emitir()">Realizar Traspaso</button>
+                <button class="btn btn-danger ms-2" (click)="cerrar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

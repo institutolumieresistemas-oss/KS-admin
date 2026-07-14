@@ -13,7 +13,7 @@
         </div><br>
         <div class="row">
             <div class="col-sm-12">
-                <app-tabla [configuracion]="configuracion" [datos]="datos"></app-tabla>
+                <app-tabla [configuracion]="configuracion" [datos]="datos" (doble)="editar($event);"></app-tabla>
             </div>
         </div>
     </div>

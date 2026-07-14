@@ -132,6 +132,23 @@
                     <app-select *ngIf="modificarEquipo" [etiqueta]="'Selecciona el personaje que deseas agregar'" [datos]="generales.obtenerRestantes(personajes, evento.personajes_asignados)" (emitidor)="agregarPersonaje($event);"></app-select>
                 </div>
 
+                <div class="materiales clickable mt-3">
+                    <b (click)="abrirModalMateriales()">Materiales:</b>
+                    <div>
+                        <div *ngFor="let item of evento.materiales" class="mb-3 position-relative">
+                            <i class="fas fa-box text-info"></i>
+                            <strong> {{ item.material?.folio || item.folio }}</strong>
+                            <span> — {{ item.material?.tipo?.nombre || item.tipo || item.tipo_nombre }}</span>
+                            <span class="text-danger" *ngIf="modificar">
+                                <i class="fas fa-times ms-2" (click)="eliminarMaterial(item); $event.stopPropagation();" title="Eliminar material"></i>
+                            </span>
+                        </div>
+                        <div *ngIf="!evento.materiales || evento.materiales.length === 0" class="text-muted small">
+                            — Sin asignar
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -188,3 +205,7 @@
         </div>
     </div>
 </div>
+
+<app-modal [ngSwitch]="vista" *ngIf="vista === 'materiales'">
+    <app-modal-materiales-evento *ngSwitchCase="'materiales'" [disponible]="materialesDisponibles" (emitidor)="agregarMaterial($event);"></app-modal-materiales-evento>
+</app-modal>

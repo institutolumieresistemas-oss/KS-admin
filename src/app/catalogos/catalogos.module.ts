@@ -36,6 +36,10 @@ import { ModalActorComponent } from './actores/modales/modal-actor/modal-actor.c
 import { ModalUsuarioSucursalesComponent } from './usuarios/modales/modal-usuario-sucursales/modal-usuario-sucursales.component';
 import { TalleresComponent } from './talleres/talleres.component';
 import { ModalTallerComponent } from './talleres/modales/modal-taller/modal-taller.component';
+import { MaterialTiposComponent } from './material-tipos/material-tipos.component';
+import { ModalMaterialTipoComponent } from './material-tipos/modales/modal-material-tipo/modal-material-tipo.component';
+import { MaterialesComponent } from './materiales/materiales.component';
+import { ModalMaterialComponent } from './materiales/modales/modal-material/modal-material.component';
 
 
 
@@ -75,7 +79,11 @@ import { ModalTallerComponent } from './talleres/modales/modal-taller/modal-tall
     ModalActorComponent,
     ModalUsuarioSucursalesComponent,
     TalleresComponent,
-    ModalTallerComponent
+    ModalTallerComponent,
+    MaterialTiposComponent,
+    ModalMaterialTipoComponent,
+    MaterialesComponent,
+    ModalMaterialComponent
   ],
   imports: [
     CommonModule,

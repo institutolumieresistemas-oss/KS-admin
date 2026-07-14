@@ -42,6 +42,8 @@ import { ActoresComponent } from '../catalogos/actores/actores.component';
 import { ReporteIngresosComponent } from '../reportes/reporte-ingresos/reporte-ingresos.component';
 import { ReporteEgresosComponent } from '../reportes/reporte-egresos/reporte-egresos.component';
 import { TalleresComponent } from '../catalogos/talleres/talleres.component';
+import { MaterialTiposComponent } from '../catalogos/material-tipos/material-tipos.component';
+import { MaterialesComponent } from '../catalogos/materiales/materiales.component';
 import { IngresosDirectivoComponent } from '../directivos/ingresos-directivo/ingresos-directivo.component';
 import { EgresosDirectivoComponent } from '../directivos/egresos-directivo/egresos-directivo.component';
 import { FinalizadosComponent } from '../administrativos/finalizados/finalizados.component';
@@ -93,6 +95,8 @@ const routes: Routes = [
     { path: 'reporteEgresos', canActivate: [auntenticacionGuard], component: ReporteEgresosComponent },
     { path: 'reporteEventos', canActivate: [auntenticacionGuard], component: ReporteEventosComponent },
     { path: 'talleres', canActivate: [auntenticacionGuard], component: TalleresComponent },
+    { path: 'materialtipos', canActivate: [auntenticacionGuard], component: MaterialTiposComponent },
+    { path: 'materiales', canActivate: [auntenticacionGuard], component: MaterialesComponent },
     { path: 'ingresosDirectivos', canActivate: [auntenticacionGuard], component: IngresosDirectivoComponent },
     { path: 'egresosDirectivos', canActivate: [auntenticacionGuard], component: EgresosDirectivoComponent },
     { path: 'finalizados', canActivate: [auntenticacionGuard], component: FinalizadosComponent },

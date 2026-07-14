@@ -7,6 +7,7 @@
             <div class="col-sm-12 text-start">
                 <button class="btn btn-info" (click)="modal('abono');">Agregar abono</button>
                 <button class="btn btn-primary" (click)="modal('gasto');">Agregar gasto</button>
+                <button class="btn btn-warning text-white" (click)="modal('nominasEventos');">Nómina</button>
             </div>
         </div>
         <div class="row text-start">
@@ -66,4 +67,5 @@
 <app-modal [ngSwitch]="vista ">
     <app-modal-abono *ngSwitchCase="'abono'" [formas]="listas.formas" [cuentas]="listas.cuentas" (emitidor)="nuevoAbono($event);"></app-modal-abono>
     <app-modal-gasto *ngSwitchCase="'gasto'" [formas]="listas.formas" [cuentas]="listas.cuentas" (emitidor)="nuevoGasto($event);"></app-modal-gasto>
+    <app-modal-nominas-eventos *ngSwitchCase="'nominasEventos'" [formas]="listas.formas" [cuentas]="listas.cuentas" [actores]="actoresParticipantes" (emitidor)="nuevoGasto($event);"></app-modal-nominas-eventos>
 </app-modal>

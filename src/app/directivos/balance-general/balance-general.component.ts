@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GeneralesService } from '../../servicios/generales.service';
 import { BalancesService } from '../../servicios/balances.service';
 declare var bootstrap: any;
+declare var $: any;
 
 @Component({
   selector: 'app-balance-general',
@@ -11,6 +12,9 @@ declare var bootstrap: any;
 })
 export class BalanceGeneralComponent {
   balances: any[] = [];
+  listas: any = { formas: [], cuentas: [], calendarios: [] };
+  origenAccount: any = null;
+  vista = '';
 
   constructor(
     public generales: GeneralesService,
@@ -27,10 +31,34 @@ export class BalanceGeneralComponent {
 
   mostrar() {
     this.servicio.general().subscribe((respuesta: any) => {
-      this.balances = respuesta;
+      this.balances = respuesta.datos || respuesta || [];
+      if (respuesta.listas) {
+        this.listas = respuesta.listas;
+      }
 
       // esperar al render
       setTimeout(() => this.initPopovers(), 100);
+    });
+  }
+
+  abrirTraspaso(cuenta: any) {
+    this.origenAccount = cuenta;
+    this.vista = 'traspaso';
+    this.generales.abrirModal();
+    setTimeout(() => {
+      $('#modal').one('hidden.bs.modal', () => {
+        this.vista = '';
+      });
+    }, 100);
+  }
+
+  realizarTraspaso(dato: any) {
+    this.servicio.traspaso(dato).subscribe(() => {
+      this.generales.mensajeCorrecto('Traspaso realizado con éxito');
+      this.generales.cerrarModal();
+      this.mostrar();
+    }, error => {
+      this.generales.interpretarError(error);
     });
   }
 
