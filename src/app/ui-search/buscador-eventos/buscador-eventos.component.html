@@ -1,0 +1,53 @@
+<div class="search-wrapper">
+  <div class="search-input-container">
+    <i class="fas fa-search search-icon"></i>
+    <input
+      type="text"
+      [ngModel]="query()"
+      (ngModelChange)="query.set($event)"
+      (keyup.enter)="onSearch()"
+      (focus)="onFocus()"
+      placeholder="Buscar evento por código..."
+      class="search-input"
+    />
+    @if (cargando()) {
+      <div class="spinner-container">
+        <div class="spinner"></div>
+      </div>
+    }
+  </div>
+
+  @if (mostrarResultados() && query().trim()) {
+    <div class="search-results-dropdown">
+      @if (resultados().length > 0) {
+        <ul class="results-list">
+          @for (evento of resultados(); track evento.id) {
+            <li class="result-item" (click)="seleccionarEvento(evento)">
+              <div class="result-header">
+                <span class="folio-badge">#{{ evento.folio }}</span>
+                <span class="festejado-name">{{ evento.festejado }}</span>
+                @if (getEstadoActual(evento)) {
+                  <span class="status-badge" 
+                        [class.status-finalizado]="getEstadoActual(evento).toLowerCase() === 'finalizado'" 
+                        [class.status-proximo]="getEstadoActual(evento).toLowerCase() === 'proximo'">
+                    {{ getEstadoActual(evento) }}
+                  </span>
+                }
+              </div>
+              <div class="result-details">
+                @if (evento.nombre) {
+                  <span class="contrato-name"><i class="fas fa-user-tie"></i> {{ evento.nombre }}</span>
+                }
+                <span class="event-date"><i class="fas fa-calendar-alt"></i> {{ evento.fecha }}</span>
+              </div>
+            </li>
+          }
+        </ul>
+      } @else if (!cargando()) {
+        <div class="no-results">
+          <i class="fas fa-search-minus"></i> No se encontraron eventos con el código "{{ query() }}"
+        </div>
+      }
+    </div>
+  }
+</div>

@@ -4,6 +4,7 @@ import { InicioMetasComponent } from './inicio-metas/inicio-metas.component';
 import { InicioEventosComponent } from './inicio-eventos/inicio-eventos.component';
 import { UiSearchModule } from '../ui-search/ui-search.module';
 import { InicioGeneralComponent } from './inicio-general/inicio-general.component';
+import { InformacionEventoComponent } from './informacion-evento/informacion-evento.component';
 
 
 
@@ -15,12 +16,14 @@ import { InicioGeneralComponent } from './inicio-general/inicio-general.componen
   ],
   imports: [
     CommonModule,
-    UiSearchModule
+    UiSearchModule,
+    InformacionEventoComponent
   ],
   exports: [
     InicioEventosComponent,
     InicioMetasComponent,
-    InicioGeneralComponent
+    InicioGeneralComponent,
+    InformacionEventoComponent
   ]
 })
 export class IniciosModule { }

@@ -200,7 +200,7 @@ export class EventoGraficoComponent {
   cantidad(){
     this.servicio.cantidad(this.evento).subscribe((respuesta: any) => {
       this.generales.cerrarModal();
-      this.generales.mensajeCorrecto('Cantidad de niños actualizada correctamente');
+      this.generales.mensajeCorrecto('Cantidad de invitados actualizada correctamente');
       this.modificarCantidad = false;
       this.evento = respuesta;
     },

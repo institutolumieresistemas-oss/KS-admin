@@ -1,0 +1,28 @@
+<div class="container-fluid pt-4 px-4">
+  @if (cargando()) {
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+  } @else {
+    @if (evento()) {
+      <div class="row">
+        <div class="col-12">
+          <app-evento-grafico
+            [evento]="evento()"
+            [bg]="0"
+            [paquetes]="paquetes()"
+            [personajes]="personajes()"
+            [talleres]="talleres()"
+            [modificar]="true"
+          ></app-evento-grafico>
+        </div>
+      </div>
+    } @else {
+      <div class="alert alert-warning text-center" role="alert">
+        No se encontró información para el evento seleccionado.
+      </div>
+    }
+  }
+</div>

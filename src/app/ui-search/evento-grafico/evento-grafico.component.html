@@ -24,7 +24,7 @@
                     </app-input>
                 </p>
                 <p class="clickable" (click)="modificarCantidad = modificar;">
-                    <b>Cantidad de niños:</b>
+                    <b>Cantidad de invitados:</b>
                     <span *ngIf="!modificarCantidad">{{ evento.cantidad }}</span>
                     <app-input *ngIf="modificarCantidad" tipo="number" [valor]="evento.cantidad" (emitidor)="evento.cantidad = $event" (enter)="cantidad()">
                     </app-input>

@@ -36,7 +36,7 @@ import { ColorComponent } from './color/color.component';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { MapasComponent } from './mapas/mapas.component';
 import { GoogleMapsModule } from '@angular/google-maps';
-
+import { BuscadorEventosComponent } from './buscador-eventos/buscador-eventos.component';
 
 
 @NgModule({
@@ -79,7 +79,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     CommonModule,
     FormsModule,
     RouterModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    BuscadorEventosComponent
   ],
   exports:[
     CargandoComponent,
@@ -104,7 +105,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     MultiselectComponent,
     ColorComponent,
     CalendarioComponent,
-    MapasComponent
+    MapasComponent,
+    BuscadorEventosComponent
   ]
 })
 export class UiSearchModule { }

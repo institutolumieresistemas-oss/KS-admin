@@ -1,0 +1,5 @@
+/* Estilos específicos para la vista de información detallada del evento */
+.container-fluid {
+  max-width: 800px;
+  margin: 0 auto;
+}

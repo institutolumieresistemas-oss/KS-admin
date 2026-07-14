@@ -49,6 +49,7 @@ import { CalendarioEventosComponent } from '../administrativos/calendario-evento
 import { ProgramacionEventosComponent } from '../administrativos/programacion-eventos/programacion-eventos.component';
 import { IngresosAuditoriasComponent } from '../directivos/ingresos-auditorias/ingresos-auditorias.component';
 import { EgresosAuditoriasComponent } from '../directivos/egresos-auditorias/egresos-auditorias.component';
+import { InformacionEventoComponent } from '../inicios/informacion-evento/informacion-evento.component';
 
 const routes: Routes = [
   {path: '', canActivate: [auntenticacionGuard], component: InicioComponent, children: [
@@ -100,6 +101,7 @@ const routes: Routes = [
     { path: 'auditoriasIngresos', canActivate: [auntenticacionGuard], component: IngresosAuditoriasComponent },
     { path: 'auditoriasEgresos', canActivate: [auntenticacionGuard], component: EgresosAuditoriasComponent },
     { path: 'estadocuenta/:evento', canActivate: [auntenticacionGuard], component: EstadoCuentaEventoComponent },
+    { path: 'informacionEvento/:evento', canActivate: [auntenticacionGuard], component: InformacionEventoComponent },
   ]}
 ];
 

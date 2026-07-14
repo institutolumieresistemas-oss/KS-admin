@@ -42,6 +42,11 @@ export class EventosService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  buscarCodigo(body: { folio: string }) {
+    const url = this.uri + 'buscarCodigo';
+    return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   actualizarLider(body: any) {
     const url = this.uri + 'actualizarLider';
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
@@ -167,7 +172,7 @@ export class EventosService {
       return false;
     }
     if(this.generales.validarString(datos.cantidad)){
-      this.generales.mensajeError('No se ha ingresado la cantidad de niños');
+      this.generales.mensajeError('No se ha ingresado la cantidad de invitados');
       return false;
     }
     if(this.generales.validarString(datos.nombre)){
