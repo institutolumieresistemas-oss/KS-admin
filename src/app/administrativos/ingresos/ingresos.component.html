@@ -10,6 +10,9 @@
         </div><br>
         <div class="row" *ngIf="seleccion !== undefined">
             <div class="col-sm-4">
+                <button class="btn btn-warning" (click)="modal('modificar');">Modificar</button>
+            </div>
+            <div class="col-sm-4">
                 <button class="btn btn-info" (click)="modal('imagen');">Voucher</button>
             </div>
             <div class="col-sm-4">

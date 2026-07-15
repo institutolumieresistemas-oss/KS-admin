@@ -69,6 +69,7 @@ export class EgresosComponent {
       this.servicio.modificar(dato).subscribe((respuesta: any) => {
         this.generales.mensajeCorrecto('solicitud enviada correctamente');
         this.generales.cerrarModal();
+        this.mostrar();
       },
       error => {
         this.generales.interpretarError(error);
