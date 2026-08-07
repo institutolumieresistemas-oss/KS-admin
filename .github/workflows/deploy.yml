@@ -1,0 +1,70 @@
+name: Build Angular & Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      # 1. Compilar y empaquetar PRODUCCIÓN
+      - name: Build Production
+        run: npx ng build --configuration production
+
+      - name: Package Production dist
+        run: tar -czf dist_prod.tar.gz -C dist/kidsoadmin/browser .
+
+      # 2. Compilar y empaquetar PRUEBAS
+      - name: Build Pruebas
+        run: npx ng build --configuration pruebas
+
+      - name: Package Pruebas dist
+        run: tar -czf dist_pruebas.tar.gz -C dist/kidsoadmin/browser .
+
+      # 3. Subir ambos paquetes al servidor
+      - name: Upload archives to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 65002
+          source: "dist_prod.tar.gz,dist_pruebas.tar.gz"
+          target: "~/"
+
+      # 4. Desplegar en el servidor
+      - name: Extract and deploy on server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 65002
+          script: |
+            echo "🚀 Desplegando en PRODUCCIÓN (admin)..."
+            rm -rf /home/u740702945/domains/kidsopolis.com.mx/public_html/admin/*
+            tar -xzf ~/dist_prod.tar.gz -C /home/u740702945/domains/kidsopolis.com.mx/public_html/admin
+            rm ~/dist_prod.tar.gz
+            echo "✅ Deploy PRODUCCIÓN (admin) completado"
+
+            echo "🚀 Desplegando en PRUEBAS (prueba)..."
+            rm -rf /home/u740702945/domains/kidsopolis.com.mx/public_html/prueba/*
+            tar -xzf ~/dist_pruebas.tar.gz -C /home/u740702945/domains/kidsopolis.com.mx/public_html/prueba
+            rm ~/dist_pruebas.tar.gz
+            echo "✅ Deploy PRUEBAS (prueba) completado"
