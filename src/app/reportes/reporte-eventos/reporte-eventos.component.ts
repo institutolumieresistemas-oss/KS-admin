@@ -99,9 +99,9 @@ export class ReporteEventosComponent {
   
     // Crear hoja de Excel
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(exportData);
-    const workbook: XLSX.WorkBook = { Sheets: { 'Ingresos': worksheet }, SheetNames: ['Ingresos'] };
+    const workbook: XLSX.WorkBook = { Sheets: { 'Eventos': worksheet }, SheetNames: ['Eventos'] };
   
     // Guardar archivo
-    XLSX.writeFile(workbook, `Reporte_Ingresos_${new Date().toISOString().slice(0,10)}.xlsx`);
+    XLSX.writeFile(workbook, `Reporte_Eventos_${new Date().toISOString().slice(0,10)}.xlsx`);
   }
 }

@@ -48,7 +48,7 @@ export class ReporteEgresosComponent {
       const body = {
         idCalendario: this.busqueda
       }
-      this.servicio.ingresos(body).subscribe((respuesta: any) => {
+      this.servicio.egresos(body).subscribe((respuesta: any) => {
         this.datos = respuesta;
         this.exportarExcel();
       },
@@ -67,7 +67,7 @@ export class ReporteEgresosComponent {
       const exportData = this.datos.map((item: any) => ({
         'Folio': item.folio,
         'Año': item.calendario,
-        'Fecha': item.fecha,
+        'Fecha': item.fecha || item.created_at,
         'Rubro': item.rubro,
         'Tipo': item.tipo,
         'Concepto': item.concepto,
