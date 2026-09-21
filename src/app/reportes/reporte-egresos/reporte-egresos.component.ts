@@ -38,6 +38,13 @@ export class ReporteEgresosComponent {
     traer(){
       this.calendarios.mostrar().subscribe((respuesta: any) => {
         this.lista = respuesta;
+        if (this.lista && this.lista.length > 0) {
+          const anioActual = new Date().getFullYear().toString();
+          const actual = this.lista.find((c: any) => c.nombre === anioActual);
+          if (actual) {
+            this.busqueda = actual.id;
+          }
+        }
       },
       error => {
         this.generales.interpretarError(error);
@@ -45,6 +52,10 @@ export class ReporteEgresosComponent {
     }
   
     reporte(){
+      if (!this.busqueda || this.busqueda === 0 || this.busqueda === '0') {
+        this.generales.mensajeError('Por favor selecciona un calendario');
+        return;
+      }
       const body = {
         idCalendario: this.busqueda
       }
@@ -59,7 +70,7 @@ export class ReporteEgresosComponent {
   
     exportarExcel() {
       if (!this.datos || this.datos.length === 0) {
-        this.generales.interpretarError("No hay datos para exportar");
+        this.generales.mensajeError("No hay datos para exportar");
         return;
       }
     

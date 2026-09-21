@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <app-select [etiqueta]="'Calendario'" [datos]="lista" (emitidor)="busqueda = $event;"></app-select>
+                <app-select [id]="'calendario-ingresos'" [etiqueta]="'Calendario'" [datos]="lista" [dato]="busqueda" (emitidor)="busqueda = $event;"></app-select>
             </div>
             <div class="col-sm-6">
                 <button class="btn btn-info" (click)="reporte();">Buscar</button>

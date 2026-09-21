@@ -77,18 +77,27 @@ export class GeneralesService {
   }
 
   interpretarError(error: any) {
+    if (typeof error === 'string') {
+      this.mensajeError(error);
+      return;
+    }
+    if (!error) {
+      this.mensajeError('Ha ocurrido un error');
+      return;
+    }
     if(error.status === 500){
       const mensaje = {
-        archivo: error.error.file,
-        linea: error.error.line,
-        mensaje: error.error.message,
+        archivo: error.error?.file,
+        linea: error.error?.line,
+        mensaje: error.error?.message,
         usuario: localStorage.getItem('nombre'),
         url: error.url
       };
       this.mensajeError('Error en el servidor');
     }
     else if(error.status === 400){
-      this.mensajeError(error.error);
+      const msg = typeof error.error === 'string' ? error.error : (error.error?.message || 'Solicitud incorrecta');
+      this.mensajeError(msg);
     }else if(error.status === 401) {
       this.mensajeError('Su sesión ha caducado');
       this.cerrarSesion();
@@ -96,8 +105,12 @@ export class GeneralesService {
     }else if(error.status === 200){
       this.mensajeCorrecto('La respuesta no es un error pero asi es interpretada');
     }
-    else {
-      this.mensajeError('Error con codigo -' + error.status);
+    else if(error.status !== undefined && error.status !== null) {
+      this.mensajeError('Error con código -' + error.status);
+    } else if(error.message) {
+      this.mensajeError(error.message);
+    } else {
+      this.mensajeError('Ha ocurrido un error inesperado');
     }
   }
 
