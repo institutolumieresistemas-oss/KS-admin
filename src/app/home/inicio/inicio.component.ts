@@ -14,8 +14,11 @@ export class InicioComponent {
   sucursales: any;
   sucursal: any;
   user: any;
-  asignada: any;
-  asignadas: any;
+  asignada: any = {
+    id: 0,
+    nombre: 'No asignada'
+  };
+  asignadas: any = [];
   constructor(private generales: GeneralesService,
               private usuarios: UsuariosService){}
 
@@ -39,7 +42,7 @@ export class InicioComponent {
       this.sucursales = respuesta.sucursales;
       this.sucursal = respuesta.usuario.idSucursal;
       this.user = respuesta.usuario;
-      this.asignadas = respuesta.usuario.asignadas;
+      this.asignadas = respuesta.usuario.asignadas || [];
       this.verificarSucursalAsignada();
     },
     error => {
@@ -49,10 +52,12 @@ export class InicioComponent {
 
   verificarSucursalAsignada(){
     const asigno = localStorage.getItem('asigno');
+    let encontrada: any = null;
     if(asigno?.toString() === '1'){
-      this.asignada = this.generales.dato(this.asignadas, localStorage.getItem('asignada'));
+      encontrada = this.generales.dato(this.asignadas, localStorage.getItem('asignada'));
     }else{
-      this.asignada = this.generales.dato(this.asignadas, this.sucursal);
+      encontrada = this.generales.dato(this.asignadas, this.sucursal);
     }
+    this.asignada = encontrada || { id: 0, nombre: 'No asignada' };
   }
 }

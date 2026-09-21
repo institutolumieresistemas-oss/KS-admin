@@ -1,6 +1,6 @@
 <div class="nav-item dropdown">
     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-        <span class="">{{seleccionada.nombre}}</span>
+        <span class="">{{seleccionada?.nombre || 'No asignada'}}</span>
     </a>
     <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
         <a class="dropdown-item" *ngFor="let sucursal of restantes" (click)="seleccionarSucursal(sucursal);">{{sucursal.nombre}}</a>
