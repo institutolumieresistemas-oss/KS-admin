@@ -1,36 +1,45 @@
-<div class="card ">
+<div class="card">
     <div class="card-header pb-0 p-3">
         <div class="d-flex justify-content-between">
             <h6 class="mb-2">{{configuracion.titulo}}</h6>
         </div>
     </div>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-sm-1">
-                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Mostrar</p>
+    <div class="container-fluid px-3">
+        <!-- Barra de herramientas superior responsiva -->
+        <div class="row align-items-center mb-3 g-2">
+            <!-- Selector de filas por página -->
+            <div class="col-7 col-md-4 order-2 order-md-1 d-flex align-items-center gap-2">
+                <span class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-nowrap">Mostrar</span>
+                <div style="min-width: 75px; max-width: 90px;">
+                    <app-select [dato]="numeroFilas" [datos]="numeros" [frist]="false" (emitidor)="numeroFilas = $event; configurarPaginacion();"></app-select>
+                </div>
+                <span class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-nowrap">Elementos</span>
             </div>
-            <div class="col-sm-1">
-                <app-select [dato]="numeroFilas" [datos]="numeros" [frist]="false" (emitidor)="numeroFilas = $event; configurarPaginacion();"></app-select>
+            
+            <!-- Buscador -->
+            <div class="col-12 col-md-5 order-1 order-md-2" *ngIf="configuracion.busqueda">
+                <app-input [etiqueta]="'Buscar'" (emitidor)="buscar($event);"></app-input>
             </div>
-            <div class="col-sm-2">
-                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Elementos</p>
-            </div>
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <app-input [etiqueta]="'Buscar'" *ngIf="configuracion.busqueda" (emitidor)="buscar($event);"></app-input>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-sm-12 text-end">
-                <button class="btn btn-success btn-sm" (click)="exportToExcel()">Descargar Excel</button>
+
+            <!-- Botón Exportar a Excel -->
+            <div class="col-5 col-md-3 order-3 text-end">
+                <button class="btn btn-success btn-sm w-100 w-md-auto" (click)="exportToExcel()">
+                    <i class="fas fa-file-excel me-1"></i> Excel
+                </button>
             </div>
         </div>
 
-        <div class="table-responsive">
-            <table class="table align-items-center ">
+        <!-- ========================================== -->
+        <!-- VISTA ESCRITORIO / TABLET (>= 768px): Tabla -->
+        <!-- ========================================== -->
+        <div class="table-responsive d-none d-md-block">
+            <table class="table align-items-center">
                 <thead>
                     <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" *ngFor="let item of configuracion.alias, let o = index" (click)="(configuracion.ordenFilas) ? ordenar(o) :  null">{{item}} <i class="fas fa-{{(o === indiceOrden) ? (ordenASC) ? 'sort-up' : 'sort-down' : ''}}"></i></th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" *ngFor="let item of configuracion.alias, let o = index" (click)="(configuracion.ordenFilas) ? ordenar(o) :  null">
+                            {{item}} <i class="fas fa-{{(o === indiceOrden) ? (ordenASC ? 'sort-up' : 'sort-down') : ''}}"></i>
+                        </th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let items of listado, let i = index" [class]="(items['seleccionado']) ? 'selected' : items['bg']" [style.background-color]="items['color']" [style.color]="items['color'] ? getTextColor(items['color']) : null" (click)="mostrar(items, i)" (dblclick)="dobleClick(items);">
@@ -48,9 +57,6 @@
                                             <h6 class="text-sm mb-0" [style.color]="items['color'] ? getTextColor(items['color']) : null">{{items[item]}}</h6>
                                         </ng-container>
                                     </ng-container>
-                                    <ng-container *ngIf="items[item] === undefined">
-
-                                    </ng-container>
                                 </div>
                             </div>
                         </td>
@@ -58,19 +64,118 @@
                 </tbody>
             </table>
         </div>
-        <div class="row">
-            <div class="col-sm-8" *ngIf="numeroPaginas > 0">
+
+        <!-- ========================================== -->
+        <!-- VISTA MÓVIL (< 768px): Tarjetas (Cards)     -->
+        <!-- ========================================== -->
+        <div class="d-md-none mobile-cards-container">
+            <!-- Estado vacío -->
+            <div *ngIf="!listado || listado.length === 0" class="mobile-empty-state text-center p-4 my-2 rounded-3 bg-light border">
+                <i class="fas fa-inbox fa-2x text-muted mb-2"></i>
+                <p class="mb-0 text-secondary text-xs font-weight-bold">No hay registros disponibles</p>
+            </div>
+
+            <!-- Lista de tarjetas interactivas -->
+            <div 
+                *ngFor="let items of listado; let i = index" 
+                [class]="getCardClass(items)" 
+                [style.background-color]="items['color'] ? items['color'] : null"
+                [style.color]="items['color'] ? getTextColor(items['color']) : null"
+                (click)="mostrar(items, i)" 
+                (dblclick)="dobleClick(items);"
+            >
+                <!-- Cabecera de la tarjeta: Identificador principal y estado de selección -->
+                <div class="mobile-card-header d-flex justify-content-between align-items-center mb-2 pb-2">
+                    <div class="d-flex align-items-center gap-2 text-truncate me-2">
+                        <span class="mobile-badge-id text-truncate">
+                            <span class="mobile-id-label text-uppercase text-xxs opacity-7">{{configuracion.alias[0] || 'ID'}}:</span>
+                            <strong class="mobile-id-value ms-1">{{items[configuracion.encabezados[0]]}}</strong>
+                        </span>
+                        <span *ngIf="configuracion.encabezados.length > 1 && items[configuracion.encabezados[1]] !== undefined && !esIcono(items[configuracion.encabezados[1]]) && !esColor(items[configuracion.encabezados[1]])" class="mobile-header-title text-truncate fw-bold">
+                            {{items[configuracion.encabezados[1]]}}
+                        </span>
+                    </div>
+
+                    <!-- Indicador visual de selección táctil -->
+                    <div class="mobile-header-actions d-flex align-items-center flex-shrink-0">
+                        <span *ngIf="items['seleccionado']" class="mobile-badge-selected" title="Seleccionado">
+                            <i class="fas fa-check-circle me-1"></i> Seleccionado
+                        </span>
+                        <span *ngIf="!items['seleccionado']" class="mobile-badge-unselected" title="Toca para seleccionar">
+                            <i class="far fa-circle text-muted"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Cuerpo de la tarjeta: Cuadrícula con pares Clave - Valor -->
+                <div class="mobile-card-body">
+                    <div class="row g-2">
+                        <ng-container *ngFor="let item of configuracion.encabezados; let j = index">
+                            <div 
+                                [class]="isFullWidth(item, items[item]) ? 'col-12' : 'col-6'" 
+                                class="mobile-card-col"
+                            >
+                                <div class="mobile-field-item">
+                                    <span class="mobile-field-label" [style.color]="items['color'] ? getTextColor(items['color']) : null">
+                                        {{configuracion.alias[j] || item}}
+                                    </span>
+                                    <div class="mobile-field-value">
+                                        <ng-container *ngIf="items[item] !== undefined && items[item] !== null && items[item] !== ''">
+                                            <ng-container *ngIf="esIcono(items[item])">
+                                                <i class="{{items[item]}} mobile-icon-badge" [title]="items[item]"></i>
+                                            </ng-container>
+                                            <ng-container *ngIf="esColor(items[item])">
+                                                <i class="fas fa-circle {{items[item]}} mobile-color-badge" [title]="items[item]"></i>
+                                            </ng-container>
+                                            <ng-container *ngIf="!esIcono(items[item]) && !esColor(items[item])">
+                                                <span class="mobile-value-text" [style.color]="items['color'] ? getTextColor(items['color']) : null">
+                                                    {{items[item]}}
+                                                </span>
+                                            </ng-container>
+                                        </ng-container>
+                                        <ng-container *ngIf="items[item] === undefined || items[item] === null || items[item] === ''">
+                                            <span class="text-muted opacity-40">—</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+
+                <!-- Pie de la tarjeta: Numeración y botón directo de acción/detalle -->
+                <div class="mobile-card-footer mt-2 pt-2 d-flex justify-content-between align-items-center">
+                    <span class="mobile-counter-text text-xxs opacity-70">
+                        #{{i + 1 + (paginaSeleccionada - 1) * numeroFilas}}
+                    </span>
+                    <button 
+                        type="button" 
+                        class="btn btn-sm btn-link mobile-action-btn p-0 text-decoration-none" 
+                        (click)="$event.stopPropagation(); dobleClick(items);" 
+                        title="Abrir / Ver detalles"
+                    >
+                        <span>Detalles</span> <i class="fas fa-chevron-right ms-1"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paginación responsiva -->
+        <div class="row align-items-center mt-3 g-2">
+            <div class="col-12 col-md-8" *ngIf="numeroPaginas > 0">
                 <app-paginador [paginas]="numeroPaginas" (emitidor)="paginaSeleccionada = $event; paginacion();"></app-paginador>
             </div>
-            <div class="col-sm-8" *ngIf="numeroPaginas < 1">
-                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No existen resultados</p>
+            <div class="col-12 col-md-8 text-center text-md-start" *ngIf="numeroPaginas < 1">
+                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 mb-0">No existen resultados</p>
             </div>
-            <div class="col-sm-4" *ngIf="datos !== undefined">
-                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">{{datos.length}} registros encontrados de {{totalDatos}}</p>
-            </div>
-            <div class="col-sm-4" *ngIf="datos === undefined">
-                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">0 registros encontrados de {{totalDatos}}</p>
+            <div class="col-12 col-md-4 text-center text-md-end">
+                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 mb-0" *ngIf="datos !== undefined">
+                    {{datos.length}} registros encontrados de {{totalDatos}}
+                </p>
+                <p class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 mb-0" *ngIf="datos === undefined">
+                    0 registros encontrados de {{totalDatos}}
+                </p>
             </div>
         </div>
     </div>
-</div>
+</div>

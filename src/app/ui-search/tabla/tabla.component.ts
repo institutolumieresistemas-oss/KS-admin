@@ -270,4 +270,35 @@ export class TablaComponent {
     return null;
   }
 
+  isDarkColor(items: any): boolean {
+    if (!items || !items['color']) return false;
+    return this.getTextColor(items['color']) === '#fff';
+  }
+
+  isFullWidth(encabezado: string, valor: any): boolean {
+    if (valor === undefined || valor === null) return false;
+    const str = valor.toString();
+    if (str.length > 28) return true;
+    const lower = (encabezado || '').toLowerCase();
+    return lower.includes('observacion') || 
+           lower.includes('descripcion') || 
+           lower.includes('domicilio') || 
+           lower.includes('direccion') || 
+           lower.includes('mapa');
+  }
+
+  getCardClass(items: any): string {
+    let classes = 'mobile-table-card';
+    if (items['bg']) {
+      classes += ' ' + items['bg'];
+    }
+    if (items['seleccionado']) {
+      classes += ' selected';
+    }
+    if (this.isDarkColor(items)) {
+      classes += ' is-dark';
+    }
+    return classes;
+  }
+
 }
