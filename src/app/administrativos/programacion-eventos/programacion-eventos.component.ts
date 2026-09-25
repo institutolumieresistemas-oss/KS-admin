@@ -49,6 +49,7 @@ export class ProgramacionEventosComponent implements OnInit {
   listado: any[] = [];
   datos: any[] = [];
   semanas: any;
+  semanaSeleccionada: any = 0;
 
   constructor(
     private generales: GeneralesService,
@@ -57,6 +58,10 @@ export class ProgramacionEventosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const semanaGuardada = localStorage.getItem('filtro_semana_programacion_eventos');
+    if (semanaGuardada && !this.generales.validarEntero(semanaGuardada)) {
+      this.semanaSeleccionada = semanaGuardada.toString();
+    }
     this.mostrar();
   }
 
@@ -102,9 +107,14 @@ export class ProgramacionEventosComponent implements OnInit {
           });
 
           this.listado = mapped;
-          this.datos = mapped;
           if (respuesta.listas) {
             this.semanas = respuesta.listas.semanas;
+          }
+
+          if (this.semanaSeleccionada && !this.generales.validarEntero(this.semanaSeleccionada)) {
+            this.filtrarPorSemana(this.semanaSeleccionada);
+          } else {
+            this.datos = mapped;
           }
         }
       },
@@ -115,12 +125,21 @@ export class ProgramacionEventosComponent implements OnInit {
   }
 
   buscar(semana: any): void {
-    if (this.generales.validarEntero(semana)) {
-      // Si no hay semana válida seleccionada, mostrar todos los datos
+    this.semanaSeleccionada = semana;
+    if (this.generales.validarEntero(semana) || semana === '0' || semana === 0) {
+      // Si no hay semana válida seleccionada, mostrar todos los datos y limpiar filtro
+      localStorage.removeItem('filtro_semana_programacion_eventos');
+      this.semanaSeleccionada = 0;
       this.datos = this.listado;
       return;
     }
 
+    localStorage.setItem('filtro_semana_programacion_eventos', semana.toString());
+    this.filtrarPorSemana(semana);
+  }
+
+  private filtrarPorSemana(semana: any): void {
+    if (!this.listado) return;
     this.datos = this.listado.filter((evento: any) =>
       Number(evento.semana) === Number(semana)
     );

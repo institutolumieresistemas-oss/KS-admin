@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { GeneralesService } from '../../servicios/generales.service';
 
 @Component({
@@ -7,12 +7,12 @@ import { GeneralesService } from '../../servicios/generales.service';
     styleUrl: './select.component.css',
     standalone: false
 })
-export class SelectComponent {
+export class SelectComponent implements OnInit, OnChanges {
   @Input() id = '';
   @Input() etiqueta = '';
   @Input() datos: any;
   @Output() emitidor = new EventEmitter<any>();
-  @Input() dato = 0;
+  @Input() dato: any = 0;
   @Input() activo = false;
   @Input() des = false;
   @Input() obligatorio = false;
@@ -31,5 +31,12 @@ export class SelectComponent {
     return !this.generales.validarString(descripcion);;
   }
 
-  ngOnChange() {}
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['datos'] && this.dato !== undefined && this.dato !== null && this.dato !== 0 && this.dato !== '0') {
+      const valorActual = this.dato;
+      setTimeout(() => {
+        this.dato = valorActual;
+      }, 0);
+    }
+  }
 }

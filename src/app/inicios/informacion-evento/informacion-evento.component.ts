@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { CommonModule, Location } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EventosService } from '../../servicios/eventos.service';
 import { GeneralesService } from '../../servicios/generales.service';
 import { UiSearchModule } from '../../ui-search/ui-search.module';
@@ -26,6 +26,8 @@ interface Evento {
 })
 export class InformacionEventoComponent {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private location = inject(Location);
   private eventosService = inject(EventosService);
   private generales = inject(GeneralesService);
 
@@ -88,5 +90,13 @@ export class InformacionEventoComponent {
         this.cargando.set(false);
       }
     });
+  }
+
+  regresar(): void {
+    if (window.history.length > 1) {
+      this.location.back();
+    } else {
+      this.router.navigate(['admin/programacionEventos']);
+    }
   }
 }

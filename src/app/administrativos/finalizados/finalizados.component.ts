@@ -18,9 +18,14 @@ export class FinalizadosComponent {
     personajes: []
   }
   datos: any;
+  semanaSeleccionada: any = 0;
   constructor(private servicio: EventosService, private generales: GeneralesService){}
 
   ngOnInit(){
+    const semanaGuardada = localStorage.getItem('filtro_semana_finalizados');
+    if (semanaGuardada && !this.generales.validarEntero(semanaGuardada)) {
+      this.semanaSeleccionada = semanaGuardada.toString();
+    }
     this.mostrar();
   }
 
@@ -28,7 +33,11 @@ export class FinalizadosComponent {
     this.servicio.finalizados().subscribe((respuesta: any) => {
       this.listas = respuesta.listas;
       this.datos = respuesta.datos;
-      this.eventos = respuesta.datos;
+      if (this.semanaSeleccionada && !this.generales.validarEntero(this.semanaSeleccionada)) {
+        this.filtrarPorSemana(this.semanaSeleccionada);
+      } else {
+        this.eventos = respuesta.datos;
+      }
     },
     error => {
       this.generales.interpretarError(error);
@@ -36,12 +45,20 @@ export class FinalizadosComponent {
   }
 
   buscar(semana: any){
-    if (this.generales.validarEntero(semana)) {
-      // Si no hay semana, mostrar todo
+    this.semanaSeleccionada = semana;
+    if (this.generales.validarEntero(semana) || semana === '0' || semana === 0) {
+      localStorage.removeItem('filtro_semana_finalizados');
+      this.semanaSeleccionada = 0;
       this.eventos = this.datos;
       return;
     }
 
+    localStorage.setItem('filtro_semana_finalizados', semana.toString());
+    this.filtrarPorSemana(semana);
+  }
+
+  private filtrarPorSemana(semana: any){
+    if (!this.datos) return;
     this.eventos = this.datos.filter((evento: any) =>
       Number(evento.semana) === Number(semana)
     );

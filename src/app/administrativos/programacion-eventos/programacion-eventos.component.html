@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row text-start mb-3">
             <div class="col-sm-8">
-                <app-select [datos]="semanas" [etiqueta]="'Semana'" (emitidor)="buscar($event);"></app-select>
+                <app-select [datos]="semanas" [etiqueta]="'Semana'" [dato]="semanaSeleccionada" (emitidor)="buscar($event);"></app-select>
             </div>
             <div class="col-sm-4">
                 <br> {{datos.length}} eventos
