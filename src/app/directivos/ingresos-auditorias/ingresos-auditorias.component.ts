@@ -21,6 +21,7 @@ export class IngresosAuditoriasComponent implements OnInit {
   datos: any[] = [];
   seleccion: any;
   vista: string = '';
+  cargandoVoucher: boolean = false;
 
   // --- Variables de Estado del Zoom ---
   scale: number = 1;         // Escala actual (1 = 100%)
@@ -56,6 +57,17 @@ export class IngresosAuditoriasComponent implements OnInit {
     this.resetZoom(); // Asegurar que abre sin zoom previo
     this.vista = 'voucher';
     this.generales.abrirModal();
+    if (this.seleccion && !this.seleccion.imagen && this.seleccion.id) {
+      this.cargandoVoucher = true;
+      this.servicio.voucher(this.seleccion.id).subscribe((res: any) => {
+        if (res && res.imagen) {
+          this.seleccion.imagen = res.imagen;
+        }
+        this.cargandoVoucher = false;
+      }, err => {
+        this.cargandoVoucher = false;
+      });
+    }
   }
 
   cerrarModal() {

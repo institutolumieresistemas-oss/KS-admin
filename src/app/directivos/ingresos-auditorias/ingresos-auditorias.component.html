@@ -58,10 +58,15 @@
 
         <div class="visor-frame bg-dark" (mousedown)="onMouseDown($event)" (mousemove)="onMouseMove($event)" (mouseup)="onMouseUp()" (mouseleave)="onMouseUp()" (wheel)="onWheel($event)">
 
-            <div *ngIf="seleccion.imagen" class="p-2 wrapper-imagen" [style.transform]="'translate(' + translateX + 'px, ' + translateY + 'px) scale(' + scale + ')'" [class.grabbing]="isDragging">
+            <div *ngIf="cargandoVoucher" class="py-5 text-white text-center w-100">
+                <div class="spinner-border text-info mb-3" role="status"></div>
+                <p class="text-white">Cargando voucher...</p>
+            </div>
+
+            <div *ngIf="!cargandoVoucher && seleccion.imagen" class="p-2 wrapper-imagen" [style.transform]="'translate(' + translateX + 'px, ' + translateY + 'px) scale(' + scale + ')'" [class.grabbing]="isDragging">
                 <img [src]="seleccion.imagen" class="img-fluid rounded shadow-lg image-auditoria" alt="Voucher de ingreso" draggable="false"> </div>
 
-            <div *ngIf="!seleccion.imagen" class="py-5 text-white text-center w-100">
+            <div *ngIf="!cargandoVoucher && !seleccion.imagen" class="py-5 text-white text-center w-100">
                 <i class="bi bi-camera-off fs-1 d-block mb-3 text-muted"></i>
                 <p class="mt-2 h6 text-muted">No hay una imagen vinculada a este registro.</p>
                 <p class="small text-muted">Forma de pago: {{seleccion.forma}}</p>

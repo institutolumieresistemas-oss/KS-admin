@@ -19,6 +19,7 @@ export class IngresosComponent {
   datos: any;
   seleccion: any;
   vista: any;
+  cargandoImagen: boolean = false;
   listas = {
     conceptos: [],
     rubros: [],
@@ -40,6 +41,21 @@ export class IngresosComponent {
   
   modal(vista: any){
     this.vista = '';
+    if ((vista === 'imagen' || vista === 'modificar') && this.seleccion && this.seleccion.id && !this.seleccion.imagen) {
+      this.cargandoImagen = true;
+      this.vista = vista;
+      this.generales.abrirModal();
+      this.servicio.voucher(this.seleccion.id).subscribe((res: any) => {
+        if (res && res.imagen) {
+          this.seleccion.imagen = res.imagen;
+        }
+        this.cargandoImagen = false;
+      }, err => {
+        this.cargandoImagen = false;
+      });
+      return;
+    }
+
     this.generales.delay(500).then(fun => {
       this.vista = vista;
       this.generales.abrirModal();

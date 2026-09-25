@@ -41,6 +41,11 @@ export class IngresosService {
     return this.http.post(url, body, {headers: this.headers}).pipe( map(respuesta => respuesta) );
   }
 
+  voucher(id: any) {
+    const url = this.uri + 'voucher';
+    return this.http.post(url, { id }, {headers: this.headers}).pipe( map(respuesta => respuesta) );
+  }
+
   validar(dato: any){
     if(this.generales.validarString(dato.monto)){
       this.generales.mensajeError('No se ha ingresado el monto');
