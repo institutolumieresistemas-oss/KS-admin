@@ -32,6 +32,10 @@ export class TablaComponent {
   paginaSeleccionada = 1;
   respaldo: any;
   totalDatos = 0;
+
+  modalDetalle: boolean = false;
+  itemDetalle: any = null;
+  itemDetalleIndex: number = -1;
   constructor() {}
 
   ngOnInit(): void {
@@ -299,6 +303,29 @@ export class TablaComponent {
       classes += ' is-dark';
     }
     return classes;
+  }
+
+  verDetalle(item: any, index: number, event?: Event): void {
+    if (event) {
+      event.stopPropagation();
+    }
+    this.itemDetalle = item;
+    this.itemDetalleIndex = index;
+    this.modalDetalle = true;
+
+    // Seleccionar el registro automáticamente para que los botones de acción del padre se activen
+    if (!item.seleccionado) {
+      this.mostrar(item, index);
+    }
+
+    // Emitir doble clic por si el componente padre lo utiliza (ej. navegación a información de evento)
+    this.doble.emit(item);
+  }
+
+  cerrarDetalle(): void {
+    this.modalDetalle = false;
+    this.itemDetalle = null;
+    this.itemDetalleIndex = -1;
   }
 
 }
